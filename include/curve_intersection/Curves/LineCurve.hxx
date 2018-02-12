@@ -11,7 +11,6 @@ public:
 	Point GetDerivedPoint (double t) const;
 	Point GetStartPoint() const;
 	Point GetEndPoint() const;
-
 	virtual std::string GetName() const;
 	bool EqualTo (const ICurve& theOther) const;
 private:
