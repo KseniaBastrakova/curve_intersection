@@ -42,7 +42,7 @@ Point BezierCurve::GetDerivedPoint (double t) const {
 	double y = 0;
 
 	size_t n = myControlPoints.size() - 1;
-	for (int i = 0; i <= n; i++)
+	for (size_t i = 0; i <= n; i++)
 	{
 		double  BernsteinCoefficient = CalculateBernsteinPolynom (i, n, t) * (i - n * t)/ (t * (1 - t));
 		x += BernsteinCoefficient * myControlPoints[i].X;

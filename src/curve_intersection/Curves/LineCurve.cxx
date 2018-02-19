@@ -39,3 +39,9 @@ bool LineCurve::EqualTo(const ICurve& theOther) const {
 	const LineCurve& aOther = static_cast<const LineCurve&> (theOther);
 	return (aOther.GetStartPoint() == this->GetStartPoint() && aOther.GetEndPoint() == this->GetEndPoint());
 }
+
+bool LineCurve::IsValid() const
+{
+	return (!(myStartPoint == myEndPoint));
+}
+
