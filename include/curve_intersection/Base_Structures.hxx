@@ -32,6 +32,10 @@ struct Vector {
 		X = theVector.X;
 		Y = theVector.Y;
 	}
+	Vector(const Point& point) {
+		X = point.X;
+		Y = point.Y;
+	}
 	double X;
 	double Y;
 };
@@ -100,3 +104,4 @@ struct Box {
 };
 
 const double PI = 3.1421;
+const double NULL_TOL = 1e-7;
