@@ -29,8 +29,13 @@ double CircleCurve::GetRadius() const {
 std::string CircleCurve::GetName() const {
 	return "Circle";
 }
+
 bool CircleCurve::EqualTo (const ICurve& theOther) const {
 	const CircleCurve& aOther = static_cast<const CircleCurve&> (theOther);
 	return (aOther.GetCenter() == this->GetCenter() && aOther.GetRadius() == this->GetRadius());
+}
+
+bool CircleCurve::IsValid() const {
+	return myRadius > NULL_TOL;
 }
 

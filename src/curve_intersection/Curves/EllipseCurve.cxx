@@ -15,13 +15,6 @@ static bool CorrectEllipseData(Point point1, Point point2, Point point3)
 
 }
 
-static bool IsCirclePoints(Point point1, Point point2, Point point3)
-{
-	return !((point1 == point2)) &&
-		(fabs(Distance(point1, point2) - Distance(point1, point3)) < NULL_TOL);
-
-}
-
 }
 
 EllipseCurve::EllipseCurve(Point thecenter, double ther1, double ther2, double thealpha) :
@@ -64,14 +57,6 @@ EllipseCurve::EllipseCurve(const std::vector<Point>& points):
 				(1 - (newCoordPoint.X) * (newCoordPoint.X) / (myR1 * myR1)))));
 			myR2 = axisB;
 		}
-		else if (IsCirclePoints(points[0], points[1], points[2]))
-		{
-			double r = Distance(points[0], points[1]);
-			myCenter = points[0];
-			myAlpha = 0;
-			myR1 = myR2 = r;
-		}
-
 	}
 
 }

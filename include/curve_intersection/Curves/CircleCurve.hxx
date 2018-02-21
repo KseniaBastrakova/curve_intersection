@@ -13,7 +13,7 @@ public:
 	Point GetDerivedPoint (double t) const;
 	Point GetCenter() const;
 	double GetRadius() const;
-
+	bool IsValid() const;
 	virtual std::string GetName() const;
 	virtual bool EqualTo (const ICurve& theOther) const;
 private:
