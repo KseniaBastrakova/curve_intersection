@@ -30,7 +30,7 @@ Point BezierCurve::GetPoint (double t) const {
 	size_t n = myControlPoints.size() - 1;
 	for (size_t i = 0; i <= n; i++)
 	{
-		double  BernsteinCoefficient = CalculateBernsteinPolynom (i, n, t);
+		double BernsteinCoefficient = CalculateBernsteinPolynom (i, n, t);
 		x += BernsteinCoefficient * myControlPoints[i].X;
 		y += BernsteinCoefficient * myControlPoints[i].Y;
 	}
@@ -52,7 +52,7 @@ Point BezierCurve::GetDerivedPoint (double t) const {
 }
 
 double  BezierCurve::CalculateBinomialCoefficient (int i, int n) const {
-	return Factorial (n) / (Factorial (i)*Factorial (n - i));
+	return Factorial (n) / (Factorial (i) * Factorial (n - i));
 }
 
 double  BezierCurve::CalculateBernsteinPolynom (size_t i, size_t n, double t) const {
@@ -68,9 +68,13 @@ std::string BezierCurve::GetName() const {
 	return "Bezier";
 }
 
-bool BezierCurve::EqualTo (const ICurve& theOther) const {
+bool BezierCurve::EqualTo(const ICurve& theOther) const {
 	const BezierCurve& aOther = static_cast<const BezierCurve&> (theOther);
 	return aOther.GetControlPoints() == this->GetControlPoints();
+}
+
+bool BezierCurve::IsValid() const {
+	return !myControlPoints.empty();
 }
 
 

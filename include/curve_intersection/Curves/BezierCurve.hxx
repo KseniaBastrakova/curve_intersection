@@ -14,6 +14,7 @@ public:
 
 	virtual std::string GetName() const;
 	virtual bool EqualTo (const ICurve& theOther) const;
+	bool IsValid() const;
 private:
 
 	double CalculateBinomialCoefficient (int i, int n) const;
