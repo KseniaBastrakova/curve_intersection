@@ -68,6 +68,10 @@ inline bool operator == (Point theFirst, Point theSecond) {
 	return (theFirst.X == theSecond.X && theFirst.Y == theSecond.Y);
 }
 
+inline Point operator + (Point theFirst, Point theSecond) {
+	return Point(theFirst.X + theSecond.X, theFirst.Y + theSecond.Y);
+}
+
 inline bool operator == (Range theFirst, Range theSecond) {
 	return (theFirst.Begin == theSecond.Begin && theFirst.End == theSecond.End);
 }
@@ -103,5 +107,5 @@ struct Box {
 	double RCharacteristic;
 };
 
-const double PI = 3.1421;
+const double PI = 3.14159265358979323846;
 const double NULL_TOL = 1e-7;
