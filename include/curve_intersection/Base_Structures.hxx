@@ -83,7 +83,6 @@ inline Point operator + (Point thePoint, Vector theVector) {
 	return Point(thePoint.X + theVector.X, thePoint.Y + theVector.Y);
 }
 
-
 inline bool operator == (Range theFirst, Range theSecond) {
 	return (theFirst.Begin == theSecond.Begin && theFirst.End == theSecond.End);
 }

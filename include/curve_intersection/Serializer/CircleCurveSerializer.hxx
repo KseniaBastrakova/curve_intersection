@@ -4,11 +4,11 @@
 #include <ostream>
 
 class CircleCurveSerializer :public FormattedCurveSerializer {
-	
+
 public:
-	CircleCurveSerializer (Format theFormat) :FormattedCurveSerializer (theFormat) {}
-	virtual std::unique_ptr<ICurve> Read (std::istream& theInput);
-	virtual void Write (std::ostream& theOutput, const ICurve& theCurve);
+	CircleCurveSerializer(Format theFormat) :FormattedCurveSerializer(theFormat) {}
+	virtual std::unique_ptr<ICurve> Read(std::istream& theInput);
+	virtual void Write(std::ostream& theOutput, const ICurve& theCurve);
 
 	virtual std::string GetHeaderName();
 

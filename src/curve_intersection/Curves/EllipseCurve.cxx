@@ -1,19 +1,19 @@
 #include "EllipseCurve.hxx"
 
 namespace {
-static bool PointsOneLine(Point point1, Point point2, Point point3)
-{
-	return IsCollinear(Vector(point1 - point2), Vector(point2 - point3));
-}
+	static bool PointsOneLine(Point point1, Point point2, Point point3)
+	{
+		return IsCollinear(Vector(point1 - point2), Vector(point2 - point3));
+	}
 
-static bool CorrectEllipseData(Point point1, Point point2, Point point3)
-{
-	return  !((point1 == point2 ||
-		       point2 == point3 ||
-		       point1 == point3) ||
-		(PointsOneLine(point1, point2, point3)));
+	static bool CorrectEllipseData(Point point1, Point point2, Point point3)
+	{
+		return  !((point1 == point2 ||
+			point2 == point3 ||
+			point1 == point3) ||
+			(PointsOneLine(point1, point2, point3)));
 
-}
+	}
 
 }
 
@@ -32,7 +32,7 @@ EllipseCurve::EllipseCurve(Point thecenter, double ther1, double ther2, double t
 	}
 }
 
-EllipseCurve::EllipseCurve(const std::vector<Point>& points):
+EllipseCurve::EllipseCurve(const std::vector<Point>& points) :
 	myCenter(Point(0.0, 0.0)),
 	myR1(0.0),
 	myR2(0.0),
@@ -65,14 +65,14 @@ Range EllipseCurve::GetRange() const {
 	return Range(0.0, 2.0 * PI);
 }
 
-Point EllipseCurve::GetPoint (double t) const {
+Point EllipseCurve::GetPoint(double t) const {
 	Point point(myR1 * cos(t), myR2 * sin(t));
-	double x = point.X * cos(myAlpha) + point.Y * cos(myAlpha + PI/2.);
-	double y = point.X * sin(myAlpha) + point.Y * sin(myAlpha + PI/2.);
+	double x = point.X * cos(myAlpha) + point.Y * cos(myAlpha + PI / 2.);
+	double y = point.X * sin(myAlpha) + point.Y * sin(myAlpha + PI / 2.);
 	return myCenter + Point(x, y);
 }
 
-Point EllipseCurve::GetDerivedPoint (double t) const {
+Point EllipseCurve::GetDerivedPoint(double t) const {
 	Vector vector(myR1 * -sin(t), myR2 * cos(t));
 	double x = vector.X * cos(myAlpha) + vector.Y * cos(myAlpha + PI / 2.);
 	double y = vector.X * sin(myAlpha) + vector.Y * sin(myAlpha + PI / 2.);

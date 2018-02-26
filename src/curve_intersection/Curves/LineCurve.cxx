@@ -10,7 +10,7 @@ LineCurve::LineCurve(const std::vector<Point>& points) {
 
 }
 
-LineCurve::LineCurve (const Point& thePoint1, const Point& thePoint2) {
+LineCurve::LineCurve(const Point& thePoint1, const Point& thePoint2) {
 
 	myDirectingVector = Point(thePoint2.X - thePoint1.X, thePoint2.Y - thePoint1.Y);
 	myStartPoint = thePoint1;
@@ -18,7 +18,7 @@ LineCurve::LineCurve (const Point& thePoint1, const Point& thePoint2) {
 
 }
 
-Point LineCurve::GetPoint (double t) const {
+Point LineCurve::GetPoint(double t) const {
 	Point aPointValue;
 	aPointValue.X = myDirectingVector.X * t + myStartPoint.X;
 	aPointValue.Y = myDirectingVector.Y * t + myStartPoint.Y;
@@ -26,10 +26,10 @@ Point LineCurve::GetPoint (double t) const {
 }
 
 Range LineCurve::GetRange() const {
-	return Range (0.0, 1.0);
+	return Range(0.0, 1.0);
 }
 
-Point LineCurve::GetDerivedPoint (double t) const {
+Point LineCurve::GetDerivedPoint(double t) const {
 	return myDirectingVector;
 }
 

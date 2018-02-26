@@ -4,8 +4,8 @@
 
 class GoldenRatio {
 public:
-	GoldenRatio (std::function<double(double)> theFunc, Range theRange, double theEps) :
-		myFunction (theFunc), myRange (theRange), myEps (theEps) {};
+	GoldenRatio(std::function<double(double)> theFunc, Range theRange, double theEps) :
+		myFunction(theFunc), myRange(theRange), myEps(theEps) {};
 	double Run();
 private:
 	std::function<double(double)> myFunction;

@@ -5,5 +5,5 @@
 
 class CurveIntersection {
 public:
-	std::vector<Point> Perform (const ICurve& FirstCurve, const ICurve&SecoundCurve);
+	std::vector<Point> Perform(const ICurve& FirstCurve, const ICurve&SecoundCurve);
 };

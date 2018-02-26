@@ -2,10 +2,10 @@
 #include <cmath>
 
 namespace {
-static bool IsCorrectCircleData(Point point1, Point point2)
-{
-	return !(point1 == point2);
-}
+	static bool IsCorrectCircleData(Point point1, Point point2)
+	{
+		return !(point1 == point2);
+	}
 
 }
 
@@ -23,20 +23,20 @@ CircleCurve::CircleCurve(const std::vector<Point>& points) {
 }
 
 Range CircleCurve::GetRange() const {
-	return Range (0.0, 2 * PI);
+	return Range(0.0, 2 * PI);
 }
 
-Point CircleCurve::GetPoint (double t) const {
+Point CircleCurve::GetPoint(double t) const {
 	Point aPoint;
 	aPoint.X = myRadius * cos(t) + my—enter.X;
 	aPoint.Y = myRadius * sin(t) + my—enter.Y;
 	return (aPoint);
 }
 
-Point CircleCurve::GetDerivedPoint (double t) const {
+Point CircleCurve::GetDerivedPoint(double t) const {
 	Point aPoint;
-	aPoint.X = -myRadius * sin (t);
-	aPoint.Y =  myRadius * cos (t);
+	aPoint.X = -myRadius * sin(t);
+	aPoint.Y = myRadius * cos(t);
 	return (aPoint);
 }
 
@@ -52,7 +52,7 @@ std::string CircleCurve::GetName() const {
 	return "Circle";
 }
 
-bool CircleCurve::EqualTo (const ICurve& theOther) const {
+bool CircleCurve::EqualTo(const ICurve& theOther) const {
 	const CircleCurve& aOther = static_cast<const CircleCurve&> (theOther);
 	return (aOther.GetCenter() == this->GetCenter() && aOther.GetRadius() == this->GetRadius());
 }

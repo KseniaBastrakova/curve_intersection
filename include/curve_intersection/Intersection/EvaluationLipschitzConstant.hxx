@@ -4,10 +4,10 @@
 
 class LipschitzConstantEvaluator {
 public:
-	LipschitzConstantEvaluator (std::function<double(double,double)> theFunction, Range theRangeX, Range theRangeY):
-		myFunction (theFunction), myRangeX (theRangeX), myRangeY (theRangeY) {}
+	LipschitzConstantEvaluator(std::function<double(double, double)> theFunction, Range theRangeX, Range theRangeY) :
+		myFunction(theFunction), myRangeX(theRangeX), myRangeY(theRangeY) {}
 
-	double Evaluate (int theResolution) const;
+	double Evaluate(int theResolution) const;
 
 private:
 	double myLipschitzConstant;
