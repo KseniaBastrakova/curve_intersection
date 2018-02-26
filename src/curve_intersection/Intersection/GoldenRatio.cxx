@@ -13,10 +13,11 @@ double GoldenRatio::Run() {
 		X1 = aEnd - (aEnd - aBegin) / aGRConstant;
 		X2 = aBegin + (aEnd - aBegin) / aGRConstant;
 		Y1 = myFunction(X1);
-	    Y2 = myFunction(X2);
+		Y2 = myFunction(X2);
 		if (Y1 > Y2) {
 			aBegin = X1;
-		} else {
+		}
+		else {
 			aEnd = X2;
 		}
 

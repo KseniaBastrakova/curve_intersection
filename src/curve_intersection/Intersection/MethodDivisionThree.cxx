@@ -67,6 +67,7 @@ std::vector<Point> MethodDivisionIntoThree::Method() {
 		}
 		CurrentIteration++;
 	}
+
 	return aResult;
 }
 

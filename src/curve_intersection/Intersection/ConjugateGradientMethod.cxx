@@ -3,15 +3,15 @@
 #include <algorithm>
 #include <limits>
 
-Point ConjugateGradientMethod::FindMinimum (Box theBox, Point theStartPoint) {
+Point ConjugateGradientMethod::FindMinimum(Box theBox, Point theStartPoint) {
 	myRangeX = theBox.myRangeX;
 	myRangeY = theBox.myRangeY;
 	myStartPoint = theStartPoint;
 	int aNumIteration = 10;
-	double aObjResFuntion = myObjectiveFunction (theStartPoint.X, theStartPoint.Y);
-	for (int i = 0; i <aNumIteration; i++) {
+	double aObjResFuntion = myObjectiveFunction(theStartPoint.X, theStartPoint.Y);
+	for (int i = 0; i < aNumIteration; i++) {
 		Point aNewPoint = Run();
-		double aNewObjResFuntion = myObjectiveFunction (aNewPoint.X, aNewPoint.Y);
+		double aNewObjResFuntion = myObjectiveFunction(aNewPoint.X, aNewPoint.Y);
 		if (aNewObjResFuntion > aObjResFuntion)
 			return myStartPoint;
 		else {
@@ -23,8 +23,8 @@ Point ConjugateGradientMethod::FindMinimum (Box theBox, Point theStartPoint) {
 }
 
 Point ConjugateGradientMethod::Run() {
-	Point aCurrentPoint (myStartPoint.X, myStartPoint.Y);
-	Point aAntiGrad = -myGradientFunction (aCurrentPoint.X, aCurrentPoint.Y);
+	Point aCurrentPoint(myStartPoint.X, myStartPoint.Y);
+	Point aAntiGrad = -myGradientFunction(aCurrentPoint.X, aCurrentPoint.Y);
 	Point SCurrent = aAntiGrad;
 
 	for (int i = 0; i < 2; i++) {
@@ -33,16 +33,16 @@ Point ConjugateGradientMethod::Run() {
 			double t2 = aCurrentPoint.Y + alpha * SCurrent.Y;
 			return myObjectiveFunction(t1, t2);
 		};
-		Range aRange = CountingRange (aCurrentPoint, SCurrent);
+		Range aRange = CountingRange(aCurrentPoint, SCurrent);
 
 		double Eps = aRange.Lenght() * 1e-4;
-		GoldenRatio aMethod (aDistFunction, aRange, Eps);
+		GoldenRatio aMethod(aDistFunction, aRange, Eps);
 		double alamda = aMethod.Run();
 
-		aCurrentPoint.X += alamda*SCurrent.X;
-		aCurrentPoint.Y += alamda*SCurrent.Y;
-		Point aNewAntiGrad = myGradientFunction (aCurrentPoint.X, aCurrentPoint.Y);
-		double W = NormSq (aNewAntiGrad) / NormSq (aAntiGrad);
+		aCurrentPoint.X += alamda * SCurrent.X;
+		aCurrentPoint.Y += alamda * SCurrent.Y;
+		Point aNewAntiGrad = myGradientFunction(aCurrentPoint.X, aCurrentPoint.Y);
+		double W = NormSq(aNewAntiGrad) / NormSq(aAntiGrad);
 		SCurrent.X = SCurrent.X * W + aAntiGrad.X;
 		SCurrent.Y = SCurrent.Y * W + aAntiGrad.Y;
 		aAntiGrad = aNewAntiGrad;
@@ -51,9 +51,9 @@ Point ConjugateGradientMethod::Run() {
 
 }
 Range ConjugateGradientMethod::CountingRange(Point thePoint, Point theDirection) {
-	
+
 	double aMaxSize = std::numeric_limits<double>::infinity();
-	
+
 	if (theDirection.X > 0)
 		aMaxSize = std::min(aMaxSize, (myRangeX.End - thePoint.X) / (theDirection.X));
 	if (theDirection.X < 0)
@@ -63,5 +63,5 @@ Range ConjugateGradientMethod::CountingRange(Point thePoint, Point theDirection)
 		aMaxSize = std::min(aMaxSize, (myRangeY.End - thePoint.Y) / (theDirection.Y));
 	if (theDirection.Y < 0)
 		aMaxSize = std::min(aMaxSize, (myRangeY.Begin - thePoint.Y) / (theDirection.Y));
-	return Range (0.0, aMaxSize);
+	return Range(0.0, aMaxSize);
 }

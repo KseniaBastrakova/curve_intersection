@@ -13,7 +13,7 @@
 
 namespace {
 
-	bool tryReadHeader (std::istream& theStream, FormattedCurveSerializer::Format theFormat, std::string& theHeader) {
+	bool tryReadHeader(std::istream& theStream, FormattedCurveSerializer::Format theFormat, std::string& theHeader) {
 		if (theFormat == FormattedCurveSerializer::Format::Binary) {
 			int aLength;
 			theStream.read((char*)&aLength, sizeof(aLength));
@@ -82,7 +82,7 @@ void CurveExchanger::Write(std::ostream& theStream, const ICurve& aCurve, Format
 	aSerializer->Write(theStream, aCurve);
 }
 
-std::vector<std::shared_ptr<ICurve>> CurveExchanger::ReadCurves (std::string theFileName) {
+std::vector<std::shared_ptr<ICurve>> CurveExchanger::ReadCurves(std::string theFileName) {
 	std::ifstream aInputFile;
 	FormattedCurveSerializer::Format aFormat;
 	if (FileExtension(theFileName) == "bin") {
@@ -102,14 +102,14 @@ std::vector<std::shared_ptr<ICurve>> CurveExchanger::ReadCurves (std::string the
 	return aCurveVector;
 }
 
-void CurveExchanger::WriteCurves (const std::vector<std::shared_ptr<ICurve>>& theCurves, std::string theFileName) {
+void CurveExchanger::WriteCurves(const std::vector<std::shared_ptr<ICurve>>& theCurves, std::string theFileName) {
 
-	std::function<bool(std::shared_ptr<ICurve>, std::shared_ptr<ICurve>)> aCompare = 
-		[] (std::shared_ptr<ICurve> aCurveFirst, std::shared_ptr<ICurve> aCurveSecond) {
+	std::function<bool(std::shared_ptr<ICurve>, std::shared_ptr<ICurve>)> aCompare =
+		[](std::shared_ptr<ICurve> aCurveFirst, std::shared_ptr<ICurve> aCurveSecond) {
 		return *aCurveFirst == *aCurveSecond;
 	};
 	std::vector<std::shared_ptr<ICurve>> aUniqueCurves = theCurves;
-	auto aIt = std::unique (aUniqueCurves.begin(), aUniqueCurves.end(), aCompare);
+	auto aIt = std::unique(aUniqueCurves.begin(), aUniqueCurves.end(), aCompare);
 	aUniqueCurves.erase(aIt, aUniqueCurves.end());
 	std::ofstream fout;
 	fout.open(theFileName, std::ios::binary);

@@ -43,6 +43,14 @@ struct Vector {
 	double Y;
 };
 
+inline Vector operator * (Vector theVector, double theScalar) {
+	return Vector(theVector.X * theScalar, theVector.Y * theScalar);
+}
+
+inline Vector operator * (double theScalar, Vector theVector) {
+	return Vector(theVector.X * theScalar, theVector.Y * theScalar);
+}
+
 inline double VectorMult(Vector vectorFirst, Vector vectorSecound)
 {
 	return vectorSecound.X * vectorFirst.Y - vectorSecound.Y * vectorFirst.X;
@@ -71,9 +79,10 @@ inline bool operator == (Point theFirst, Point theSecond) {
 	return (theFirst.X == theSecond.X && theFirst.Y == theSecond.Y);
 }
 
-inline Point operator + (Point theFirst, Point theSecond) {
-	return Point(theFirst.X + theSecond.X, theFirst.Y + theSecond.Y);
+inline Point operator + (Point thePoint, Vector theVector) {
+	return Point(thePoint.X + theVector.X, thePoint.Y + theVector.Y);
 }
+
 
 inline bool operator == (Range theFirst, Range theSecond) {
 	return (theFirst.Begin == theSecond.Begin && theFirst.End == theSecond.End);
@@ -111,4 +120,4 @@ struct Box {
 };
 
 const double PI = 3.14159265358979323846;
-const double NULL_TOL = 1e-7;
+const double NULL_TOL = 1e-4;
