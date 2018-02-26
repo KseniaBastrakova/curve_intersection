@@ -1,11 +1,13 @@
 #pragma once
 #include "Base_Structures.hxx"
 #include "ICurve.hxx"
+#include <vector>
 
 
 class LineCurve : public ICurve {
 public:
 	LineCurve() = delete;
+	LineCurve(const std::vector<Point>& points);
 	LineCurve (const Point& thePoint1, const Point& thePoint2);
 	virtual Range GetRange() const;
 	virtual Point GetPoint (double t) const;

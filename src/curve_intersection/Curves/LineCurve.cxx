@@ -1,5 +1,15 @@
 #include "LineCurve.hxx"
 
+LineCurve::LineCurve(const std::vector<Point>& points) {
+
+	if (points.size() >= 2)
+	{
+		myStartPoint = points[0];
+		myEndPoint = points[1];
+	}
+
+}
+
 LineCurve::LineCurve (const Point& thePoint1, const Point& thePoint2) {
 
 	myDirectingVector = Point(thePoint2.X - thePoint1.X, thePoint2.Y - thePoint1.Y);
