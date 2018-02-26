@@ -8,6 +8,7 @@ public:
 	CircleCurve (const Point& the—enter, double theRadius) :
 		my—enter (the—enter), myRadius (theRadius) {}
 
+	CircleCurve(const std::vector<Point>& points);
 	virtual Range GetRange() const;
 	virtual Point GetPoint (double t) const;
 	Point GetDerivedPoint (double t) const;
