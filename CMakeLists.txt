@@ -1,6 +1,9 @@
 project(curveintersection CXX)
 cmake_minimum_required(VERSION 2.6)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/../)
+
+add_subdirectory(3rdParty)
+
 set ( SRC_DIR ${PROJECT_SOURCE_DIR}/src )
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/curve_intersection/Curves)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/curve_intersection/Intersection)
