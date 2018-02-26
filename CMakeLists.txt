@@ -2,7 +2,8 @@ project(curveintersection CXX)
 cmake_minimum_required(VERSION 2.6)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/../)
 
-add_subdirectory(3rdParty)
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")	
 
 set ( SRC_DIR ${PROJECT_SOURCE_DIR}/src )
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/curve_intersection/Curves)
@@ -24,4 +25,7 @@ list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/CurveExchanger.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/EllipseCurveSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/FormattedCurveSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/LineCurveSerializer.cxx)
-add_library(${PROJECT_NAME} SHARED ${SRC})
+add_library(${PROJECT_NAME} ${SRC})
+
+add_subdirectory(3rdParty)
+add_subdirectory(tests)
