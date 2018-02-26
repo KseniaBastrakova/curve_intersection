@@ -36,6 +36,9 @@ struct Vector {
 		X = point.X;
 		Y = point.Y;
 	}
+	double Lenght() const {
+		return sqrt(X * X + Y * Y);
+	}
 	double X;
 	double Y;
 };
