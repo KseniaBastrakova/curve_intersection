@@ -62,21 +62,21 @@ EllipseCurve::EllipseCurve(const std::vector<Point>& points):
 }
 
 Range EllipseCurve::GetRange() const {
-	return Range(0.0, 2 * PI);
+	return Range(0.0, 2.0 * PI);
 }
 
 Point EllipseCurve::GetPoint (double t) const {
-	Point aPoint;
-	aPoint.X = myR1 * cos(t);
-	aPoint.Y = myR2 * sin(t);
-	return aPoint;
+	Point point(myR1 * cos(t), myR2 * sin(t));
+	double x = point.X * cos(myAlpha) + point.Y * cos(myAlpha + PI/2.);
+	double y = point.X * sin(myAlpha) + point.Y * sin(myAlpha + PI/2.);
+	return myCenter + Point(x, y);
 }
 
 Point EllipseCurve::GetDerivedPoint (double t) const {
-	Point aPoint;
-	aPoint.X = myR1 * -sin (t);
-	aPoint.Y = myR2 * cos (t);
-	return aPoint;
+	Vector vector(myR1 * -sin(t), myR2 * cos(t));
+	double x = vector.X * cos(myAlpha) + vector.Y * cos(myAlpha + PI / 2.);
+	double y = vector.X * sin(myAlpha) + vector.Y * sin(myAlpha + PI / 2.);
+	return Point(x, y);
 }
 
 double EllipseCurve::GetR1() const {
