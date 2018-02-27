@@ -8,7 +8,7 @@ namespace CurveIntersection {
 
 class ConjugateGradientMethod : public LocalMethod {
 public:
-	ConjugateGradientMethod(std::function<Point(double, double)> theGradientFunction,
+	ConjugateGradientMethod(std::function<Vector(double, double)> theGradientFunction,
 		std::function<double(double, double)> theObjectiveFunction) :
 		myGradientFunction(theGradientFunction), myObjectiveFunction(theObjectiveFunction) {}
 
@@ -17,7 +17,7 @@ public:
 private:
 	Point Run();
 	Range CountingRange(Point thePoint, Vector theDirection);
-	std::function<Point(double, double)> myGradientFunction;
+	std::function<Vector(double, double)> myGradientFunction;
 	std::function<double(double, double)> myObjectiveFunction;
 	Range myRangeX;
 	Range myRangeY;

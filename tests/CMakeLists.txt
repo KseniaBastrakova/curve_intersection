@@ -9,7 +9,7 @@ add_executable(Tests
 	curve_intersection_tests.cxx
 	bezier_curve_test.cxx
 	intersector_test.cxx
-	vector_test.cxx
+	Vector_Test.cxx
 	Point_Test.cxx)
 
 target_link_libraries(Tests

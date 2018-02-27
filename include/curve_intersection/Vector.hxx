@@ -5,16 +5,13 @@
 namespace CurveIntersection {
 
 struct Vector {
-	Vector() {}
+	Vector() :
+		Vector(0.,0.) {}
 	Vector(double theX, double theY) :
 		x(theX), y(theY) {}
-	Vector(const Vector& theVector) {
-		x = theVector.x;
-		y = theVector.y;
-	}
-	Vector(const Point& point) {
-		x = point.x;
-		y = point.y;
+	Vector(const Point& thePoint) {
+		x = thePoint.x;
+		y = thePoint.y;
 	}
 	double Lenght() const {
 		return sqrt(x * x + y * y);
@@ -61,4 +58,4 @@ inline Vector Rotate(Vector point, double alpha) {
 	return Vector(oldx * cosAlpha - oldy * sinAlpha, oldx * sinAlpha + oldy * cosAlpha);
 }
 
-}
+}// namespace CurveIntersection
