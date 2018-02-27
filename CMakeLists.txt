@@ -12,7 +12,7 @@ include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/curve_intersection/Seri
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/curve_intersection)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Curves/BezierCurve.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Curves/CircleCurve.cxx)
-list(APPEND SRC ${SRC_DIR}/curve_intersection/Curves/LineCurve.cxx)
+list(APPEND SRC ${SRC_DIR}/curve_intersection/Curves/LineSegment.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Curves/EllipseCurve.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Curves/ICurve.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Intersection/ConjugateGradientMethod.cxx)

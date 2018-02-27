@@ -20,4 +20,5 @@ protected:
 	// this is supposed to be called for the same types, e.g. from operator ==
 	virtual bool EqualTo(const ICurve& theOther) const = 0;
 };
+
 }

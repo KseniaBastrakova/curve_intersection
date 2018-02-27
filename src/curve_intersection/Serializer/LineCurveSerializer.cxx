@@ -1,5 +1,5 @@
 #include "LineCurveSerializer.hxx"
-#include "LineCurve.hxx"
+#include "LineSegment.hxx"
 
 namespace CurveIntersection {
 
@@ -16,7 +16,7 @@ std::unique_ptr<ICurve> LineCurveSerializer::Read(std::istream& theInput) {
 }
 
 void LineCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCurve) {
-	WritePoint(theOutput, dynamic_cast<const LineSegment&> (theCurve).GetStartPoint());
-	WritePoint(theOutput, dynamic_cast<const LineSegment&> (theCurve).GetEndPoint());
+	WritePoint(theOutput, dynamic_cast<const LineSegment&> (theCurve).GetStart());
+	WritePoint(theOutput, dynamic_cast<const LineSegment&> (theCurve).GetEnd());
 }
 }

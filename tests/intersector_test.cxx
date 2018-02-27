@@ -1,7 +1,7 @@
 
 #include <gtest/gtest.h>
 #include "Curves/BezierCurve.hxx"
-#include "Curves/LineCurve.hxx"
+#include "Curves/LineSegment.hxx"
 #include "Curves/EllipseCurve.hxx"
 #include "Intersection/CurveIntersection.hxx"
 #include <memory>
