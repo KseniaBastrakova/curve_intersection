@@ -37,57 +37,65 @@ TEST(Vector, Assigment)
 
 TEST(Vector, Lenght)
 {
-	Vector vector(2., 2.);
-	EXPECT_DOUBLE_EQ(2.8284270999, vector.Lenght());
+	Vector vector(3., 4.);
+	EXPECT_DOUBLE_EQ(5., vector.Lenght());
 }
 
-TEST(Vector, ScalarMult)
+TEST(Vector, Scaling)
 {
-	Vector vector(1., 33.);
-	Vector result = vector * 2.;
-	EXPECT_DOUBLE_EQ(2., result.x);
-	EXPECT_DOUBLE_EQ(66., result.y);
+	Vector aVector(1., 33.);
+	Vector aResult = aVector * 2.;
+	EXPECT_DOUBLE_EQ(2., aResult.x);
+	EXPECT_DOUBLE_EQ(66., aResult.y);
+}
+
+TEST(Vector, Division)
+{
+	Vector vector(2., 22.);
+	Vector result = vector / 2.;
+	EXPECT_DOUBLE_EQ(1., result.x);
+	EXPECT_DOUBLE_EQ(11., result.y);
 }
 
 TEST(Vector, SumVectorPoint)
 {
-	Vector vector(3., 2);
-	Point point(1., 3);
-	Vector result = point + vector;
+	Vector aVector(3., 2);
+	Point aPoint(1., 3);
+	Vector result = aPoint + aVector;
 	EXPECT_DOUBLE_EQ(4., result.x);
 	EXPECT_DOUBLE_EQ(5., result.y);
 }
 
 TEST(Vector, IsCollinear)
 {
-	Vector vector(1., 1);
-	Vector collinearVector(2., 2);
-	Vector nonCollinearVector(7., 2);
-	EXPECT_TRUE(IsCollinear(vector, collinearVector));
-	EXPECT_FALSE(IsCollinear(vector,nonCollinearVector));
+	Vector aVector(1., 1);
+	Vector aCollinearVector(2., 2);
+	Vector aNonCollinearVector(7., 2);
+	EXPECT_TRUE(IsCollinear(aVector, aCollinearVector));
+	EXPECT_FALSE(IsCollinear(aVector,aNonCollinearVector));
 }
 
-TEST(Vector, ReverseOperator)
+TEST(Vector, UnaryMinus)
 {
-	Vector vector(1., 1);
-	Vector result = -vector;
-	EXPECT_DOUBLE_EQ(-1., result.x);
-	EXPECT_DOUBLE_EQ(-1., result.y);
+	Vector aVector(1., 1);
+	Vector aResult = -aVector;
+	EXPECT_DOUBLE_EQ(-1., aResult.x);
+	EXPECT_DOUBLE_EQ(-1., aResult.y);
 }
 
-TEST(Vector, OperatorMinus)
+TEST(Vector, Difference)
 {
-	Point point(2., 2.);
-	Point pointSecond(3., 3.);
-	Vector result = point - pointSecond;
-	EXPECT_DOUBLE_EQ(-1., result.x);
-	EXPECT_DOUBLE_EQ(-1., result.y);
+	Point aPoint(2., 2.);
+	Point aPointSecond(3., 3.);
+	Vector aResult = aPoint - aPointSecond;
+	EXPECT_DOUBLE_EQ(-1., aResult.x);
+	EXPECT_DOUBLE_EQ(-1., aResult.y);
 }
 
 TEST(Vector, Rotate)
 {
-	Vector vector(2., 2.);
-	Vector result = Rotate(vector, PI/2.);
-	EXPECT_DOUBLE_EQ(-2., result.x);
-	EXPECT_DOUBLE_EQ(2., result.y);
+	Vector aVector(2., 2.);
+	Vector aResult = Rotate(aVector, PI/2.);
+	EXPECT_DOUBLE_EQ(-2., aResult.x);
+	EXPECT_DOUBLE_EQ(2., aResult.y);
 }
