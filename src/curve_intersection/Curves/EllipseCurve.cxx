@@ -68,15 +68,15 @@ Range EllipseCurve::GetRange() const {
 	return Range(0.0, 2.0 * PI);
 }
 
-Point EllipseCurve::GetPoint(double t) const {
-	Point point(myR1 * cos(t), myR2 * sin(t));
+Point EllipseCurve::GetPoint(Parameter parameter) const {
+	Point point(myR1 * cos(parameter), myR2 * sin(parameter));
 	double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
 	double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
 	return myCenter + Vector(x, y);
 }
 
-Point EllipseCurve::GetDerivedPoint(double t) const {
-	Vector vector(myR1 * -sin(t), myR2 * cos(t));
+Vector EllipseCurve::GetDerivative(Parameter parameter) const {
+	Vector vector(myR1 * -sin(parameter), myR2 * cos(parameter));
 	double x = vector.x * cos(myAlpha) + vector.y * cos(myAlpha + PI / 2.);
 	double y = vector.x * sin(myAlpha) + vector.y * sin(myAlpha + PI / 2.);
 	return Point(x, y);

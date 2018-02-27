@@ -70,10 +70,10 @@ TEST(Circle, GetRange)
 TEST(Circle, GetDerivative)
 {
   const CircleCurve circle( Point(1., 1.), 2.);
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivedPoint(0.), Vector(0., 2.)) );
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivedPoint(PI*2.), Vector(0., 2.)) );
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivedPoint(PI/4.), Vector(-sqrt(2.), sqrt(2.))) );
-  EXPECT_TRUE(IsEqualVectors(circle.GetDerivedPoint(PI*9./4.), Vector(-sqrt(2.), sqrt(2.))));
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivedPoint(PI), Vector(0., -2.)) );
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivedPoint(PI*5./4.), Vector(sqrt(2.), -sqrt(2.))) );
+  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(0.), Vector(0., 2.)) );
+  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI*2.), Vector(0., 2.)) );
+  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI/4.), Vector(-sqrt(2.), sqrt(2.))) );
+  EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI*9./4.), Vector(-sqrt(2.), sqrt(2.))));
+  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI), Vector(0., -2.)) );
+  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI*5./4.), Vector(sqrt(2.), -sqrt(2.))) );
 }

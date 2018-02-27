@@ -20,10 +20,10 @@ LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
 
 }
 
-Point LineSegment::GetPoint(double t) const {
+Point LineSegment::GetPoint(Parameter parameter) const {
 	Point aPointValue;
-	aPointValue.x = myDirectingVector.x * t + myStartPoint.x;
-	aPointValue.y = myDirectingVector.y * t + myStartPoint.y;
+	aPointValue.x = myDirectingVector.x * parameter + myStartPoint.x;
+	aPointValue.y = myDirectingVector.y * parameter + myStartPoint.y;
 	return aPointValue;
 }
 
@@ -31,7 +31,7 @@ Range LineSegment::GetRange() const {
 	return Range(0.0, 1.0);
 }
 
-Point LineSegment::GetDerivedPoint(double t) const {
+Vector LineSegment::GetDerivative(Parameter parameter) const {
 	return myDirectingVector;
 }
 

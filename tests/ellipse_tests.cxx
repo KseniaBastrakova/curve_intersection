@@ -107,13 +107,13 @@ TEST(Ellipse, ConstructCRRA2)
 TEST(Ellipse, GetDerivative)
 {
   const EllipseCurve ellipse( Point(2., 1.), 1., 4., PI/4. );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivedPoint(0.), Vector(-2.82842712474619, 2.8284271247461903)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivedPoint(PI*2.),
+  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(0.), Vector(-2.82842712474619, 2.8284271247461903)) );
+  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI*2.),
                              Vector(-2.82842712474619, 2.8284271247461903)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivedPoint(PI/4.), Vector(-2.5, 1.5)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivedPoint(PI*9./4.), Vector(-2.5, 1.5)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivedPoint(PI),
+  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI/4.), Vector(-2.5, 1.5)) );
+  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI*9./4.), Vector(-2.5, 1.5)) );
+  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI),
                              Vector(2.82842712474619, -2.8284271247461903)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivedPoint(PI*5./4.), Vector(2.5, -1.5)) );
+  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI*5./4.), Vector(2.5, -1.5)) );
 }
 

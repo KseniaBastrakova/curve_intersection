@@ -11,7 +11,7 @@ public:
 	virtual Range GetRange() const;
 	virtual Point GetPoint(double t) const;
 
-	Point GetDerivedPoint(double t) const;
+	Vector GetDerivative(double t) const;
 	std::vector<Point> GetControlPoints() const;
 
 	virtual std::string GetName() const;

@@ -54,11 +54,11 @@ TEST(Line, GetPoint)
 TEST(Line, GetDerivative)
 {
   const LineSegment line( Point(0., 0.), Point(5., 5.) );
-  auto der = line.GetDerivedPoint( 0.0 );
+  auto der = line.GetDerivative( 0.0 );
   EXPECT_NEAR( der.x, 5., 1.e-7 );
   EXPECT_NEAR( der.y, 5., 1.e-7 );
 
-  der = line.GetDerivedPoint( 0.25 );
+  der = line.GetDerivative( 0.25 );
   EXPECT_NEAR( der.x, 5., 1.e-7 );
   EXPECT_NEAR( der.y, 5., 1.e-7 );
 

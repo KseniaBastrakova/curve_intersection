@@ -30,17 +30,17 @@ Range CircleCurve::GetRange() const {
 	return Range(0.0, 2 * PI);
 }
 
-Point CircleCurve::GetPoint(double t) const {
+Point CircleCurve::GetPoint(Parameter theParameter) const {
 	Point aPoint;
-	aPoint.x = myRadius * cos(t) + myÑenter.x;
-	aPoint.y = myRadius * sin(t) + myÑenter.y;
+	aPoint.x = myRadius * cos(theParameter) + myÑenter.x;
+	aPoint.y = myRadius * sin(theParameter) + myÑenter.y;
 	return (aPoint);
 }
 
-Point CircleCurve::GetDerivedPoint(double t) const {
+Vector CircleCurve::GetDerivative(Parameter theParameter) const {
 	Point aPoint;
-	aPoint.x = -myRadius * sin(t);
-	aPoint.y = myRadius * cos(t);
+	aPoint.x = -myRadius * sin(theParameter);
+	aPoint.y = myRadius * cos(theParameter);
 	return (aPoint);
 }
 

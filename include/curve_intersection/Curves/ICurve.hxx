@@ -1,4 +1,7 @@
 #pragma once
+
+#include "Point.hxx"
+#include "Vector.hxx"
 #include "Base_Structures.hxx"
 #include <string>
 
@@ -6,16 +9,12 @@ namespace CurveIntersection {
 
 class ICurve {
 public:
+	typedef double Parameter;
 	virtual Range GetRange() const = 0;
-	virtual Point GetPoint(double t) const = 0;
-	virtual Point GetDerivedPoint(double t) const = 0;
+	virtual Point GetPoint(Parameter theParameter) const = 0;
+	virtual Vector GetDerivative(Parameter theParameter) const = 0;
 	virtual std::string GetName() const = 0;
-	friend bool operator== (const ICurve& a, const ICurve& b) {
-		if (a.GetName() != b.GetName())
-			return false;
-		else
-			return a.EqualTo(b);
-	}
+	friend bool operator== (const ICurve& a, const ICurve& b);
 	virtual ~ICurve() = default;
 protected:
 	// this is supposed to be called for the same types, e.g. from operator ==

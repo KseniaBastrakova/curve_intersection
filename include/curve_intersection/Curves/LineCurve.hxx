@@ -12,7 +12,7 @@ public:
 	LineSegment(const Point& thePoint1, const Point& thePoint2);
 	virtual Range GetRange() const;
 	virtual Point GetPoint(double t) const;
-	Point GetDerivedPoint(double t) const;
+	Vector GetDerivative(double t) const;
 	Point GetStartPoint() const;
 	Point GetEndPoint() const;
 	virtual std::string GetName() const;

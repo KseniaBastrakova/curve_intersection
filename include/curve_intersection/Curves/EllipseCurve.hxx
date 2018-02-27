@@ -15,7 +15,7 @@ public:
 	Point GetCenter() const;
 	double GetR1() const;
 	double GetR2() const;
-	Point GetDerivedPoint(double t) const;
+	Vector GetDerivative(double t) const;
 	double GetAlpha() const;
 	bool IsValid() const;
 
