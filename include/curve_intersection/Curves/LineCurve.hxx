@@ -5,11 +5,11 @@
 
 namespace CurveIntersection {
 
-class LineCurve : public ICurve {
+class LineSegment : public ICurve {
 public:
-	LineCurve() = delete;
-	LineCurve(const std::vector<Point>& points);
-	LineCurve(const Point& thePoint1, const Point& thePoint2);
+	LineSegment() = delete;
+	LineSegment(const std::vector<Point>& points);
+	LineSegment(const Point& thePoint1, const Point& thePoint2);
 	virtual Range GetRange() const;
 	virtual Point GetPoint(double t) const;
 	Point GetDerivedPoint(double t) const;
@@ -18,7 +18,7 @@ public:
 	virtual std::string GetName() const;
 	bool EqualTo(const ICurve& theOther) const;
 	bool IsValid() const;
-	virtual ~LineCurve() = default;
+	virtual ~LineSegment() = default;
 private:
 	Point myDirectingVector;
 	Point myStartPoint;

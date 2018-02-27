@@ -2,7 +2,7 @@
 
 namespace CurveIntersection {
 
-LineCurve::LineCurve(const std::vector<Point>& points) {
+LineSegment::LineSegment(const std::vector<Point>& points) {
 
 	if (points.size() >= 2)
 	{
@@ -12,7 +12,7 @@ LineCurve::LineCurve(const std::vector<Point>& points) {
 
 }
 
-LineCurve::LineCurve(const Point& thePoint1, const Point& thePoint2) {
+LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
 
 	myDirectingVector = Point(thePoint2.X - thePoint1.X, thePoint2.Y - thePoint1.Y);
 	myStartPoint = thePoint1;
@@ -20,39 +20,39 @@ LineCurve::LineCurve(const Point& thePoint1, const Point& thePoint2) {
 
 }
 
-Point LineCurve::GetPoint(double t) const {
+Point LineSegment::GetPoint(double t) const {
 	Point aPointValue;
 	aPointValue.X = myDirectingVector.X * t + myStartPoint.X;
 	aPointValue.Y = myDirectingVector.Y * t + myStartPoint.Y;
 	return aPointValue;
 }
 
-Range LineCurve::GetRange() const {
+Range LineSegment::GetRange() const {
 	return Range(0.0, 1.0);
 }
 
-Point LineCurve::GetDerivedPoint(double t) const {
+Point LineSegment::GetDerivedPoint(double t) const {
 	return myDirectingVector;
 }
 
-Point LineCurve::GetStartPoint() const {
+Point LineSegment::GetStartPoint() const {
 	return myStartPoint;
 }
 
-Point LineCurve::GetEndPoint() const {
+Point LineSegment::GetEndPoint() const {
 	return myEndPoint;
 }
 
-std::string LineCurve::GetName() const {
+std::string LineSegment::GetName() const {
 	return "Line";
 }
 
-bool LineCurve::EqualTo(const ICurve& theOther) const {
-	const LineCurve& aOther = static_cast<const LineCurve&> (theOther);
+bool LineSegment::EqualTo(const ICurve& theOther) const {
+	const LineSegment& aOther = static_cast<const LineSegment&> (theOther);
 	return (aOther.GetStartPoint() == this->GetStartPoint() && aOther.GetEndPoint() == this->GetEndPoint());
 }
 
-bool LineCurve::IsValid() const
+bool LineSegment::IsValid() const
 {
 	return (!(myStartPoint == myEndPoint));
 }
