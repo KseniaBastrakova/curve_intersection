@@ -72,7 +72,7 @@ Point EllipseCurve::GetPoint(double t) const {
 	Point point(myR1 * cos(t), myR2 * sin(t));
 	double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
 	double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
-	return myCenter + Point(x, y);
+	return myCenter + Vector(x, y);
 }
 
 Point EllipseCurve::GetDerivedPoint(double t) const {

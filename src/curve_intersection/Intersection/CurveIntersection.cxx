@@ -16,7 +16,7 @@ namespace CurveIntersection {
 		std::function<double(double, double)> aDistFunction = [&](double t1, double t2) {
 			return SquaredDistance(FirstCurve.GetPoint(t1), SecoundCurve.GetPoint(t2));
 		};
-		std::function<Point(double, double)> aDistDerivedFunction = [&](double t1, double t2) {
+		std::function<Vector(double, double)> aDistDerivedFunction = [&](double t1, double t2) {
 			Point aPoint1 = FirstCurve.GetPoint(t1);
 			Point aGrad1 = FirstCurve.GetDerivedPoint(t1);
 
@@ -24,7 +24,7 @@ namespace CurveIntersection {
 			Point aGrad2 = SecoundCurve.GetDerivedPoint(t2);
 			double aResultT1 = 2.0 * (aPoint1.x - aPoint2.x) * aGrad1.x + 2.0 * (aPoint1.y - aPoint2.y) * aGrad1.y;
 			double aResultT2 = 2.0 * (aPoint2.x - aPoint1.x) * aGrad2.x + 2.0 * (aPoint2.y - aPoint1.y) * aGrad2.y;
-			return Point(aResultT1, aResultT2);
+			return Vector(aResultT1, aResultT2);
 		};
 		LipschitzConstantEvaluator aLC(aDistFunction, FirstCurve.GetRange(), SecoundCurve.GetRange());
 
