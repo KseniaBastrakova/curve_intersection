@@ -1,0 +1,75 @@
+
+#include <gtest/gtest.h>
+#include "Curves/BezierCurve.hxx"
+#include "Curves/LineCurve.hxx"
+#include "Curves/EllipseCurve.hxx"
+#include "Intersection/CurveIntersection.hxx"
+#include <memory>
+#include <ctime>
+
+template<typename T>
+bool compare(std::vector<T>& v1, std::vector<T>& v2)
+{
+	std::sort(v1.begin(), v1.end());
+	std::sort(v2.begin(), v2.end());
+	return v1 == v2;
+}
+namespace {
+	static bool IsEqualPoints(const Point & p1, const Point & p2, double eps = NULL_TOL)
+	{
+		return fabs(p1.X - p2.X) < eps && fabs(p1.Y - p2.Y) < eps;
+	}
+}
+// в простейшем случае точка пересечения находится верно
+TEST(Line, Intersect1Point)
+{
+	// пересечение двух прямых
+	LineCurve line1(Point(1., 1.), Point(3., 3.));
+	LineCurve line2(Point(3., 1.), Point(1., 3.));
+	CurveIntersection intersection;
+	//std::vector<Point> points = intersection.Perform(line1, line2);
+	//EXPECT_FALSE(points.empty());
+//	EXPECT_TRUE(IsEqualPoints(Point(2., 2.), points[0]));
+//	// начало одной прямой - конец другой прямой
+//	Math::Line line3(Math::Point(3., 1.), Math::Point(5., 1.));
+//	haveIntersect = Math::IntersectLines(line3, line2, point);
+//EXPECT_TRUE(haveIntersect);
+//	EXPECT_TRUE(Math::IsEqual(Math::Point(3., 1.), point));
+	// отрезки лежат на одной прямой, начало одного - конец другого
+//	Math::Line line4(Math::Point(3., 3.), Math::Point(4., 4.));
+//	haveIntersect = Math::IntersectLines(line1, line4, point);
+//EXPECT_TRUE(haveIntersect);
+//	EXPECT_TRUE(Math::IsEqual(Math::Point(3., 3.), point));
+
+}
+
+TEST(Ellipse, 2Intersect)
+{
+	EllipseCurve ellipse1(Point(0., 0.), 2., 1., 0.);
+	EllipseCurve ellipse2(Point(0.5, 0.), 2., 1., 0.);
+	CurveIntersection intersection;
+	std::vector<Point> points = intersection.Perform(ellipse1, ellipse2);
+	EXPECT_FALSE(points.empty());
+	EXPECT_TRUE(IsEqualPoints(ellipse1.GetPoint(points[0].X), ellipse2.GetPoint(points[0].Y)));
+	EXPECT_TRUE(IsEqualPoints(ellipse1.GetPoint(points[1].X), ellipse2.GetPoint(points[1].Y)));
+}
+
+TEST(Ellipse, 1Intersect)
+{
+	EllipseCurve ellipse1(Point(0., 0.), 2., 1., 0.);
+	EllipseCurve ellipse2(Point(0., 2.), 2., 1., 0.);
+	CurveIntersection intersection;
+	std::vector<Point> points = intersection.Perform(ellipse1, ellipse2);
+	EXPECT_FALSE(points.empty());
+	EXPECT_TRUE(IsEqualPoints(ellipse1.GetPoint(points[0].X), ellipse2.GetPoint(points[0].Y)));
+}
+
+
+TEST(Ellipse, 0Intersect)
+{
+	EllipseCurve ellipse1(Point(0., 0.), 2., 1., 0.);
+	EllipseCurve ellipse2(Point(0., 777.), 2., 1., 0.);
+	CurveIntersection intersection;
+	std::vector<Point> points = intersection.Perform(ellipse1, ellipse2);
+//	EXPECT_TRUE(points.empty());
+}
