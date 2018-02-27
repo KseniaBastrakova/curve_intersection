@@ -1,5 +1,6 @@
 #include "ConjugateGradientMethod.hxx"
 #include "GoldenRatio.hxx"
+#include "Vector.hxx"
 #include <algorithm>
 #include <limits>
 
@@ -26,13 +27,13 @@ Point ConjugateGradientMethod::FindMinimum(Box theBox, Point theStartPoint) {
 
 Point ConjugateGradientMethod::Run() {
 	Point aCurrentPoint(myStartPoint.X, myStartPoint.Y);
-	Point aAntiGrad = -myGradientFunction(aCurrentPoint.X, aCurrentPoint.Y);
-	Point SCurrent = aAntiGrad;
+	Vector aAntiGrad = -myGradientFunction(aCurrentPoint.X, aCurrentPoint.Y);
+	Vector SCurrent = aAntiGrad;
 
 	for (int i = 0; i < 2; i++) {
 		std::function<double(double)> aDistFunction = [&](double alpha) {
-			double t1 = aCurrentPoint.X + alpha * SCurrent.X;
-			double t2 = aCurrentPoint.Y + alpha * SCurrent.Y;
+			double t1 = aCurrentPoint.X + alpha * SCurrent.x;
+			double t2 = aCurrentPoint.Y + alpha * SCurrent.y;
 			return myObjectiveFunction(t1, t2);
 		};
 		Range aRange = CountingRange(aCurrentPoint, SCurrent);
@@ -41,30 +42,30 @@ Point ConjugateGradientMethod::Run() {
 		GoldenRatio aMethod(aDistFunction, aRange, Eps);
 		double alamda = aMethod.Run();
 
-		aCurrentPoint.X += alamda * SCurrent.X;
-		aCurrentPoint.Y += alamda * SCurrent.Y;
-		Point aNewAntiGrad = myGradientFunction(aCurrentPoint.X, aCurrentPoint.Y);
-		double W = NormSq(aNewAntiGrad) / NormSq(aAntiGrad);
-		SCurrent.X = SCurrent.X * W + aAntiGrad.X;
-		SCurrent.Y = SCurrent.Y * W + aAntiGrad.Y;
+		aCurrentPoint.X += alamda * SCurrent.x;
+		aCurrentPoint.Y += alamda * SCurrent.y;
+		Vector aNewAntiGrad = myGradientFunction(aCurrentPoint.X, aCurrentPoint.Y);
+		double W = aNewAntiGrad.Lenght() / aAntiGrad.Lenght();
+		SCurrent.x = SCurrent.x * W + aAntiGrad.x;
+		SCurrent.y = SCurrent.y * W + aAntiGrad.y;
 		aAntiGrad = aNewAntiGrad;
 	}
 	return aCurrentPoint;
 
 }
-Range ConjugateGradientMethod::CountingRange(Point thePoint, Point theDirection) {
+Range ConjugateGradientMethod::CountingRange(Point thePoint, Vector theDirection) {
 
 	double aMaxSize = std::numeric_limits<double>::infinity();
 
-	if (theDirection.X > 0)
-		aMaxSize = std::min(aMaxSize, (myRangeX.End - thePoint.X) / (theDirection.X));
-	if (theDirection.X < 0)
-		aMaxSize = std::min(aMaxSize, (myRangeX.Begin - thePoint.X) / (theDirection.X));
+	if (theDirection.x > 0)
+		aMaxSize = std::min(aMaxSize, (myRangeX.End - thePoint.X) / (theDirection.x));
+	if (theDirection.x < 0)
+		aMaxSize = std::min(aMaxSize, (myRangeX.Begin - thePoint.X) / (theDirection.x));
 
-	if (theDirection.Y > 0)
-		aMaxSize = std::min(aMaxSize, (myRangeY.End - thePoint.Y) / (theDirection.Y));
-	if (theDirection.Y < 0)
-		aMaxSize = std::min(aMaxSize, (myRangeY.Begin - thePoint.Y) / (theDirection.Y));
+	if (theDirection.y > 0)
+		aMaxSize = std::min(aMaxSize, (myRangeY.End - thePoint.Y) / (theDirection.y));
+	if (theDirection.y < 0)
+		aMaxSize = std::min(aMaxSize, (myRangeY.Begin - thePoint.Y) / (theDirection.y));
 	return Range(0.0, aMaxSize);
 }
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Base_Structures.hxx"
 #include "LocalMethod.hxx"
+#include "Vector.hxx"
 #include <functional>
 
 namespace CurveIntersection {
@@ -15,12 +16,11 @@ public:
 
 private:
 	Point Run();
-	Range CountingRange(Point thePoint, Point theDirection);
+	Range CountingRange(Point thePoint, Vector theDirection);
 	std::function<Point(double, double)> myGradientFunction;
 	std::function<double(double, double)> myObjectiveFunction;
 	Range myRangeX;
 	Range myRangeY;
 	Point myStartPoint;
-
 };
 }
