@@ -1,4 +1,5 @@
 #include "EllipseCurve.hxx"
+#include "Vector.hxx"
 
 namespace CurveIntersection {
 
@@ -52,11 +53,11 @@ EllipseCurve::EllipseCurve(const std::vector<Point>& points) :
 			myAlpha = atan2(y, x);
 			myR1 = axisA;
 			//vector
-			Point newCoordPoint(std::fabs((points[2] - myCenter).X), std::fabs((points[2] - myCenter).Y));
-			newCoordPoint = Rotate(newCoordPoint, myAlpha);
+			Vector newCoord(std::fabs((points[2] - myCenter).X), std::fabs((points[2] - myCenter).Y));
+			newCoord = Rotate(newCoord, myAlpha);
 
-			double axisB = (sqrt(fabs((newCoordPoint.Y) * (newCoordPoint.Y) /
-				(1 - (newCoordPoint.X) * (newCoordPoint.X) / (myR1 * myR1)))));
+			double axisB = (sqrt(fabs((newCoord.y) * (newCoord.y) /
+				(1 - (newCoord.x) * (newCoord.x) / (myR1 * myR1)))));
 			myR2 = axisB;
 		}
 	}
@@ -76,8 +77,8 @@ Point EllipseCurve::GetPoint(double t) const {
 
 Point EllipseCurve::GetDerivedPoint(double t) const {
 	Vector vector(myR1 * -sin(t), myR2 * cos(t));
-	double x = vector.X * cos(myAlpha) + vector.Y * cos(myAlpha + PI / 2.);
-	double y = vector.X * sin(myAlpha) + vector.Y * sin(myAlpha + PI / 2.);
+	double x = vector.x * cos(myAlpha) + vector.y * cos(myAlpha + PI / 2.);
+	double y = vector.x * sin(myAlpha) + vector.y * sin(myAlpha + PI / 2.);
 	return Point(x, y);
 }
 

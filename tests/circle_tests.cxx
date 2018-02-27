@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "Curves/CircleCurve.hxx"
+#include "Vector.hxx"
 
 using namespace CurveIntersection;
 
@@ -14,7 +15,7 @@ static bool IsEqualPoints(Point p1, Point p2, double eps = NULL_TOL)
 
 static bool IsEqualVectors(const Vector & v1, const Vector & v2, double eps = NULL_TOL)
 {
-	return fabs(v1.X - v2.X) < eps && fabs(v1.Y - v2.Y) < eps;
+	return fabs(v1.x - v2.x) < eps && fabs(v1.y - v2.y) < eps;
 }
 }
 
