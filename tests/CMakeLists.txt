@@ -8,7 +8,8 @@ add_executable(Tests
 	line_tests.cxx
 	curve_intersection_tests.cxx
 	bezier_curve_test.cxx
-	intersector_test.cxx)
+	intersector_test.cxx
+	vector_test.cxx)
 
 target_link_libraries(Tests
     gtest
