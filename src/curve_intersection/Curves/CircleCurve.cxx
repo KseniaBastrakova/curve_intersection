@@ -6,10 +6,10 @@ namespace CurveIntersection {
 
 namespace {
 
-	static bool IsCorrectCircleData(Point point1, Point point2)
-	{
-		return !(point1 == point2);
-	}
+static bool IsCorrectCircleData(Point point1, Point point2)
+{
+	return !(point1 == point2);
+}
 
 }
 
@@ -32,15 +32,15 @@ Range CircleCurve::GetRange() const {
 
 Point CircleCurve::GetPoint(double t) const {
 	Point aPoint;
-	aPoint.X = myRadius * cos(t) + myÑenter.X;
-	aPoint.Y = myRadius * sin(t) + myÑenter.Y;
+	aPoint.x = myRadius * cos(t) + myÑenter.x;
+	aPoint.y = myRadius * sin(t) + myÑenter.y;
 	return (aPoint);
 }
 
 Point CircleCurve::GetDerivedPoint(double t) const {
 	Point aPoint;
-	aPoint.X = -myRadius * sin(t);
-	aPoint.Y = myRadius * cos(t);
+	aPoint.x = -myRadius * sin(t);
+	aPoint.y = myRadius * cos(t);
 	return (aPoint);
 }
 

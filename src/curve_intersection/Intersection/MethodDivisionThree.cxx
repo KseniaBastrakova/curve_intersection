@@ -41,7 +41,7 @@ std::vector<Point> MethodDivisionIntoThree::Method() {
 	std::priority_queue<Box, std::vector<Box>, decltype(comp)> aBoxRQ(comp);
 	aStartBox.RCharacteristic = MinRCrit(myFunction, aStartBox);
 	aBoxRQ.push(aStartBox);
-	double aMinObjFunction = myFunction(aStartBox.Center().X, aStartBox.Center().Y);
+	double aMinObjFunction = myFunction(aStartBox.Center().x, aStartBox.Center().y);
 	double aMinFunction = std::numeric_limits<double>::infinity();
 	double aMaxSizeBox = 1e-4;
 	while (CurrentIteration < NumIteration) {
@@ -50,14 +50,14 @@ std::vector<Point> MethodDivisionIntoThree::Method() {
 		aBoxRQ.pop();
 
 		if (BreakCriterion(aCurrentBox.RCharacteristic, aMinObjFunction)) {
-			double aCurrentFunction = myFunction(aCurrentBox.Center().X, aCurrentBox.Center().Y);
+			double aCurrentFunction = myFunction(aCurrentBox.Center().x, aCurrentBox.Center().y);
 			if (CheckMinimumFunction(aCurrentBox, aResult, aCurrentBox.Center(), aCurrentFunction, aMinFunction, myEps))
 				continue;
 		}
 		if (aCurrentBox.myRangeX.Lenght() * aCurrentBox.myRangeY.Lenght() < aMaxSizeBox) {
 			Point aPoint = myLocalMethod->FindMinimum(aCurrentBox, aCurrentBox.Center());
 
-			double aCurrentFunction = myFunction(aPoint.X, aPoint.Y);
+			double aCurrentFunction = myFunction(aPoint.x, aPoint.y);
 			if (CheckMinimumFunction(aCurrentBox, aResult, aPoint, aCurrentFunction, aMinFunction, myEps))
 				continue;
 		}
@@ -82,13 +82,13 @@ double MethodDivisionIntoThree::LipschitzConstant() {
 
 double MethodDivisionIntoThree::CountingFunction(std::function<double(double, double)> Function, Point thePoint,
 	Range theRange) {
-	double F = Function(thePoint.X, thePoint.Y) - LipschitzConstant() * theRange.Lenght() / 2;
+	double F = Function(thePoint.x, thePoint.y) - LipschitzConstant() * theRange.Lenght() / 2;
 	return F;
 }
 
 double MethodDivisionIntoThree::MinRCrit(std::function<double(double, double)> Function,
 	Box CurrentBox) {
-	return Function(CurrentBox.Center().X, CurrentBox.Center().Y) - LipschitzConstant() *
+	return Function(CurrentBox.Center().x, CurrentBox.Center().y) - LipschitzConstant() *
 		0.5 * sqrt(CurrentBox.myRangeX.Lenght() * CurrentBox.myRangeX.Lenght() +
 			CurrentBox.myRangeY.Lenght() * CurrentBox.myRangeY.Lenght());
 
@@ -115,7 +115,7 @@ double MethodDivisionIntoThree::MinObjective(std::function<double(double, double
 	Box CurrentBox, double theCurrentFunction) {
 
 
-	return std::min(Function(CurrentBox.Center().X, CurrentBox.Center().Y), theCurrentFunction);
+	return std::min(Function(CurrentBox.Center().x, CurrentBox.Center().y), theCurrentFunction);
 }
 
 bool MethodDivisionIntoThree::BreakCriterion(double CurrentR, double CurrentObjectFunction) {

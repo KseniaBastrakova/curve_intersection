@@ -13,8 +13,8 @@ struct Vector {
 		y = theVector.y;
 	}
 	Vector(const Point& point) {
-		x = point.X;
-		y = point.Y;
+		x = point.x;
+		y = point.y;
 	}
 	double Lenght() const {
 		return sqrt(x * x + y * y);
@@ -32,7 +32,7 @@ inline Vector operator * (double theScalar, Vector theVector) {
 }
 
 inline Point operator + (Point thePoint, Vector theVector) {
-	return Point(thePoint.X + theVector.x, thePoint.Y + theVector.y);
+	return Point(thePoint.x + theVector.x, thePoint.y + theVector.y);
 }
 
 inline double VectorMult(Vector theFirstVector, Vector theSecondVctor)
@@ -47,6 +47,10 @@ inline bool IsCollinear(Vector theFirstVector, Vector theSecondVector)
 
 inline Vector operator - (Vector theVector) {
 	return Vector(-theVector.x, -theVector.y);
+}
+
+inline Vector operator - (Point thePointLeft, Point thePointRight) {
+	return Vector(thePointLeft.x - thePointRight.x, thePointLeft.y - thePointRight.y);
 }
 
 inline Vector Rotate(Vector point, double alpha) {

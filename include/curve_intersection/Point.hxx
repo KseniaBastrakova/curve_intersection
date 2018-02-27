@@ -1,34 +1,29 @@
 #pragma once
 
+#include <cmath>
+
 namespace CurveIntersection {
 
 struct Point {
-	Point() {}
+	Point():
+		Point(0., 0.){}
 	Point(double theX, double theY) :
-		X(theX), Y(theY) {}
-	Point(const Point& thePoint) {
-		X = thePoint.X;
-		Y = thePoint.Y;
-	}
-	double X;
-	double Y;
+		x(theX), y(theY) {}
+	double x;
+	double y;
 };
 
-
 inline double Distance(Point theFirst, Point theSecond) {
-	return (theFirst.X - theSecond.X) + (theFirst.Y - theSecond.Y);
+	return sqrt((theFirst.x - theSecond.x) * (theFirst.x - theSecond.x) + (theFirst.y - theSecond.y)
+		* (theFirst.y - theSecond.y));
 }
 
 inline bool operator == (Point theFirst, Point theSecond) {
-	return (theFirst.X == theSecond.X && theFirst.Y == theSecond.Y);
+	return (theFirst.x == theSecond.x && theFirst.y == theSecond.y);
 }
 
-inline Point operator * (Point thePoint, double aParam) {
-	return Point(thePoint.X * aParam, thePoint.Y * aParam);
+inline bool operator != (Point theFirst, Point theSecond) {
+	return (theFirst.x != theSecond.x || theFirst.y != theSecond.y);
 }
 
-inline Point operator - (Point thePointLeft, Point thePointRight) {
-	return Point(thePointLeft.X - thePointRight.X, thePointLeft.Y - thePointRight.Y);
-}
-
-}
+} // namespace CurveIntersection

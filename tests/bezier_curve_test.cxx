@@ -10,7 +10,7 @@ class BezierCurveTest : public ::testing::Test {
 
 static bool IsEqualPoints(Point p1, Point p2, double eps = NULL_TOL)
 {
-	return fabs(p1.X - p2.X) < eps && fabs(p1.Y - p2.Y) < eps;
+	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;
 }
 
 

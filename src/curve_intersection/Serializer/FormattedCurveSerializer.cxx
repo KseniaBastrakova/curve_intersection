@@ -17,14 +17,14 @@ void  FormattedCurveSerializer::WriteSeparator(std::ostream& theOutput) const {
 
 Point FormattedCurveSerializer::ReadPoint(std::istream& theInput) const {
 	Point aPoint;
-	aPoint.X = ReadDouble(theInput);
-	aPoint.Y = ReadDouble(theInput);
+	aPoint.x = ReadDouble(theInput);
+	aPoint.y = ReadDouble(theInput);
 	return aPoint;
 }
 
 void FormattedCurveSerializer::WritePoint(std::ostream& theOutput, const Point& thePoint) const {
-	WriteDouble(theOutput, thePoint.X);
-	WriteDouble(theOutput, thePoint.Y);
+	WriteDouble(theOutput, thePoint.x);
+	WriteDouble(theOutput, thePoint.y);
 }
 
 double FormattedCurveSerializer::ReadDouble(std::istream& theInput) const {

@@ -34,8 +34,8 @@ Point BezierCurve::GetPoint(double t) const {
 	for (size_t i = 0; i <= n; i++)
 	{
 		double BernsteinCoefficient = CalculateBernsteinPolynom(i, n, t);
-		x += BernsteinCoefficient * myControlPoints[i].X;
-		y += BernsteinCoefficient * myControlPoints[i].Y;
+		x += BernsteinCoefficient * myControlPoints[i].x;
+		y += BernsteinCoefficient * myControlPoints[i].y;
 	}
 	return (Point(x, y));
 }
@@ -48,8 +48,8 @@ Point BezierCurve::GetDerivedPoint(double t) const {
 	for (size_t i = 0; i <= n; i++)
 	{
 		double  BernsteinCoefficient = CalculateBernsteinPolynom(i, n, t) * (i - n * t) / (t * (1 - t));
-		x += BernsteinCoefficient * myControlPoints[i].X;
-		y += BernsteinCoefficient * myControlPoints[i].Y;
+		x += BernsteinCoefficient * myControlPoints[i].x;
+		y += BernsteinCoefficient * myControlPoints[i].y;
 	}
 	return Point(x, y);
 }

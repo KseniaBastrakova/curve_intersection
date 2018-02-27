@@ -47,13 +47,13 @@ EllipseCurve::EllipseCurve(const std::vector<Point>& points) :
 		{
 			myCenter = points[0];
 			Point pointV(points[1]);
-			double x = pointV.X - myCenter.X;
-			double y = pointV.Y - myCenter.Y;
+			double x = pointV.x - myCenter.x;
+			double y = pointV.y - myCenter.y;
 			double axisA = sqrt(x * x + y * y);
 			myAlpha = atan2(y, x);
 			myR1 = axisA;
 			//vector
-			Vector newCoord(std::fabs((points[2] - myCenter).X), std::fabs((points[2] - myCenter).Y));
+			Vector newCoord(std::fabs((points[2] - myCenter).x), std::fabs((points[2] - myCenter).y));
 			newCoord = Rotate(newCoord, myAlpha);
 
 			double axisB = (sqrt(fabs((newCoord.y) * (newCoord.y) /
@@ -70,8 +70,8 @@ Range EllipseCurve::GetRange() const {
 
 Point EllipseCurve::GetPoint(double t) const {
 	Point point(myR1 * cos(t), myR2 * sin(t));
-	double x = point.X * cos(myAlpha) + point.Y * cos(myAlpha + PI / 2.);
-	double y = point.X * sin(myAlpha) + point.Y * sin(myAlpha + PI / 2.);
+	double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
+	double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
 	return myCenter + Point(x, y);
 }
 

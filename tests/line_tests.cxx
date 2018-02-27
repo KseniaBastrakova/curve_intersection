@@ -39,28 +39,28 @@ TEST(Line, GetPoint)
 {
   const LineSegment line( Point(0., 0.), Point(5., 5.) );
   auto point = line.GetPoint( 0.0 );
-  EXPECT_NEAR( point.X, 0., 1.e-7 );
-  EXPECT_NEAR( point.Y, 0., 1.e-7 );
+  EXPECT_NEAR( point.x, 0., 1.e-7 );
+  EXPECT_NEAR( point.y, 0., 1.e-7 );
 
   point = line.GetPoint( 1. );
-  EXPECT_NEAR( point.X, 5., 1.e-7 );
-  EXPECT_NEAR( point.Y, 5., 1.e-7 );
+  EXPECT_NEAR( point.x, 5., 1.e-7 );
+  EXPECT_NEAR( point.y, 5., 1.e-7 );
 
   point = line.GetPoint( 0.5 );
-  EXPECT_NEAR( point.X, 2.5, 1.e-7 );
-  EXPECT_NEAR( point.Y, 2.5, 1.e-7 );
+  EXPECT_NEAR( point.x, 2.5, 1.e-7 );
+  EXPECT_NEAR( point.y, 2.5, 1.e-7 );
 }
 
 TEST(Line, GetDerivative)
 {
   const LineSegment line( Point(0., 0.), Point(5., 5.) );
   auto der = line.GetDerivedPoint( 0.0 );
-  EXPECT_NEAR( der.X, 5., 1.e-7 );
-  EXPECT_NEAR( der.Y, 5., 1.e-7 );
+  EXPECT_NEAR( der.x, 5., 1.e-7 );
+  EXPECT_NEAR( der.y, 5., 1.e-7 );
 
   der = line.GetDerivedPoint( 0.25 );
-  EXPECT_NEAR( der.X, 5., 1.e-7 );
-  EXPECT_NEAR( der.Y, 5., 1.e-7 );
+  EXPECT_NEAR( der.x, 5., 1.e-7 );
+  EXPECT_NEAR( der.y, 5., 1.e-7 );
 
 }
 

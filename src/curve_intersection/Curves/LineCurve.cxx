@@ -14,7 +14,7 @@ LineSegment::LineSegment(const std::vector<Point>& points) {
 
 LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
 
-	myDirectingVector = Point(thePoint2.X - thePoint1.X, thePoint2.Y - thePoint1.Y);
+	myDirectingVector = Point(thePoint2.x - thePoint1.x, thePoint2.y - thePoint1.y);
 	myStartPoint = thePoint1;
 	myEndPoint = thePoint2;
 
@@ -22,8 +22,8 @@ LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
 
 Point LineSegment::GetPoint(double t) const {
 	Point aPointValue;
-	aPointValue.X = myDirectingVector.X * t + myStartPoint.X;
-	aPointValue.Y = myDirectingVector.Y * t + myStartPoint.Y;
+	aPointValue.x = myDirectingVector.x * t + myStartPoint.x;
+	aPointValue.y = myDirectingVector.y * t + myStartPoint.y;
 	return aPointValue;
 }
 

@@ -7,7 +7,7 @@ using namespace CurveIntersection;
 namespace {
 static bool IsEqualPoints(const Point & p1, const Point & p2, double eps = NULL_TOL)
 {
-	return fabs(p1.X - p2.X) < eps && fabs(p1.Y - p2.Y) < eps;
+	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;
 }
 
 static bool IsEqualVectors(const Vector & v1, const Vector & v2, double eps = NULL_TOL)

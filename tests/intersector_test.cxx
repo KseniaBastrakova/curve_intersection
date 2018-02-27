@@ -20,7 +20,7 @@ namespace {
 static bool IsEqualPoints(const CurveIntersection::Point & p1, const CurveIntersection::Point & p2, 
 	double eps = CurveIntersection::NULL_TOL)
 {
-	return fabs(p1.X - p2.X) < eps && fabs(p1.Y - p2.Y) < eps;
+	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;
 }
 }
 // в простейшем случае точка пересечения находится верно
