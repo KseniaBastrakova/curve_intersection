@@ -6,6 +6,8 @@
 #include <vector>
 #include <map>
 
+namespace CurveIntersection {
+
 class CurveExchanger {
 public:
 	CurveExchanger();
@@ -24,6 +26,7 @@ private:
 
 
 };
+}
 
 
 

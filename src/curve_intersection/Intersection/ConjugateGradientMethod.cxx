@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <limits>
 
+namespace CurveIntersection {
+
 Point ConjugateGradientMethod::FindMinimum(Box theBox, Point theStartPoint) {
 	myRangeX = theBox.myRangeX;
 	myRangeY = theBox.myRangeY;
@@ -64,4 +66,5 @@ Range ConjugateGradientMethod::CountingRange(Point thePoint, Point theDirection)
 	if (theDirection.Y < 0)
 		aMaxSize = std::min(aMaxSize, (myRangeY.Begin - thePoint.Y) / (theDirection.Y));
 	return Range(0.0, aMaxSize);
+}
 }

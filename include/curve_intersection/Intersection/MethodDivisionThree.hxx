@@ -4,10 +4,10 @@
 #include "Base_Structures.hxx"
 #include "LocalMethod.hxx"
 
+namespace CurveIntersection {
 
 class MethodDivisionIntoThree {
 public:
-
 	MethodDivisionIntoThree(std::function<double(double, double)> theFunction, Range theRangeX, Range theRangeY,
 		double theLipschitzC, LocalMethod* theLocalMethod) :
 		myFunction(theFunction), myRangeX(theRangeX), myRangeY(theRangeY), myLipConstant(theLipschitzC),
@@ -32,3 +32,4 @@ private:
 	Range myRangeX;
 	Range myRangeY;
 };
+}

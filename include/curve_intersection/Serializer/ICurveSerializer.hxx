@@ -3,6 +3,8 @@
 #include <istream>
 #include <memory>
 
+namespace CurveIntersection {
+
 class ICurveSerializer {
 public:
 	virtual std::unique_ptr<ICurve> Read(std::istream& theInput) = 0;
@@ -10,5 +12,6 @@ public:
 	virtual ~ICurveSerializer() = default;
 
 };
+}
 
 

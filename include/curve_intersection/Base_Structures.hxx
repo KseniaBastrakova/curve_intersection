@@ -1,6 +1,8 @@
 #pragma once
 #include <cmath>
 
+namespace CurveIntersection {
+
 struct Range {
 	Range() {}
 	Range(double theBegin, double theEnd) :
@@ -120,3 +122,4 @@ struct Box {
 
 const double PI = 3.14159265358979323846;
 const double NULL_TOL = 1e-4;
+}

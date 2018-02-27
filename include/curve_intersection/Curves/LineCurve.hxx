@@ -3,6 +3,7 @@
 #include "ICurve.hxx"
 #include <vector>
 
+namespace CurveIntersection {
 
 class LineCurve : public ICurve {
 public:
@@ -24,3 +25,4 @@ private:
 	Point myEndPoint;
 	Range myRange;
 };
+}

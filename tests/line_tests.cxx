@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "Curves/LineCurve.hxx"
 
+using namespace CurveIntersection;
+
 TEST(Line, ConstructSamePoints)
 {
   Point samePoint(0.0, 0.0);

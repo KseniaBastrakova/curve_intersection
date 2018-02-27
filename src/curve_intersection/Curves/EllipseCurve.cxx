@@ -1,20 +1,22 @@
 #include "EllipseCurve.hxx"
 
+namespace CurveIntersection {
+
 namespace {
-	static bool PointsOneLine(Point point1, Point point2, Point point3)
-	{
-		return IsCollinear(Vector(point1 - point2), Vector(point2 - point3));
-	}
 
-	static bool CorrectEllipseData(Point point1, Point point2, Point point3)
-	{
-		return  !((point1 == point2 ||
-			point2 == point3 ||
-			point1 == point3) ||
-			(PointsOneLine(point1, point2, point3)));
+static bool PointsOneLine(Point point1, Point point2, Point point3)
+{
+	return IsCollinear(Vector(point1 - point2), Vector(point2 - point3));
+}
 
-	}
+static bool CorrectEllipseData(Point point1, Point point2, Point point3)
+{
+	return  !((point1 == point2 ||
+		point2 == point3 ||
+		point1 == point3) ||
+		(PointsOneLine(point1, point2, point3)));
 
+}
 }
 
 EllipseCurve::EllipseCurve(Point thecenter, double ther1, double ther2, double thealpha) :
@@ -108,4 +110,5 @@ bool EllipseCurve::EqualTo(const ICurve& theOther) const {
 bool EllipseCurve::IsValid() const
 {
 	return (myR1 > NULL_TOL && myR2 > NULL_TOL);
+}
 }

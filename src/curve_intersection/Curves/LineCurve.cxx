@@ -1,5 +1,7 @@
 #include "LineCurve.hxx"
 
+namespace CurveIntersection {
+
 LineCurve::LineCurve(const std::vector<Point>& points) {
 
 	if (points.size() >= 2)
@@ -53,5 +55,6 @@ bool LineCurve::EqualTo(const ICurve& theOther) const {
 bool LineCurve::IsValid() const
 {
 	return (!(myStartPoint == myEndPoint));
+}
 }
 

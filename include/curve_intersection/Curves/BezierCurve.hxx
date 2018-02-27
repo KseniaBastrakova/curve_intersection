@@ -3,6 +3,8 @@
 #include "ICurve.hxx"
 #include <vector>
 
+namespace CurveIntersection {
+
 class BezierCurve : public ICurve {
 public:
 	BezierCurve(const std::vector<Point>& theControlPoints);
@@ -22,4 +24,5 @@ private:
 	std::vector<Point> myControlPoints;
 };
 bool operator==(const BezierCurve& theFirst, const BezierCurve& theSecound);
+}
 

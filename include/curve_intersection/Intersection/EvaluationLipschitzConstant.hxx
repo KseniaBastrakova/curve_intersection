@@ -2,6 +2,8 @@
 #include "Base_Structures.hxx"
 #include <functional>
 
+namespace CurveIntersection {
+
 class LipschitzConstantEvaluator {
 public:
 	LipschitzConstantEvaluator(std::function<double(double, double)> theFunction, Range theRangeX, Range theRangeY) :
@@ -15,3 +17,4 @@ private:
 	Range myRangeX;
 	Range myRangeY;
 };
+}

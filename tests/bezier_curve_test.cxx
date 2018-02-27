@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 
+using namespace CurveIntersection;
 class BezierCurveTest : public ::testing::Test {
 };
 

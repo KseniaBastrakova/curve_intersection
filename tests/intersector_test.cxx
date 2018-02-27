@@ -7,6 +7,8 @@
 #include <memory>
 #include <ctime>
 
+using namespace CurveIntersection;
+
 template<typename T>
 bool compare(std::vector<T>& v1, std::vector<T>& v2)
 {

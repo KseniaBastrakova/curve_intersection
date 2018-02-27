@@ -1,5 +1,8 @@
 #pragma once
 #include "ICurveSerializer.hxx"
+
+namespace CurveIntersection {
+
 class FormattedCurveSerializer : public ICurveSerializer {
 public:
 	enum class Format { Text, Binary };
@@ -23,3 +26,4 @@ protected:
 	void WriteInt(std::ostream& theOutput, int theValue) const;
 
 };
+}

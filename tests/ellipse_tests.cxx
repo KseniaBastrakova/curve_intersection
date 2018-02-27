@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "Curves/EllipseCurve.hxx"
 
+using namespace CurveIntersection;
+
 namespace {
 static bool IsEqualPoints(const Point & p1, const Point & p2, double eps = NULL_TOL)
 {

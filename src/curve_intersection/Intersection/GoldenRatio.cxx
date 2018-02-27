@@ -1,7 +1,8 @@
 #include "GoldenRatio.hxx"
 
-double GoldenRatio::Run() {
+namespace CurveIntersection {
 
+double GoldenRatio::Run() {
 	double aGRConstant = 1.6180339887;
 	double aBegin = myRange.Begin;
 	double aEnd = myRange.End;
@@ -23,5 +24,5 @@ double GoldenRatio::Run() {
 
 	}
 	return (aEnd + aBegin) / 2;
-
+}
 }

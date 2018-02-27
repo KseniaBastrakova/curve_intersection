@@ -2,6 +2,8 @@
 #include "Base_Structures.hxx"
 #include <functional>
 
+namespace CurveIntersection {
+
 class GoldenRatio {
 public:
 	GoldenRatio(std::function<double(double)> theFunc, Range theRange, double theEps) :
@@ -13,3 +15,4 @@ private:
 	double myEps;
 
 };
+}

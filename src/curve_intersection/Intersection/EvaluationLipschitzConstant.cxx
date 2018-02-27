@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+
+namespace CurveIntersection {
+
 double GridResult(std::vector<std::vector<double>> theGridValues, int i, int j, int i_, int j_,
 	double theStepX, double theStepY) {
 	if (i == i_ || j == j_) return 0;
@@ -42,4 +45,5 @@ double LipschitzConstantEvaluator::Evaluate(int theResolution) const {
 			aLipschitzConstant = std::max(aLipschitzConstant, *std::max_element(aGridValues.begin(), aGridValues.end()));
 		}
 	return aLipschitzConstant * 1.2;
+}
 }

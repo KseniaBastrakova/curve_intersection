@@ -1,5 +1,7 @@
 #include "EllipseCurveSerializer.hxx"
 
+namespace CurveIntersection {
+
 std::string EllipseCurveSerializer::GetHeaderName() {
 	return EllipseCurve(Point(), 0.0, 0.0, 0.0).GetName();
 }
@@ -18,4 +20,5 @@ void EllipseCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCur
 	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetR1());
 	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetR2());
 	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetAlpha());
+}
 }

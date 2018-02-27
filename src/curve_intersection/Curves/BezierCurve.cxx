@@ -1,7 +1,10 @@
 #include "Base_Structures.hxx"
 #include "BezierCurve.hxx"
 
+namespace CurveIntersection {
+
 namespace {
+
 	long double Factorial(int X) {
 		if (X < 0)
 			return 0;
@@ -75,6 +78,7 @@ bool BezierCurve::EqualTo(const ICurve& theOther) const {
 
 bool BezierCurve::IsValid() const {
 	return !myControlPoints.empty();
+}
 }
 
 

@@ -1,5 +1,7 @@
 #include "CircleCurveSerializer.hxx"
 
+namespace CurveIntersection {
+
 std::string CircleCurveSerializer::GetHeaderName() {
 	return CircleCurve(Point(), 0.0).GetName();
 }
@@ -13,5 +15,6 @@ std::unique_ptr<ICurve> CircleCurveSerializer::Read(std::istream& theInput) {
 void CircleCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCurve) {
 	WritePoint(theOutput, dynamic_cast<const CircleCurve&>(theCurve).GetCenter());
 	WriteDouble(theOutput, dynamic_cast<const CircleCurve&>(theCurve).GetRadius());
+}
 }
 

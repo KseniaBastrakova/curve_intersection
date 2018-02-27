@@ -1,7 +1,10 @@
 #include "CircleCurve.hxx"
 #include <cmath>
 
+namespace CurveIntersection {
+
 namespace {
+
 	static bool IsCorrectCircleData(Point point1, Point point2)
 	{
 		return !(point1 == point2);
@@ -59,5 +62,6 @@ bool CircleCurve::EqualTo(const ICurve& theOther) const {
 
 bool CircleCurve::IsValid() const {
 	return myRadius > NULL_TOL;
+}
 }
 

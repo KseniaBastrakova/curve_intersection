@@ -1,6 +1,8 @@
 #include "LineCurveSerializer.hxx"
 #include "LineCurve.hxx"
 
+namespace CurveIntersection {
+
 std::string LineCurveSerializer::GetHeaderName() {
 	return LineCurve(Point(), Point()).GetName();
 }
@@ -16,4 +18,5 @@ std::unique_ptr<ICurve> LineCurveSerializer::Read(std::istream& theInput) {
 void LineCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCurve) {
 	WritePoint(theOutput, dynamic_cast<const LineCurve&> (theCurve).GetStartPoint());
 	WritePoint(theOutput, dynamic_cast<const LineCurve&> (theCurve).GetEndPoint());
+}
 }

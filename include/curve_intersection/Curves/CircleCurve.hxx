@@ -3,6 +3,8 @@
 #include "Base_Structures.hxx"
 #include "ICurve.hxx"
 
+namespace CurveIntersection {
+
 class CircleCurve : public ICurve {
 public:
 	CircleCurve(const Point& the—enter, double theRadius) :
@@ -22,3 +24,4 @@ private:
 	Point my—enter;
 	Range myRange;
 };
+}

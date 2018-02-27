@@ -3,6 +3,8 @@
 #include "ICurve.hxx"
 #include <vector>
 
+namespace CurveIntersection {
+
 class EllipseCurve : public ICurve {
 public:
 	EllipseCurve(Point theCenter, double R1, double R2, double theAlpha);
@@ -26,5 +28,5 @@ private:
 	double myR2;
 	Point myCenter;
 	double myAlpha;
-
 };
+}

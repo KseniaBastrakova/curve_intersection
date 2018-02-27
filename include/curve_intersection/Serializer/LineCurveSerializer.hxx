@@ -2,6 +2,7 @@
 #include "FormattedCurveSerializer.hxx"
 #include "LineCurve.hxx"
 
+namespace CurveIntersection {
 
 class LineCurveSerializer :public FormattedCurveSerializer {
 public:
@@ -11,3 +12,4 @@ public:
 	virtual std::string GetHeaderName();
 	virtual ~LineCurveSerializer() = default;
 };
+}

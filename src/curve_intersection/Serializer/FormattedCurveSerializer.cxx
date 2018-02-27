@@ -1,5 +1,7 @@
 #include "FormattedCurveSerializer.hxx"
 
+namespace CurveIntersection {
+
 FormattedCurveSerializer::Format FormattedCurveSerializer::getFormat() const {
 	return myFormat;
 }
@@ -64,4 +66,5 @@ void FormattedCurveSerializer::WriteInt(std::ostream& theOutput, int theValue) c
 	if (myFormat == Format::Binary)
 		theOutput.write((char*)&theValue, sizeof theValue);
 	WriteSeparator(theOutput);
+}
 }

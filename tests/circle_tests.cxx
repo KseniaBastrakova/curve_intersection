@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "Curves/CircleCurve.hxx"
 
+using namespace CurveIntersection;
+
 class CircleTest : public ::testing::Test {
 };
 

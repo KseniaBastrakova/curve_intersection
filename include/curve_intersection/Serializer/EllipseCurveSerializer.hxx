@@ -3,8 +3,9 @@
 #include "FormattedCurveSerializer.hxx"
 #include <ostream>
 
-class EllipseCurveSerializer :public FormattedCurveSerializer {
+namespace CurveIntersection {
 
+class EllipseCurveSerializer :public FormattedCurveSerializer {
 public:
 	EllipseCurveSerializer(Format theFormat) :FormattedCurveSerializer(theFormat) {}
 	virtual std::unique_ptr<ICurve> Read(std::istream& theInput);
@@ -14,5 +15,6 @@ public:
 
 	virtual ~EllipseCurveSerializer() = default;
 };
+}
 
 

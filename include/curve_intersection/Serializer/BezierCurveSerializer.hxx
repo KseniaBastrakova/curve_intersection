@@ -2,6 +2,8 @@
 #include "BezierCurve.hxx"
 #include "FormattedCurveSerializer.hxx"
 
+namespace CurveIntersection {
+
 class BezierCurveSerializer :public FormattedCurveSerializer {
 public:
 	BezierCurveSerializer(Format theFormat) : FormattedCurveSerializer(theFormat) {}
@@ -12,3 +14,4 @@ public:
 
 	virtual ~BezierCurveSerializer() = default;
 };
+}

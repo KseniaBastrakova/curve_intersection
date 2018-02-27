@@ -1,5 +1,7 @@
 #include "BezierCurveSerializer.hxx"
 
+namespace CurveIntersection {
+
 std::string BezierCurveSerializer::GetHeaderName() {
 	return BezierCurve(std::vector<Point>()).GetName();
 }
@@ -23,4 +25,5 @@ void BezierCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCurv
 		WritePoint(theOutput, aPoints[i]);
 	}
 
+}
 }

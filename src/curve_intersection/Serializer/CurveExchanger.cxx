@@ -10,42 +10,41 @@
 #include <functional>
 #include <vector>
 
+namespace CurveIntersection {
 
 namespace {
 
-	bool tryReadHeader(std::istream& theStream, FormattedCurveSerializer::Format theFormat, std::string& theHeader) {
-		if (theFormat == FormattedCurveSerializer::Format::Binary) {
-			int aLength;
-			theStream.read((char*)&aLength, sizeof(aLength));
-			if (theStream.eof())
-				return false;
-			char * aBuf = new char[aLength + 1];
-			theStream.read(aBuf, aLength);
-			aBuf[aLength] = '\0';
-			theHeader = std::string(aBuf);
-			delete[] aBuf;
-			return true;
-		}
-		return (bool)(theStream >> theHeader);
+bool tryReadHeader(std::istream& theStream, FormattedCurveSerializer::Format theFormat, std::string& theHeader) {
+	if (theFormat == FormattedCurveSerializer::Format::Binary) {
+		int aLength;
+		theStream.read((char*)&aLength, sizeof(aLength));
+		if (theStream.eof())
+			return false;
+		char * aBuf = new char[aLength + 1];
+		theStream.read(aBuf, aLength);
+		aBuf[aLength] = '\0';
+		theHeader = std::string(aBuf);
+		delete[] aBuf;
+		return true;
 	}
+	return (bool)(theStream >> theHeader);
+}
 
-	void WriteHeader(std::string theHeader, std::ostream& theStream, FormattedCurveSerializer::Format theFormat) {
-		if (theFormat == FormattedCurveSerializer::Format::Binary) {
-			size_t aLength = theHeader.length();
-			theStream.write((char*)&aLength, sizeof(aLength));
-			theStream.write(theHeader.c_str(), aLength);
-		}
-		else
-			theStream << theHeader << "\n";
+void WriteHeader(std::string theHeader, std::ostream& theStream, FormattedCurveSerializer::Format theFormat) {
+	if (theFormat == FormattedCurveSerializer::Format::Binary) {
+		size_t aLength = theHeader.length();
+		theStream.write((char*)&aLength, sizeof(aLength));
+		theStream.write(theHeader.c_str(), aLength);
 	}
+	else
+		theStream << theHeader << "\n";
+}
 
-	std::string FileExtension(const std::string& aPath) {
-		size_t pos = aPath.rfind('.');
-		if (pos <= 0) return "";
-		return aPath.substr(pos + 1, std::string::npos);
-	}
-
-
+std::string FileExtension(const std::string& aPath) {
+	size_t pos = aPath.rfind('.');
+	if (pos <= 0) return "";
+	return aPath.substr(pos + 1, std::string::npos);
+}
 }
 
 
@@ -115,4 +114,5 @@ void CurveExchanger::WriteCurves(const std::vector<std::shared_ptr<ICurve>>& the
 	fout.open(theFileName, std::ios::binary);
 	for (size_t i = 0; i < aUniqueCurves.size(); i++)
 		Write(fout, *aUniqueCurves[i].get(), FormattedCurveSerializer::Format::Binary);
+}
 }

@@ -3,6 +3,8 @@
 #include "FormattedCurveSerializer.hxx"
 #include <ostream>
 
+namespace CurveIntersection {
+
 class CircleCurveSerializer :public FormattedCurveSerializer {
 
 public:
@@ -14,4 +16,5 @@ public:
 
 	virtual ~CircleCurveSerializer() = default;
 };
+}
 
