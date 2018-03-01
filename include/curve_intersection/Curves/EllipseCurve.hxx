@@ -8,25 +8,21 @@ namespace CurveIntersection {
 class EllipseCurve : public ICurve {
 public:
 	EllipseCurve(Point theCenter, double R1, double R2, double theAlpha);
-	EllipseCurve(const std::vector<Point>& points);
-	virtual Range GetRange() const;
-	virtual Point GetPoint(double t) const;
-
+	EllipseCurve(Point thePoint1, Point thePoint2, Point thePoint3);
+	virtual Point GetPoint(Parameter parameter) const override;
+	virtual Vector GetDerivative(Parameter parameter) const;
+	virtual Range GetRange() const override;
+	virtual std::string GetName() const override;
 	Point GetCenter() const;
 	double GetR1() const;
 	double GetR2() const;
-	Vector GetDerivative(double t) const;
-	double GetAlpha() const;
-	bool IsValid() const;
-
-	virtual std::string GetName() const;
-	bool EqualTo(const ICurve& theOther) const;
-
+	double GetAngle() const;
 private:
-
+	virtual bool EqualTo(const ICurve& theOther) const override;
 	double myR1;
 	double myR2;
 	Point myCenter;
 	double myAlpha;
 };
+
 }

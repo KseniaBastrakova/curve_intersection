@@ -19,6 +19,6 @@ void EllipseCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCur
 	WritePoint(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetCenter());
 	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetR1());
 	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetR2());
-	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetAlpha());
+	WriteDouble(theOutput, dynamic_cast<const EllipseCurve&> (theCurve).GetAngle());
 }
 }

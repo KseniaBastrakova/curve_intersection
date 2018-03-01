@@ -3,113 +3,105 @@
 
 namespace CurveIntersection {
 
-namespace {
+	namespace {
 
-static bool PointsOneLine(Point point1, Point point2, Point point3)
-{
-	return IsCollinear(Vector(point1 - point2), Vector(point2 - point3));
-}
-
-static bool CorrectEllipseData(Point point1, Point point2, Point point3)
-{
-	return  !((point1 == point2 ||
-		point2 == point3 ||
-		point1 == point3) ||
-		(PointsOneLine(point1, point2, point3)));
-
-}
-}
-
-EllipseCurve::EllipseCurve(Point thecenter, double ther1, double ther2, double thealpha) :
-	myCenter(Point(0.0, 0.0)),
-	myR1(0.0),
-	myR2(0.0),
-	myAlpha(0.0)
-{
-	if (ther1 > NULL_TOL && ther2 > NULL_TOL)
-	{
-		myR1 = ther1;
-		myR2 = ther2;
-		myCenter = thecenter;
-		myAlpha = thealpha;
-	}
-}
-
-EllipseCurve::EllipseCurve(const std::vector<Point>& points) :
-	myCenter(Point(0.0, 0.0)),
-	myR1(0.0),
-	myR2(0.0),
-	myAlpha(0.0)
-{
-	if (points.size() >= 3)
-	{
-		if (CorrectEllipseData(points[0], points[1], points[2]))
+		static bool PointsOneLine(Point thePoint1, Point thePoint2, Point thePoint3)
 		{
-			myCenter = points[0];
-			Point pointV(points[1]);
-			double x = pointV.x - myCenter.x;
-			double y = pointV.y - myCenter.y;
-			double axisA = sqrt(x * x + y * y);
-			myAlpha = atan2(y, x);
+			return IsCollinear(Vector(thePoint1 - thePoint2), Vector(thePoint2 - thePoint3));
+		}
+
+		static bool CorrectEllipseData(Point thePoint1, Point thePoint2, Point thePoint3)
+		{
+			return  !((thePoint1 == thePoint2 ||
+				thePoint2 == thePoint3 ||
+				thePoint1 == thePoint3) ||
+				(PointsOneLine(thePoint1, thePoint2, thePoint3)));
+		}
+
+	}
+
+	EllipseCurve::EllipseCurve(Point theCenter, double theR1, double theR2, double theAngle) :
+		myCenter(Point(0.0, 0.0)),
+		myR1(0.0),
+		myR2(0.0),
+		myAlpha(0.0)
+	{
+		if (theR1 > NULL_TOL && theR2 > NULL_TOL)
+		{
+			myR1 = theR1;
+			myR2 = theR2;
+			myCenter = theCenter;
+			myAlpha = theAngle;
+		}
+	}
+
+	EllipseCurve::EllipseCurve(Point thePoint1, Point thePoint2, Point thePoint3) :
+		myCenter(Point(0.0, 0.0)),
+		myR1(0.0),
+		myR2(0.0),
+		myAlpha(0.0)
+	{
+
+		if (CorrectEllipseData(thePoint1, thePoint2, thePoint3))
+		{
+			myCenter = thePoint1;
+			Vector aSideDirection = thePoint2 - myCenter;
+			double axisA = sqrt(aSideDirection.Lenght());
+			myAlpha = atan2(aSideDirection.y, aSideDirection.x);
 			myR1 = axisA;
 			//vector
-			Vector newCoord(std::fabs((points[2] - myCenter).x), std::fabs((points[2] - myCenter).y));
+			Vector newCoord(std::fabs((thePoint3 - myCenter).x), std::fabs((thePoint3 - myCenter).y));
 			newCoord = Rotate(newCoord, myAlpha);
 
 			double axisB = (sqrt(fabs((newCoord.y) * (newCoord.y) /
 				(1 - (newCoord.x) * (newCoord.x) / (myR1 * myR1)))));
 			myR2 = axisB;
 		}
+
 	}
 
-}
+	Range EllipseCurve::GetRange() const {
+		return Range(0.0, 2.0 * PI);
+	}
 
-Range EllipseCurve::GetRange() const {
-	return Range(0.0, 2.0 * PI);
-}
+	Point EllipseCurve::GetPoint(Parameter parameter) const {
+		Point point(myR1 * cos(parameter), myR2 * sin(parameter));
+		double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
+		double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
+		return myCenter + Vector(x, y);
+	}
 
-Point EllipseCurve::GetPoint(Parameter parameter) const {
-	Point point(myR1 * cos(parameter), myR2 * sin(parameter));
-	double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
-	double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
-	return myCenter + Vector(x, y);
-}
+	Vector EllipseCurve::GetDerivative(Parameter parameter) const {
+		Vector vector(myR1 * -sin(parameter), myR2 * cos(parameter));
+		double x = vector.x * cos(myAlpha) + vector.y * cos(myAlpha + PI / 2.);
+		double y = vector.x * sin(myAlpha) + vector.y * sin(myAlpha + PI / 2.);
+		return Point(x, y);
+	}
 
-Vector EllipseCurve::GetDerivative(Parameter parameter) const {
-	Vector vector(myR1 * -sin(parameter), myR2 * cos(parameter));
-	double x = vector.x * cos(myAlpha) + vector.y * cos(myAlpha + PI / 2.);
-	double y = vector.x * sin(myAlpha) + vector.y * sin(myAlpha + PI / 2.);
-	return Point(x, y);
-}
+	double EllipseCurve::GetR1() const {
+		return myR1;
+	}
 
-double EllipseCurve::GetR1() const {
-	return myR1;
-}
+	double EllipseCurve::GetAngle() const {
+		return myAlpha;
+	}
 
-double EllipseCurve::GetAlpha() const {
-	return myAlpha;
-}
+	double EllipseCurve::GetR2() const {
+		return myR2;
+	}
 
-double EllipseCurve::GetR2() const {
-	return myR2;
-}
+	Point EllipseCurve::GetCenter() const {
+		return myCenter;
+	}
 
-Point EllipseCurve::GetCenter() const {
-	return myCenter;
-}
+	std::string EllipseCurve::GetName() const {
+		return "Ellipse";
+	}
 
-std::string EllipseCurve::GetName() const {
-	return "Ellipse";
-}
+	bool EllipseCurve::EqualTo(const ICurve& theOther) const {
+		const EllipseCurve& aOther = static_cast<const EllipseCurve&> (theOther);
+		return (aOther.GetCenter() == this->GetCenter() && aOther.GetR1() == this->GetR1() &&
+			aOther.GetR2() == this->GetR2());
+	}
 
-bool EllipseCurve::EqualTo(const ICurve& theOther) const {
-	const EllipseCurve& aOther = static_cast<const EllipseCurve&> (theOther);
-	return (aOther.GetCenter() == this->GetCenter() && aOther.GetR1() == this->GetR1() &&
-		aOther.GetR2() == this->GetR2());
-}
-
-bool EllipseCurve::IsValid() const
-{
-	return (myR1 > NULL_TOL && myR2 > NULL_TOL);
-}
 }
