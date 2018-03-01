@@ -21,6 +21,6 @@ private:
 	std::function<double(double, double)> myObjectiveFunction;
 	Range myRangeX;
 	Range myRangeY;
-	Point myStartPoint;
+	Point myStart;
 };
 }

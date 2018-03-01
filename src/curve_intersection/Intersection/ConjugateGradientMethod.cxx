@@ -9,24 +9,24 @@ namespace CurveIntersection {
 Point ConjugateGradientMethod::FindMinimum(Box theBox, Point theStartPoint) {
 	myRangeX = theBox.myRangeX;
 	myRangeY = theBox.myRangeY;
-	myStartPoint = theStartPoint;
+	myStart = theStartPoint;
 	int aNumIteration = 10;
 	double aObjResFuntion = myObjectiveFunction(theStartPoint.x, theStartPoint.y);
 	for (int i = 0; i < aNumIteration; i++) {
 		Point aNewPoint = Run();
 		double aNewObjResFuntion = myObjectiveFunction(aNewPoint.x, aNewPoint.y);
 		if (aNewObjResFuntion > aObjResFuntion)
-			return myStartPoint;
+			return myStart;
 		else {
-			myStartPoint = aNewPoint;
+			myStart = aNewPoint;
 			aObjResFuntion = aNewObjResFuntion;
 		}
 	}
-	return myStartPoint;
+	return myStart;
 }
 
 Point ConjugateGradientMethod::Run() {
-	Point aCurrentPoint(myStartPoint.x, myStartPoint.y);
+	Point aCurrentPoint(myStart.x, myStart.y);
 	Vector aAntiGrad = -myGradientFunction(aCurrentPoint.x, aCurrentPoint.y);
 	Vector SCurrent = aAntiGrad;
 
