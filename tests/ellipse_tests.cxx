@@ -16,104 +16,112 @@ static bool IsEqualVectors(const Vector & v1, const Vector & v2, double eps = NU
 }
 
 }
-class EllipseTest : public ::testing::Test {
-};
 
-TEST(Ellipse, Construct3PointsOnLine)
+TEST(Ellipse, Constructor)
 {
-  std::vector<Point> PointsOnLine { Point(0.0, 0.0), Point(1.0, 1.0), Point(2.0, 2.0) };
-  const EllipseCurve ellipse( PointsOnLine );
-  EXPECT_FALSE( ellipse.IsValid() );
+	Point aCenter(0., 0.);
+	double aR1 = 1.;
+	double aR2 = 2.;
+	double aAngle = 1.;
+	EllipseCurve aEllipse(aCenter, aR1, aR2, aAngle);
+	EXPECT_EQ(aCenter, aEllipse.GetCenter());
+	EXPECT_DOUBLE_EQ(aR1, aEllipse.GetR1());
+	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetR2());
+	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
 }
 
-TEST(Ellipse, Construct3SamePoints)
+TEST(Ellipse, CopyConstructor)
 {
-  Point samePoint( 0.0, 0.0 );
-  std::vector<Point> samePoints { samePoint, samePoint, samePoint };
-  const EllipseCurve ellipse( samePoints );
-  EXPECT_FALSE( ellipse.IsValid() );
+	Point aCenter(2., 22.);
+	double aR1 = 3.;
+	double aR2 = 85.;
+	double aAngle = 0.5;
+	EllipseCurve aEllipse(aCenter, aR1, aR2, aAngle);
+	EllipseCurve aCopy = aEllipse;
+	EXPECT_DOUBLE_EQ(aR1, aCopy.GetR1());
+	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetR2());
+	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
 }
 
-TEST(Ellipse, Construct3Points)
+TEST(Ellipse, Assigment)
 {
-  std::vector<Point> points { Point(0., 0.), Point(1.2, 2.5), Point(0.5, 1.7) };
-  const EllipseCurve ellipse( points );
-  EXPECT_TRUE( ellipse.IsValid() );
+	Point aCenter(55., 75.);
+	double aR1 = 1.;
+	double aR2 = 5.;
+	double aAngle = 0.5;
+	EllipseCurve aEllipse(aCenter, aR1, aR2, aAngle);
+	EllipseCurve aCopy(Point(0., 0.), 0., 0., 0.);
+	aCopy = aEllipse;
+	EXPECT_DOUBLE_EQ(aR1, aCopy.GetR1());
+	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetR2());
+	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
 }
-
-TEST(Ellipse, Construct5SamePoints)
-{
-  Point samePoint( 0.0, 0.0 );
-  std::vector<Point> samePoints { samePoint, samePoint, samePoint, samePoint, samePoint };
-  const EllipseCurve ellipse( samePoints );
-  EXPECT_FALSE( ellipse.IsValid() );
-}
-
 
 TEST(Ellipse, GetPoint)
 {
-	const EllipseCurve ellipse( Point(2., 1.), 1., 4., PI/4. );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(0.),
-                             Point(2.7071067811865475, 1.7071067811865475)) );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI*2.),
-	  Point(2.7071067811865475, 1.7071067811865475)) );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI/4.), Point(0.5, 3.5)) );
-  EXPECT_TRUE(IsEqualPoints(ellipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)) );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI*5./4.), Point(3.5, -1.5)) );
+	const EllipseCurve aEllipse(Point(2., 1.), 1., 4., PI / 4.);
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(0.),
+		Point(2.7071067811865475, 1.7071067811865475)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*2.),
+		Point(2.7071067811865475, 1.7071067811865475)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*5. / 4.), Point(3.5, -1.5)));
 }
 
 TEST(Ellipse, GetPoint2)
 {
-  std::vector<Point> points = { Point(2., 1.), Point(2.7071067811865475, 1.7071067811865475), Point(0.5, 3.5) };
-  const EllipseCurve ellipse( points );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(0.),
-                             Point(2.7071067811865475, 1.7071067811865475)) );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI*2.),
-                             Point(2.7071067811865475, 1.7071067811865475)) );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI/4.), Point(0.5, 3.5)) );
-  EXPECT_TRUE(IsEqualPoints(ellipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)) );
-  EXPECT_TRUE( IsEqualPoints(ellipse.GetPoint(PI*5./4.), Point(3.5, -1.5)) );
+	const EllipseCurve aEllipse(Point(2., 1.), Point(2.7071067811865475, 1.7071067811865475), Point(0.5, 3.5));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(0.),
+		Point(2.7071067811865475, 1.7071067811865475)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*2.),
+		Point(2.7071067811865475, 1.7071067811865475)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)));
+	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*5. / 4.), Point(3.5, -1.5)));
 }
 
 TEST(Ellipse, GetRange)
 {
-	const EllipseCurve ellipse(Point(2., 1.), 1., 4., PI / 4.);
-	const auto range = ellipse.GetRange();
-	EXPECT_NEAR(range.Begin, 0., NULL_TOL);
-	EXPECT_NEAR(range.End, PI*2., NULL_TOL);
+	const EllipseCurve aEllipse(Point(2., 1.), 1., 4., PI / 4.);
+	const auto aRange = aEllipse.GetRange();
+	EXPECT_DOUBLE_EQ(0., aRange.Begin);
+	EXPECT_DOUBLE_EQ(PI*2., aRange.End);
 }
 
-TEST(Ellipse, Construct5PointsOnLine)
+TEST(Ellipse, GetR1)
 {
-  std::vector<Point> points { Point(0.0, 0.0), Point(1.0, 1.0), Point(4.0, 4.0), Point(3.0, 3.0), Point(1.1, 2.4) };
-  const EllipseCurve ellipse( points );
-  EXPECT_FALSE( ellipse.IsValid() );
+	const EllipseCurve aEllipse(Point(2., 1.), 1., 4., PI / 4.);
+	const auto aR1 = aEllipse.GetR1();
+	EXPECT_DOUBLE_EQ(1., aR1);
 }
 
-TEST(Ellipse, ConstructCRRA)
+TEST(Ellipse, GetR2)
 {
-  const EllipseCurve ellipse( Point(1., 1.), 0, 1., PI/4. );
-  EXPECT_FALSE( ellipse.IsValid() );
+	const EllipseCurve aEllipse(Point(2., 1.), 1., 4., PI / 4.);
+	const auto aR2 = aEllipse.GetR2();
+	EXPECT_DOUBLE_EQ(4., aR2);
 }
 
-TEST(Ellipse, ConstructCRRA2)
+TEST(Ellipse, GetAngle)
 {
-  const EllipseCurve ellipse( Point(1., 1.), 2., 3., 0. );
-  EXPECT_TRUE( ellipse.IsValid() );
+	const EllipseCurve aEllipse(Point(2., 1.), 1., 4., PI / 4.);
+	const auto aAngle = aEllipse.GetAngle();
+	EXPECT_DOUBLE_EQ(PI / 4, aAngle);
 }
 
 TEST(Ellipse, GetDerivative)
 {
-  const EllipseCurve ellipse( Point(2., 1.), 1., 4., PI/4. );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(0.), Vector(-2.82842712474619, 2.8284271247461903)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI*2.),
-                             Vector(-2.82842712474619, 2.8284271247461903)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI/4.), Vector(-2.5, 1.5)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI*9./4.), Vector(-2.5, 1.5)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI),
-                             Vector(2.82842712474619, -2.8284271247461903)) );
-  EXPECT_TRUE( IsEqualVectors(ellipse.GetDerivative(PI*5./4.), Vector(2.5, -1.5)) );
+	const EllipseCurve ellipse(Point(2., 1.), 1., 4., PI / 4.);
+	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(0.), Vector(-2.82842712474619, 2.8284271247461903)));
+	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI*2.),
+		Vector(-2.82842712474619, 2.8284271247461903)));
+	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI / 4.), Vector(-2.5, 1.5)));
+	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI*9. / 4.), Vector(-2.5, 1.5)));
+	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI),
+		Vector(2.82842712474619, -2.8284271247461903)));
+	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI*5. / 4.), Vector(2.5, -1.5)));
 }
 
