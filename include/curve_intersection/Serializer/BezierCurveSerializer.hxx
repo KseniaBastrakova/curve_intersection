@@ -1,5 +1,5 @@
 #pragma once
-#include "BezierCurve.hxx"
+#include "Bezier.hxx"
 #include "FormattedCurveSerializer.hxx"
 
 namespace CurveIntersection {

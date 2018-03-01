@@ -1,5 +1,5 @@
 #include "Base_Structures.hxx"
-#include "BezierCurve.hxx"
+#include "Bezier.hxx"
 
 namespace CurveIntersection {
 
