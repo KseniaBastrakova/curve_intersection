@@ -3,11 +3,11 @@ include_directories(
     ../3rdParty/googletest/googletest/include)
 
 add_executable(Tests 
-    circle_tests.cxx
-	ellipse_tests.cxx
-	line_tests.cxx
+    Circle_Tests.cxx
+	Ellipse_Tests.cxx
+	Line_Tests.cxx
 	curve_intersection_tests.cxx
-	bezier_curve_test.cxx
+	Bezier_Tests.cxx
 	intersector_test.cxx
 	Vector_Test.cxx
 	Point_Test.cxx)
