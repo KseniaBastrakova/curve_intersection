@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "Curves/BezierCurve.hxx"
+#include "Curves/Bezier.hxx"
 #include <memory>
 #include <vector>
 
