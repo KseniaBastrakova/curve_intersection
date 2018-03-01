@@ -20,7 +20,7 @@ namespace CurveIntersection {
 
 	}
 
-	EllipseCurve::EllipseCurve(Point theCenter, double theR1, double theR2, double theAngle) :
+	Ellipse::Ellipse(Point theCenter, double theR1, double theR2, double theAngle) :
 		myCenter(Point(0.0, 0.0)),
 		myR1(0.0),
 		myR2(0.0),
@@ -35,7 +35,7 @@ namespace CurveIntersection {
 		}
 	}
 
-	EllipseCurve::EllipseCurve(Point thePoint1, Point thePoint2, Point thePoint3) :
+	Ellipse::Ellipse(Point thePoint1, Point thePoint2, Point thePoint3) :
 		myCenter(Point(0.0, 0.0)),
 		myR1(0.0),
 		myR2(0.0),
@@ -60,46 +60,46 @@ namespace CurveIntersection {
 
 	}
 
-	Range EllipseCurve::GetRange() const {
+	Range Ellipse::GetRange() const {
 		return Range(0.0, 2.0 * PI);
 	}
 
-	Point EllipseCurve::GetPoint(Parameter parameter) const {
+	Point Ellipse::GetPoint(Parameter parameter) const {
 		Point point(myR1 * cos(parameter), myR2 * sin(parameter));
 		double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
 		double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
 		return myCenter + Vector(x, y);
 	}
 
-	Vector EllipseCurve::GetDerivative(Parameter parameter) const {
+	Vector Ellipse::GetDerivative(Parameter parameter) const {
 		Vector vector(myR1 * -sin(parameter), myR2 * cos(parameter));
 		double x = vector.x * cos(myAlpha) + vector.y * cos(myAlpha + PI / 2.);
 		double y = vector.x * sin(myAlpha) + vector.y * sin(myAlpha + PI / 2.);
 		return Point(x, y);
 	}
 
-	double EllipseCurve::GetR1() const {
+	double Ellipse::GetR1() const {
 		return myR1;
 	}
 
-	double EllipseCurve::GetAngle() const {
+	double Ellipse::GetAngle() const {
 		return myAlpha;
 	}
 
-	double EllipseCurve::GetR2() const {
+	double Ellipse::GetR2() const {
 		return myR2;
 	}
 
-	Point EllipseCurve::GetCenter() const {
+	Point Ellipse::GetCenter() const {
 		return myCenter;
 	}
 
-	std::string EllipseCurve::GetName() const {
+	std::string Ellipse::GetName() const {
 		return "Ellipse";
 	}
 
-	bool EllipseCurve::EqualTo(const ICurve& theOther) const {
-		const EllipseCurve& aOther = static_cast<const EllipseCurve&> (theOther);
+	bool Ellipse::EqualTo(const ICurve& theOther) const {
+		const Ellipse& aOther = static_cast<const Ellipse&> (theOther);
 		return (aOther.GetCenter() == this->GetCenter() && aOther.GetR1() == this->GetR1() &&
 			aOther.GetR2() == this->GetR2());
 	}

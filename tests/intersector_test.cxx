@@ -1,8 +1,8 @@
 
 #include <gtest/gtest.h>
-#include "Curves/BezierCurve.hxx"
+#include "Curves/Bezier.hxx"
 #include "Curves/LineSegment.hxx"
-#include "Curves/EllipseCurve.hxx"
+#include "Curves/Ellipse.hxx"
 #include "Intersection/CurveIntersection.hxx"
 #include <memory>
 #include <ctime>
@@ -48,8 +48,8 @@ TEST(Line, Intersect1Point)
 
 TEST(Ellipse, 2Intersect)
 {
-	CurveIntersection::EllipseCurve ellipse1(CurveIntersection::Point(0., 0.), 2., 1., 0.);
-	CurveIntersection::EllipseCurve ellipse2(CurveIntersection::Point(0.5, 0.), 2., 1., 0.);
+	CurveIntersection::Ellipse ellipse1(CurveIntersection::Point(0., 0.), 2., 1., 0.);
+	CurveIntersection::Ellipse ellipse2(CurveIntersection::Point(0.5, 0.), 2., 1., 0.);
 	CurveIntersection::CurveIntersection intersection;
 //	std::vector<CurveIntersection::Point> points = intersection.Perform(ellipse1, ellipse2);
 //	EXPECT_FALSE(points.empty());
@@ -59,8 +59,8 @@ TEST(Ellipse, 2Intersect)
 
 TEST(Ellipse, 1Intersect)
 {
-	CurveIntersection::EllipseCurve ellipse1(CurveIntersection::Point(0., 0.), 2., 1., 0.);
-	CurveIntersection::EllipseCurve ellipse2(CurveIntersection::Point(0., 2.), 2., 1., 0.);
+	CurveIntersection::Ellipse ellipse1(CurveIntersection::Point(0., 0.), 2., 1., 0.);
+	CurveIntersection::Ellipse ellipse2(CurveIntersection::Point(0., 2.), 2., 1., 0.);
 	CurveIntersection::CurveIntersection intersection;
 	//std::vector<CurveIntersection::Point> points = intersection.Perform(ellipse1, ellipse2);
 //	EXPECT_FALSE(points.empty());
@@ -70,8 +70,8 @@ TEST(Ellipse, 1Intersect)
 
 TEST(Ellipse, 0Intersect)
 {
-	CurveIntersection::EllipseCurve ellipse1(CurveIntersection::Point(0., 0.), 2., 1., 0.);
-	CurveIntersection::EllipseCurve ellipse2(CurveIntersection::Point(0., 777.), 2., 1., 0.);
+	CurveIntersection::Ellipse ellipse1(CurveIntersection::Point(0., 0.), 2., 1., 0.);
+	CurveIntersection::Ellipse ellipse2(CurveIntersection::Point(0., 777.), 2., 1., 0.);
 	CurveIntersection::CurveIntersection intersection;
 //	std::vector<CurveIntersection::Point> points = intersection.Perform(ellipse1, ellipse2);
 //	EXPECT_TRUE(points.empty());
