@@ -3,7 +3,7 @@
 namespace CurveIntersection {
 
 std::string BezierCurveSerializer::GetHeaderName() {
-	return BezierCurve(std::vector<Point>()).GetName();
+	return Bezier(std::vector<Point>()).GetName();
 }
 
 std::unique_ptr<ICurve> BezierCurveSerializer::Read(std::istream& theInput) {
@@ -14,12 +14,12 @@ std::unique_ptr<ICurve> BezierCurveSerializer::Read(std::istream& theInput) {
 	for (size_t i = 0; i < aNumControlPoints; i++) {
 		aControlPoints.push_back(ReadPoint(theInput));
 	}
-	return std::make_unique<BezierCurve>(aControlPoints);
+	return std::make_unique<Bezier>(aControlPoints);
 
 }
 
 void BezierCurveSerializer::Write(std::ostream& theOutput, const ICurve& theCurve) {
-	auto aPoints = static_cast<const BezierCurve&> (theCurve).GetControlPoints();
+	auto aPoints = static_cast<const Bezier&> (theCurve).GetControlPoints();
 	WriteInt(theOutput, (int)aPoints.size());
 	for (size_t i = 0; i < aPoints.size(); i++) {
 		WritePoint(theOutput, aPoints[i]);

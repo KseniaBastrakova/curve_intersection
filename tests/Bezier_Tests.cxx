@@ -14,18 +14,18 @@ static bool IsEqualPoints(Point p1, Point p2, double eps = NULL_TOL)
 }
 
 
-std::shared_ptr<BezierCurve> ClosedBezierCurve() {
+std::shared_ptr<Bezier> ClosedBezierCurve() {
 	std::vector<Point> poles{ Point(-14., -5.), Point(-7.2, 7.), Point(-2.4, 7.), Point(3., 2.1),
 	Point(9., -4.8), Point(-14., -5.) };
-	return std::make_shared<BezierCurve>(poles);
+	return std::make_shared<Bezier>(poles);
 
 }
 
-std::shared_ptr<BezierCurve> NonClosedBezierCurve() {
+std::shared_ptr<Bezier> NonClosedBezierCurve() {
 	std::vector<Point> poles{ Point(0., 0.), Point(1., 2.), Point(3., 3.), Point(4., 0.) };
-	return std::make_shared<BezierCurve>(poles);
+	return std::make_shared<Bezier>(poles);
 }
-TEST(BezierCurve, GetRange)
+TEST(Bezier, GetRange)
 {
 	auto bezier = ClosedBezierCurve();
 	const auto range = bezier->GetRange();
@@ -33,7 +33,7 @@ TEST(BezierCurve, GetRange)
 	EXPECT_NEAR(range.End, 1., NULL_TOL);
 }
 
-TEST(BezierCurve, GetPoint)
+TEST(Bezier, GetPoint)
 {
 	auto bezier = NonClosedBezierCurve();
 	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.0), Point(0., 0.)));

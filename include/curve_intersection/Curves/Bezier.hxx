@@ -5,9 +5,9 @@
 
 namespace CurveIntersection {
 
-class BezierCurve : public ICurve {
+class Bezier : public ICurve {
 public:
-	BezierCurve(const std::vector<Point>& theControlPoints);
+	Bezier(const std::vector<Point>& theControlPoints);
 	virtual Range GetRange() const;
 	virtual Point GetPoint(double t) const;
 
@@ -23,6 +23,6 @@ private:
 	double CalculateBernsteinPolynom(size_t i, size_t n, double t) const;
 	std::vector<Point> myControlPoints;
 };
-bool operator==(const BezierCurve& theFirst, const BezierCurve& theSecound);
+bool operator==(const Bezier& theFirst, const Bezier& theSecound);
 }
 

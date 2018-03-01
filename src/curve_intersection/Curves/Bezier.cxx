@@ -16,17 +16,17 @@ long double Factorial(int X) {
 }
 
 
-BezierCurve::BezierCurve(const std::vector<Point>& theControlPoints) {
+Bezier::Bezier(const std::vector<Point>& theControlPoints) {
 
 	myControlPoints = theControlPoints;
 
 }
 
-Range BezierCurve::GetRange() const {
+Range Bezier::GetRange() const {
 	return Range(0.0, 1.0);
 }
 
-Point BezierCurve::GetPoint(Parameter theParameter) const {
+Point Bezier::GetPoint(Parameter theParameter) const {
 	double x = 0;
 	double y = 0;
 
@@ -40,7 +40,7 @@ Point BezierCurve::GetPoint(Parameter theParameter) const {
 	return (Point(x, y));
 }
 
-Vector BezierCurve::GetDerivative(Parameter theParameter) const {
+Vector Bezier::GetDerivative(Parameter theParameter) const {
 	double x = 0;
 	double y = 0;
 
@@ -54,29 +54,29 @@ Vector BezierCurve::GetDerivative(Parameter theParameter) const {
 	return Point(x, y);
 }
 
-double  BezierCurve::CalculateBinomialCoefficient(int i, int n) const {
+double  Bezier::CalculateBinomialCoefficient(int i, int n) const {
 	return Factorial(n) / (Factorial(i) * Factorial(n - i));
 }
 
-double  BezierCurve::CalculateBernsteinPolynom(size_t i, size_t n, double t) const {
+double  Bezier::CalculateBernsteinPolynom(size_t i, size_t n, double t) const {
 
 	return pow(t, (int)i) * pow(1 - t, (int)(n - i)) * CalculateBinomialCoefficient((int)i, (int)n);
 }
 
-std::vector<Point> BezierCurve::GetControlPoints() const {
+std::vector<Point> Bezier::GetControlPoints() const {
 	return myControlPoints;
 }
 
-std::string BezierCurve::GetName() const {
+std::string Bezier::GetName() const {
 	return "Bezier";
 }
 
-bool BezierCurve::EqualTo(const ICurve& theOther) const {
-	const BezierCurve& aOther = static_cast<const BezierCurve&> (theOther);
+bool Bezier::EqualTo(const ICurve& theOther) const {
+	const Bezier& aOther = static_cast<const Bezier&> (theOther);
 	return aOther.GetControlPoints() == this->GetControlPoints();
 }
 
-bool BezierCurve::IsValid() const {
+bool Bezier::IsValid() const {
 	return !myControlPoints.empty();
 }
 }
