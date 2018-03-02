@@ -4,12 +4,12 @@
 
 namespace CurveIntersection {
 
-class LineCurveSerializer :public FormattedCurveSerializer {
+class LineSegmentSerializer :public FormattedCurveSerializer {
 public:
-	LineCurveSerializer(Format theFormat) : FormattedCurveSerializer(theFormat) {}
+	LineSegmentSerializer(Format theFormat) : FormattedCurveSerializer(theFormat) {}
 	virtual std::unique_ptr<ICurve> Read(std::istream& theInput);
 	virtual void Write(std::ostream& theOutput, const ICurve& theCurve);
 	virtual std::string GetHeaderName();
-	virtual ~LineCurveSerializer() = default;
+	virtual ~LineSegmentSerializer() = default;
 };
 }

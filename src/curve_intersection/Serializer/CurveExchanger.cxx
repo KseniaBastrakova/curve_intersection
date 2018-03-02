@@ -49,7 +49,7 @@ std::string FileExtension(const std::string& aPath) {
 
 
 CurveExchanger::CurveExchanger() {
-	RegisterSerializer<LineCurveSerializer>();
+	RegisterSerializer<LineSegmentSerializer>();
 	RegisterSerializer<CircleCurveSerializer>();
 	RegisterSerializer<EllipseCurveSerializer>();
 	RegisterSerializer<BezierCurveSerializer>();

@@ -10,7 +10,8 @@ add_executable(Tests
 	Bezier_Tests.cxx
 	intersector_test.cxx
 	Vector_Test.cxx
-	Point_Test.cxx)
+	Point_Test.cxx
+	FormattedCurveSerializer_Test.cxx)
 
 target_link_libraries(Tests
     gtest
