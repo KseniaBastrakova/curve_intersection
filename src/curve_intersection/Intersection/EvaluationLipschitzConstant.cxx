@@ -1,3 +1,4 @@
+#include "Range.hxx"
 #include "EvaluationLipschitzConstant.hxx"
 #include <algorithm>
 #include <iostream>

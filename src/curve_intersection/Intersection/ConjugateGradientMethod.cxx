@@ -1,6 +1,7 @@
 #include "ConjugateGradientMethod.hxx"
 #include "GoldenRatio.hxx"
 #include "Vector.hxx"
+#include "Range.hxx"
 #include <algorithm>
 #include <limits>
 

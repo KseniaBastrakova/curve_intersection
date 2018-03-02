@@ -2,6 +2,7 @@
 #include <vector>
 #include "Base_Structures.hxx"
 #include "ICurve.hxx"
+#include "Range.hxx"
 
 namespace CurveIntersection {
 
@@ -11,8 +12,8 @@ public:
 		my—enter(the—enter), myRadius(theRadius) {}
 
 	CircleCurve(Point thePoint1, Point thePoint2);
-	virtual Point GetPoint(double t) const override;
-	virtual Vector GetDerivative(double t) const override;
+	virtual Point GetPoint(Parameter parameter) const override;
+	virtual Vector GetDerivative(Parameter parameter) const override;
 	virtual Range GetRange() const override;
 	virtual std::string GetName() const override;	
 	Point GetCenter() const;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Point.hxx"
+#include "Range.hxx"
 #include "Vector.hxx"
 #include "Base_Structures.hxx"
 #include <string>

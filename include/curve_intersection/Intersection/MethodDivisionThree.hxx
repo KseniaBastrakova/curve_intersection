@@ -1,4 +1,8 @@
 #pragma once
+
+#include "Range.hxx"
+#include "Point.hxx"
+#include "Box.hxx"
 #include <functional>
 #include <vector>
 #include "Base_Structures.hxx"

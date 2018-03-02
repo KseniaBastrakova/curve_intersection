@@ -1,5 +1,6 @@
 #include "CircleCurve.hxx"
 #include "Vector.hxx"
+#include "Range.hxx"
 #include <cmath>
 
 namespace CurveIntersection {
