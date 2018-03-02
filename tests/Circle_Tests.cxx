@@ -10,13 +10,13 @@ TEST(Circle, ConstructorFromTwoCenterAndRadius)
 	double aRadius = 777.;
 	const CircleCurve aCircle(aCenter, aRadius);
 	EXPECT_EQ(aCenter, aCircle.GetCenter());
-	EXPECT_EQ(5., aCircle.GetRadius());
+	EXPECT_EQ(777., aCircle.GetRadius());
 }
 
 TEST(Circle, ConstructorFromTwoPoints)
 {
 	Point aCenter(0, 0);
-	Point aPointOnCircle(5., 5.);
+	Point aPointOnCircle(0., 5.);
 	const CircleCurve aCircle(aCenter, aPointOnCircle);
 	EXPECT_EQ(aCenter, aCircle.GetCenter());
 	EXPECT_EQ(5., aCircle.GetRadius());
@@ -25,7 +25,7 @@ TEST(Circle, ConstructorFromTwoPoints)
 TEST(Circle, CopyConstructor)
 {
 	Point aCenter(0, 0);
-	Point aPointOnCircle(5., 5.);
+	Point aPointOnCircle(0., 5.);
 	const CircleCurve aCircle(aCenter, aPointOnCircle);
 	CircleCurve aCopy = aCircle;
 	EXPECT_EQ(aCenter, aCircle.GetCenter());
@@ -35,7 +35,7 @@ TEST(Circle, CopyConstructor)
 TEST(Circle, Assigment)
 {
 	Point aCenter(0, 0);
-	Point aPointOnCircle(5., 5.);
+	Point aPointOnCircle(0., 5.);
 	const CircleCurve aCircle(aCenter, aPointOnCircle);
 	CircleCurve aCopy(Point(0., 0.), 7.);
 	aCopy = aCircle;
