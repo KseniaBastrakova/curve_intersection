@@ -3,7 +3,37 @@
 
 using namespace CurveIntersection;
 
-TEST(Line, GetPoint)
+TEST(LineSegment, Constructor)
+{
+	Point aStart(2., 3.);
+	Point aEnd(3., 6.);
+	LineSegment aLineSegment(aStart, aEnd);
+	EXPECT_EQ(aStart, aLineSegment.GetStart());
+	EXPECT_EQ(aEnd, aLineSegment.GetEnd());
+}
+
+TEST(LineSegment, CopyConstructor)
+{
+	Point aStart(5., 5.);
+	Point aEnd(7., 8.);
+	LineSegment aLineSegment(aStart, aEnd);
+	LineSegment aCopy = aLineSegment;
+	EXPECT_EQ(aStart, aCopy.GetStart());
+	EXPECT_EQ(aEnd, aCopy.GetEnd());
+}
+
+TEST(LineSegment, Assigment)
+{
+	Point aStart(5., 5.);
+	Point aEnd(7., 8.);
+	LineSegment aLineSegment(aStart, aEnd);
+	LineSegment aCopy(Point(0., 0.), Point(0., 0.));
+	aCopy = aLineSegment;
+	EXPECT_EQ(aStart, aCopy.GetStart());
+	EXPECT_EQ(aEnd, aCopy.GetEnd());
+}
+
+TEST(LineSegment, GetPoint)
 {
   const LineSegment line( Point(0., 0.), Point(5., 5.) );
   auto point = line.GetPoint( 0.0 );
@@ -19,7 +49,7 @@ TEST(Line, GetPoint)
   EXPECT_NEAR( point.y, 2.5, 1.e-7 );
 }
 
-TEST(Line, GetDerivative)
+TEST(LineSegment, GetDerivative)
 {
   const LineSegment line( Point(0., 0.), Point(5., 5.) );
   auto der = line.GetDerivative( 0.0 );
@@ -32,7 +62,7 @@ TEST(Line, GetDerivative)
 
 }
 
-TEST(Line, GetRange)
+TEST(LineSegment, GetRange)
 {
   const LineSegment line( Point(0., 0.), Point(5., 5.) );
   const auto range = line.GetRange();
