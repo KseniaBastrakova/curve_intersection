@@ -6,24 +6,23 @@ namespace CurveIntersection {
 
 namespace {
 
-static bool IsCorrectCircleData(Point point1, Point point2)
+static bool IsCorrectCircleData(Point thePoint1, Point thePoint2)
 {
-	return !(point1 == point2);
+	return !(thePoint1 == thePoint2);
 }
 
 }
 
-CircleCurve::CircleCurve(const std::vector<Point>& points) {
-	if (points.size() == 2)
+CircleCurve::CircleCurve(Point thePoint1, Point thePoint2) {
+
+	if (IsCorrectCircleData(thePoint1, thePoint2))
 	{
-		if (IsCorrectCircleData(points[0], points[1]))
-		{
-			myÑenter = points[0];
-			const Vector v = points[1] - myÑenter;
-			const double r = v.Lenght();
-			myRadius = r;
-		}
+		myÑenter = thePoint1;
+		const Vector v = thePoint2 - myÑenter;
+		const double r = v.Lenght();
+		myRadius = r;
 	}
+	
 }
 
 Range CircleCurve::GetRange() const {
@@ -34,14 +33,12 @@ Point CircleCurve::GetPoint(Parameter theParameter) const {
 	Point aPoint;
 	aPoint.x = myRadius * cos(theParameter) + myÑenter.x;
 	aPoint.y = myRadius * sin(theParameter) + myÑenter.y;
-	return (aPoint);
+	return aPoint;
 }
 
 Vector CircleCurve::GetDerivative(Parameter theParameter) const {
-	Point aPoint;
-	aPoint.x = -myRadius * sin(theParameter);
-	aPoint.y = myRadius * cos(theParameter);
-	return (aPoint);
+	Vector aVector;
+	return Vector(-myRadius * sin(theParameter), myRadius * cos(theParameter));
 }
 
 Point CircleCurve::GetCenter() const {
@@ -61,8 +58,5 @@ bool CircleCurve::EqualTo(const ICurve& theOther) const {
 	return (aOther.GetCenter() == this->GetCenter() && aOther.GetRadius() == this->GetRadius());
 }
 
-bool CircleCurve::IsValid() const {
-	return myRadius > NULL_TOL;
-}
 }
 
