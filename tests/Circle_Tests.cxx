@@ -4,76 +4,71 @@
 
 using namespace CurveIntersection;
 
-class CircleTest : public ::testing::Test {
-};
-
-namespace {
-static bool IsEqualPoints(Point p1, Point p2, double eps = NULL_TOL)
+TEST(Circle, ConstructorFromTwoCenterAndRadius)
 {
-	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;
-}
-
-static bool IsEqualVectors(const Vector & v1, const Vector & v2, double eps = NULL_TOL)
-{
-	return fabs(v1.x - v2.x) < eps && fabs(v1.y - v2.y) < eps;
-}
+	Point aCenter(0, 0);
+	double aRadius = 777.;
+	const CircleCurve aCircle(aCenter, aRadius);
+	EXPECT_EQ(aCenter, aCircle.GetCenter());
+	EXPECT_EQ(5., aCircle.GetRadius());
 }
 
-TEST(Circle, Construct0Point)
+TEST(Circle, ConstructorFromTwoPoints)
 {
-  std::vector<Point> wrongNumberPoints;
-  const CircleCurve circle( wrongNumberPoints );
-  EXPECT_FALSE( circle.IsValid() );
+	Point aCenter(0, 0);
+	Point aPointOnCircle(5., 5.);
+	const CircleCurve aCircle(aCenter, aPointOnCircle);
+	EXPECT_EQ(aCenter, aCircle.GetCenter());
+	EXPECT_EQ(5., aCircle.GetRadius());
 }
 
-TEST(Circle, Construct1Point)
+TEST(Circle, CopyConstructor)
 {
-  std::vector<Point> wrongNumberPoints {Point(0., 0.)};
-  const CircleCurve circle( wrongNumberPoints );
-  EXPECT_FALSE( circle.IsValid() );
+	Point aCenter(0, 0);
+	Point aPointOnCircle(5., 5.);
+	const CircleCurve aCircle(aCenter, aPointOnCircle);
+	CircleCurve aCopy = aCircle;
+	EXPECT_EQ(aCenter, aCircle.GetCenter());
+	EXPECT_EQ(5., aCircle.GetRadius());
 }
 
-TEST(Circle, Construct2SamePoints)
+TEST(Circle, Assigment)
 {
-  Point samePoint(0.0, 0.0);
-  std::vector<Point> samePoints{samePoint, samePoint};
-  const CircleCurve circle( samePoints );
-  EXPECT_FALSE( circle.IsValid() );
+	Point aCenter(0, 0);
+	Point aPointOnCircle(5., 5.);
+	const CircleCurve aCircle(aCenter, aPointOnCircle);
+	CircleCurve aCopy(Point(0., 0.), 7.);
+	aCopy = aCircle;
+	EXPECT_EQ(aCenter, aCircle.GetCenter());
+	EXPECT_EQ(5., aCircle.GetRadius());
 }
 
-TEST(Circle, Construct3Points)
-{
-  Point samePoint(0.0, 0.0);
-  std::vector<Point> samePoints{samePoint, Point(2.2, 3.7), samePoint};
-  const CircleCurve circle( samePoints );
-  EXPECT_FALSE( circle.IsValid() );
-}
 
 TEST(Circle, GetPoint)
 {
-  const CircleCurve circle( Point(1., 1.), 2.);
-  EXPECT_TRUE(IsEqualPoints(circle.GetPoint(0.), Point(3., 1.)));
-  EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI*2.), Point(3., 1.)));
-  EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI/4.), Point(1.+sqrt(2.), 1.+sqrt(2.))));
-  EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI), Point(-1., 1.)));
-  EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI*5./4.), Point(1.-sqrt(2.), 1.-sqrt(2.))) );
+	const CircleCurve circle(Point(1., 1.), 2.);
+	EXPECT_TRUE(IsEqualPoints(circle.GetPoint(0.), Point(3., 1.)));
+	EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI*2.), Point(3., 1.)));
+	EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI / 4.), Point(1. + sqrt(2.), 1. + sqrt(2.))));
+	EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI), Point(-1., 1.)));
+	EXPECT_TRUE(IsEqualPoints(circle.GetPoint(PI*5. / 4.), Point(1. - sqrt(2.), 1. - sqrt(2.))));
 }
 
 TEST(Circle, GetRange)
 {
-  const CircleCurve circle( Point(1., 1.), 2.);
-  const auto range = circle.GetRange();
-  EXPECT_NEAR( range.Begin, 0., NULL_TOL );
-  EXPECT_NEAR( range.End, PI*2., NULL_TOL );
+	const CircleCurve circle(Point(1., 1.), 2.);
+	const auto range = circle.GetRange();
+	EXPECT_NEAR(range.Begin, 0., NULL_TOL);
+	EXPECT_NEAR(range.End, PI*2., NULL_TOL);
 }
 
 TEST(Circle, GetDerivative)
 {
-  const CircleCurve circle( Point(1., 1.), 2.);
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(0.), Vector(0., 2.)) );
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI*2.), Vector(0., 2.)) );
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI/4.), Vector(-sqrt(2.), sqrt(2.))) );
-  EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI*9./4.), Vector(-sqrt(2.), sqrt(2.))));
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI), Vector(0., -2.)) );
-  EXPECT_TRUE( IsEqualVectors(circle.GetDerivative(PI*5./4.), Vector(sqrt(2.), -sqrt(2.))) );
+	const CircleCurve circle(Point(1., 1.), 2.);
+	EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(0.), Vector(0., 2.)));
+	EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI*2.), Vector(0., 2.)));
+	EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI / 4.), Vector(-sqrt(2.), sqrt(2.))));
+	EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI*9. / 4.), Vector(-sqrt(2.), sqrt(2.))));
+	EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI), Vector(0., -2.)));
+	EXPECT_TRUE(IsEqualVectors(circle.GetDerivative(PI*5. / 4.), Vector(sqrt(2.), -sqrt(2.))));
 }

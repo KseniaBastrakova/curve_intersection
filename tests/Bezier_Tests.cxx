@@ -4,27 +4,46 @@
 #include <vector>
 
 using namespace CurveIntersection;
-class BezierCurveTest : public ::testing::Test {
-};
 
-
-static bool IsEqualPoints(Point p1, Point p2, double eps = NULL_TOL)
-{
-	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;
-}
-
-
+namespace {
 std::shared_ptr<Bezier> ClosedBezierCurve() {
 	std::vector<Point> poles{ Point(-14., -5.), Point(-7.2, 7.), Point(-2.4, 7.), Point(3., 2.1),
-	Point(9., -4.8), Point(-14., -5.) };
+		Point(9., -4.8), Point(-14., -5.) };
 	return std::make_shared<Bezier>(poles);
-
 }
 
 std::shared_ptr<Bezier> NonClosedBezierCurve() {
 	std::vector<Point> poles{ Point(0., 0.), Point(1., 2.), Point(3., 3.), Point(4., 0.) };
 	return std::make_shared<Bezier>(poles);
 }
+
+}
+
+TEST(Bezier, Constructor)
+{
+	std::vector<Point> aPoles{ Point(11., 0.), Point(1., 5.), Point(7., 3.), Point(3., 8.) };
+	Bezier aBezier(aPoles);
+	EXPECT_EQ(aPoles, aBezier.GetControlPoints());
+}
+
+TEST(Bezier, CopyConstructor)
+{
+	std::vector<Point> aPoles{ Point(11., 0.), Point(1., 5.), Point(7., 3.), Point(3., 8.) };
+	Bezier aBezier(aPoles);
+	Bezier aCopy = aBezier;
+	EXPECT_EQ(aPoles, aCopy.GetControlPoints());
+}
+
+TEST(Bezier, Assigment)
+{
+	std::vector<Point> aPoles{ Point(11., 0.), Point(1., 5.), Point(7., 3.), Point(3., 8.) };
+	Bezier aBezier(aPoles);
+	std::vector<Point> aPolesCopy{ Point(1., 0.) };
+	Bezier aCopy(aPolesCopy);
+	aCopy = aBezier;
+	EXPECT_EQ(aPoles, aCopy.GetControlPoints());
+}
+
 TEST(Bezier, GetRange)
 {
 	auto bezier = ClosedBezierCurve();
@@ -42,5 +61,16 @@ TEST(Bezier, GetPoint)
 	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.6), Point(2.448, 1.872), 1.e-4));
 	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.8), Point(3.296, 1.344), 1.e-4));
 	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(1.), Point(4., 0.), 1.e-4));
+}
+
+TEST(Bezier, GetDerivative)
+{
+	auto bezier = NonClosedBezierCurve();
+//	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.0), Vector(0., 0.)));
+	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.2), Vector(3.96, 4.44), 1.e-4));
+	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.4), Vector(4.44, 2.16), 1.e-4));
+	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.6), Vector(4.44, -0.84), 1.e-4));
+	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.8), Vector(3.96, -4.56), 1.e-4));
+//	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(1.), Vector(4., 0.), 1.e-4));
 }
 
