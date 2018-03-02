@@ -1,5 +1,6 @@
 #pragma once
 #include "Base_Structures.hxx"
+#include "Box.hxx"
 #include "LocalMethod.hxx"
 #include "Vector.hxx"
 #include <functional>
