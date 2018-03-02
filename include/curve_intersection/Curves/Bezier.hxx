@@ -8,21 +8,15 @@ namespace CurveIntersection {
 class Bezier : public ICurve {
 public:
 	Bezier(const std::vector<Point>& theControlPoints);
-	virtual Range GetRange() const;
-	virtual Point GetPoint(double t) const;
-
-	Vector GetDerivative(double t) const;
-	std::vector<Point> GetControlPoints() const;
-
+	virtual Point GetPoint(Parameter parameter) const override;
+	Vector GetDerivative(Parameter parameter) const override;
+	virtual Range GetRange() const override;
 	virtual std::string GetName() const;
-	virtual bool EqualTo(const ICurve& theOther) const;
-	bool IsValid() const;
+	std::vector<Point> GetControlPoints() const;
 private:
-
-	double CalculateBinomialCoefficient(int i, int n) const;
-	double CalculateBernsteinPolynom(size_t i, size_t n, double t) const;
+	virtual bool EqualTo(const ICurve& theOther) const override;
 	std::vector<Point> myControlPoints;
 };
-bool operator==(const Bezier& theFirst, const Bezier& theSecound);
+
 }
 

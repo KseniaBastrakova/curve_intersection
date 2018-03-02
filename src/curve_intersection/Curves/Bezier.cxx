@@ -5,21 +5,28 @@ namespace CurveIntersection {
 
 namespace {
 
-long double Factorial(int X) {
-	if (X < 0)
+size_t Factorial(int x) {
+	if (x < 0)
 		return 0;
-	if (X == 0)
+	if (x == 0)
 		return 1;
 	else
-		return X * Factorial(X - 1);
-}
+		return x * Factorial(x - 1);
 }
 
+double CalculateBinomialCoefficient(int i, int n) {
+	return Factorial(n) / (Factorial(i) * Factorial(n - i));
+}
+
+double CalculateBernsteinPolynom(size_t i, size_t n, double t) {
+
+	return pow(t, (int)i) * pow(1 - t, (int)(n - i)) * CalculateBinomialCoefficient((int)i, (int)n);
+}
+}
 
 Bezier::Bezier(const std::vector<Point>& theControlPoints) {
 
 	myControlPoints = theControlPoints;
-
 }
 
 Range Bezier::GetRange() const {
@@ -54,15 +61,6 @@ Vector Bezier::GetDerivative(Parameter theParameter) const {
 	return Point(x, y);
 }
 
-double  Bezier::CalculateBinomialCoefficient(int i, int n) const {
-	return Factorial(n) / (Factorial(i) * Factorial(n - i));
-}
-
-double  Bezier::CalculateBernsteinPolynom(size_t i, size_t n, double t) const {
-
-	return pow(t, (int)i) * pow(1 - t, (int)(n - i)) * CalculateBinomialCoefficient((int)i, (int)n);
-}
-
 std::vector<Point> Bezier::GetControlPoints() const {
 	return myControlPoints;
 }
@@ -76,9 +74,6 @@ bool Bezier::EqualTo(const ICurve& theOther) const {
 	return aOther.GetControlPoints() == this->GetControlPoints();
 }
 
-bool Bezier::IsValid() const {
-	return !myControlPoints.empty();
-}
 }
 
 
