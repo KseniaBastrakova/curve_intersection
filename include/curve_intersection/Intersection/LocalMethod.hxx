@@ -1,5 +1,6 @@
 #pragma once
 #include "Base_Structures.hxx"
+#include "Point.hxx"
 
 namespace CurveIntersection {
 
