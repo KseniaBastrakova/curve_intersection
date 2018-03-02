@@ -60,4 +60,9 @@ inline Vector Rotate(Vector theVector, double theAngle) {
 		theVector.x * aSin + theVector.y * aCos);
 }
 
+inline static bool IsEqualVectors(const Vector & v1, const Vector & v2, double eps = NULL_TOL)
+{
+	return fabs(v1.x - v2.x) < eps && fabs(v1.y - v2.y) < eps;
+}
+
 }// namespace CurveIntersection
