@@ -1,4 +1,4 @@
-#include "LineCurveSerializer.hxx"
+#include "LineSegmentSerializer.hxx"
 #include "LineSegment.hxx"
 
 namespace CurveIntersection {

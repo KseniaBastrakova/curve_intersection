@@ -2,7 +2,7 @@
 #include "BezierCurveSerializer.hxx"
 #include "CircleCurveSerializer.hxx"
 #include "EllipseCurveSerializer.hxx"
-#include "LineCurveSerializer.hxx"
+#include "LineSegmentSerializer.hxx"
 #include <algorithm>
 #include <istream>
 #include <ostream>

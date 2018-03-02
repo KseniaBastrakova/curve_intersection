@@ -25,7 +25,7 @@ list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/CircleCurveSerializer.c
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/CurveExchanger.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/EllipseCurveSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/FormattedCurveSerializer.cxx)
-list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/LineCurveSerializer.cxx)
+list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/LineSegmentSerializer.cxx)
 add_library(${PROJECT_NAME} ${SRC})
 
 add_subdirectory(3rdParty)
