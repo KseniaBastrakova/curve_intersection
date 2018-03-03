@@ -23,7 +23,7 @@ list(APPEND SRC ${SRC_DIR}/curve_intersection/Intersection/MethodDivisionThree.c
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/BezierCurveSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/CircleCurveSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/CurveExchanger.cxx)
-list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/EllipseCurveSerializer.cxx)
+list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/EllipseSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/FormattedCurveSerializer.cxx)
 list(APPEND SRC ${SRC_DIR}/curve_intersection/Serializer/LineSegmentSerializer.cxx)
 add_library(${PROJECT_NAME} ${SRC})

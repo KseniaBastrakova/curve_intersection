@@ -12,6 +12,7 @@ public:
 	virtual ~ICurveSerializer() = default;
 
 };
+
 }
 
 

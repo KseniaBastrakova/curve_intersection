@@ -1,4 +1,4 @@
-#include "EllipseCurveSerializer.hxx"
+#include "EllipseSerializer.hxx"
 
 namespace CurveIntersection {
 
