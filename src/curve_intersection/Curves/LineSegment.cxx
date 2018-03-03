@@ -3,11 +3,10 @@
 namespace CurveIntersection {
 
 LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
-
-	myDirection = Point(thePoint2.x - thePoint1.x, thePoint2.y - thePoint1.y);
 	myStart = thePoint1;
 	myEnd = thePoint2;
-
+	myDirection = myEnd - myStart;
+	myRange = Range(0., 1.);
 }
 
 Point LineSegment::GetPoint(Parameter parameter) const {
@@ -15,7 +14,7 @@ Point LineSegment::GetPoint(Parameter parameter) const {
 }
 
 Range LineSegment::GetRange() const {
-	return Range(0.0, 1.0);
+	return myRange;
 }
 
 Vector LineSegment::GetDerivative(Parameter parameter) const {
@@ -31,7 +30,7 @@ Point LineSegment::GetEnd() const {
 }
 
 std::string LineSegment::GetName() const {
-	return "Line";
+	return "LineSegment";
 }
 
 bool LineSegment::EqualTo(const ICurve& theOther) const {
@@ -39,6 +38,4 @@ bool LineSegment::EqualTo(const ICurve& theOther) const {
 	return (aOther.GetStart() == this->GetStart() && aOther.GetEnd() == this->GetEnd());
 }
 
-
 }
-

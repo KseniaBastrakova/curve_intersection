@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Base_Structures.hxx"
+#include "Point.hxx"
+#include "Range.hxx"
+#include "Vector.hxx"
 #include "Curves/ICurve.hxx"
-#include <vector>
+#include <string>
 
 namespace CurveIntersection {
 
@@ -11,15 +13,16 @@ public:
 	LineSegment(const Point& thePoint1, const Point& thePoint2);
 	virtual Range GetRange() const override;
 	virtual Point GetPoint(Parameter parameter) const override;
+	virtual Vector GetDerivative(Parameter parameter) const override;
 	virtual std::string GetName() const override;
-	virtual Vector GetDerivative(Parameter parameter) const;
 	Point GetStart() const;
 	Point GetEnd() const;
 private:
 	bool EqualTo(const ICurve& theOther) const override;
-	Point myDirection;
+	Vector myDirection;
 	Point myStart;
 	Point myEnd;
 	Range myRange;
 };
+
 }
