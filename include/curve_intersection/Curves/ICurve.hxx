@@ -3,7 +3,6 @@
 #include "Point.hxx"
 #include "Range.hxx"
 #include "Vector.hxx"
-#include "Base_Structures.hxx"
 #include <string>
 
 namespace CurveIntersection {
@@ -15,7 +14,7 @@ public:
 	virtual Point GetPoint(Parameter theParameter) const = 0;
 	virtual Vector GetDerivative(Parameter theParameter) const = 0;
 	virtual std::string GetName() const = 0;
-	friend bool operator== (const ICurve& a, const ICurve& b);
+	friend bool operator== (const ICurve& theFirst, const ICurve& theSecond);
 	virtual ~ICurve() = default;
 protected:
 	// this is supposed to be called for the same types, e.g. from operator ==
