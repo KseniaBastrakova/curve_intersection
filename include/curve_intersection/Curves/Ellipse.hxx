@@ -22,7 +22,7 @@ private:
 	double myR1;
 	double myR2;
 	Point myCenter;
-	double myAlpha;
+	double myAngle;
 };
 
 }

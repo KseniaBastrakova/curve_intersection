@@ -5,53 +5,42 @@ namespace CurveIntersection {
 
 namespace {
 
-static bool PointsOneLine(Point thePoint1, Point thePoint2, Point thePoint3)
+static bool IsPointsOneLine(Point thePoint1, Point thePoint2, Point thePoint3)
 {
-	return IsCollinear(Vector(thePoint1 - thePoint2), Vector(thePoint2 - thePoint3));
+	return IsCollinear(thePoint1 - thePoint2, thePoint2 - thePoint3);
 }
 
-static bool CorrectEllipseData(Point thePoint1, Point thePoint2, Point thePoint3)
+static bool IsCorrectEllipseData(Point thePoint1, Point thePoint2, Point thePoint3)
 {
 	return  !((thePoint1 == thePoint2 ||
 		thePoint2 == thePoint3 ||
 		thePoint1 == thePoint3) ||
-		(PointsOneLine(thePoint1, thePoint2, thePoint3)));
+		(IsPointsOneLine(thePoint1, thePoint2, thePoint3)));
 }
 
 }
 
-Ellipse::Ellipse(Point theCenter, double theR1, double theR2, double theAngle) :
-	myCenter(Point(0.0, 0.0)),
-	myR1(0.0),
-	myR2(0.0),
-	myAlpha(0.0)
+Ellipse::Ellipse(Point theCenter, double theR1, double theR2, double theAngle)
 {
-	if (theR1 > NULL_TOL && theR2 > NULL_TOL)
+	if (theR1 > 0. && theR2 > 0.)
 	{
 		myR1 = theR1;
 		myR2 = theR2;
 		myCenter = theCenter;
-		myAlpha = theAngle;
+		myAngle = theAngle;
 	}
 }
 
-Ellipse::Ellipse(Point thePoint1, Point thePoint2, Point thePoint3) :
-	myCenter(Point(0.0, 0.0)),
-	myR1(0.0),
-	myR2(0.0),
-	myAlpha(0.0)
+Ellipse::Ellipse(Point theCenter, Point thePoint2, Point thePoint3)
 {
-
-	if (CorrectEllipseData(thePoint1, thePoint2, thePoint3))
+	if (IsCorrectEllipseData(theCenter, thePoint2, thePoint3))
 	{
-		myCenter = thePoint1;
+		myCenter = theCenter;
 		Vector aSideDirection = thePoint2 - myCenter;
-		double axisA = sqrt(aSideDirection.Lenght());
-		myAlpha = atan2(aSideDirection.y, aSideDirection.x);
-		myR1 = axisA;
-		//vector
-		Vector newCoord(std::fabs((thePoint3 - myCenter).x), std::fabs((thePoint3 - myCenter).y));
-		newCoord = Rotate(newCoord, myAlpha);
+		myR1 = aSideDirection.Lenght();
+		myAngle = atan2(aSideDirection.y, aSideDirection.x);
+		Vector newCoord(fabs(thePoint3.x - myCenter.x), fabs(thePoint3.y - myCenter.y));
+		newCoord = Rotate(newCoord, myAngle);
 
 		double axisB = (sqrt(fabs((newCoord.y) * (newCoord.y) /
 			(1 - (newCoord.x) * (newCoord.x) / (myR1 * myR1)))));
@@ -65,17 +54,13 @@ Range Ellipse::GetRange() const {
 }
 
 Point Ellipse::GetPoint(Parameter parameter) const {
-	Point point(myR1 * cos(parameter), myR2 * sin(parameter));
-	double x = point.x * cos(myAlpha) + point.y * cos(myAlpha + PI / 2.);
-	double y = point.x * sin(myAlpha) + point.y * sin(myAlpha + PI / 2.);
-	return myCenter + Vector(x, y);
+	Vector aCanonical(myR1 * cos(parameter), myR2 * sin(parameter));
+	return myCenter + Rotate(aCanonical, myAngle);
 }
 
 Vector Ellipse::GetDerivative(Parameter parameter) const {
-	Vector vector(myR1 * -sin(parameter), myR2 * cos(parameter));
-	double x = vector.x * cos(myAlpha) + vector.y * cos(myAlpha + PI / 2.);
-	double y = vector.x * sin(myAlpha) + vector.y * sin(myAlpha + PI / 2.);
-	return Point(x, y);
+	Vector aCanonical(myR1 * -sin(parameter), myR2 * cos(parameter));
+	return Rotate(aCanonical, myAngle);
 }
 
 double Ellipse::GetR1() const {
@@ -83,7 +68,7 @@ double Ellipse::GetR1() const {
 }
 
 double Ellipse::GetAngle() const {
-	return myAlpha;
+	return myAngle;
 }
 
 double Ellipse::GetR2() const {
