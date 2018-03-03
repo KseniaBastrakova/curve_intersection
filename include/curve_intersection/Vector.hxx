@@ -60,9 +60,16 @@ inline Vector Rotate(Vector theVector, double theAngle) {
 		theVector.x * aSin + theVector.y * aCos);
 }
 
-inline static bool IsEqualVectors(const Vector & theFirst, const Vector & theSecond, double theAccurancy = NULL_TOL)
+inline bool IsNear(const Vector& theFirst, const Vector& theSecond, double theThreshold)
 {
-	return fabs(theFirst.x - theSecond.x) < theAccurancy && fabs(theFirst.y - theSecond.y) < theAccurancy;
+	return fabs(theFirst.x - theSecond.x) < theThreshold && fabs(theFirst.y - theSecond.y) < theThreshold;
+}
+
+const double DefaultVectorEqualityTolerance = NULL_TOL;
+inline bool IsEqual(Vector theFirst,
+	Vector theSecond, double theMaxDiscrepancy = DefaultVectorEqualityTolerance)
+{
+	return IsNear(theFirst, theSecond, theMaxDiscrepancy);
 }
 
 }// namespace CurveIntersection

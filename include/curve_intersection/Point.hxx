@@ -27,9 +27,16 @@ inline bool operator != (Point theFirst, Point theSecond) {
 	return (theFirst.x != theSecond.x || theFirst.y != theSecond.y);
 }
 
-inline bool IsEqualPoints(Point p1, Point p2, double eps = NULL_TOL)
+inline bool IsNear(Point theFirst, Point theSecond, double theThreshold)
 {
-	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;
+	return fabs(theFirst.x - theSecond.x) < theThreshold && fabs(theFirst.y - theSecond.y) < theThreshold;
+}
+
+const double DefaultPointEqualityTolerance = NULL_TOL;
+inline bool IsEqual(Point theFirst,
+	Point theSecond, double theMaxDiscrepancy = DefaultPointEqualityTolerance)
+{
+	return IsNear(theFirst, theSecond, theMaxDiscrepancy);
 }
 
 } // namespace CurveIntersection
