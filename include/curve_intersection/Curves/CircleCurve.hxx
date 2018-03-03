@@ -1,20 +1,19 @@
 #pragma once
-#include <vector>
-#include "Base_Structures.hxx"
-#include "ICurve.hxx"
+
+#include "Point.hxx"
 #include "Range.hxx"
+#include "Vector.hxx"
+#include "ICurve.hxx"
+#include <string>
 
 namespace CurveIntersection {
 
 class CircleCurve : public ICurve {
 public:
-	CircleCurve(const Point& theÑenter, double theRadius) :
-		myÑenter(theÑenter), myRadius(theRadius) {}
-
-	CircleCurve(Point thePoint1, Point thePoint2);
+	CircleCurve(const Point& theÑenter, double theRadius);
+	virtual Range GetRange() const override;
 	virtual Point GetPoint(Parameter parameter) const override;
 	virtual Vector GetDerivative(Parameter parameter) const override;
-	virtual Range GetRange() const override;
 	virtual std::string GetName() const override;	
 	Point GetCenter() const;
 	double GetRadius() const;
@@ -24,4 +23,5 @@ private:
 	Point myÑenter;
 	Range myRange;
 };
+
 }
