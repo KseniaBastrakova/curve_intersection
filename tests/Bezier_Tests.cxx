@@ -55,22 +55,22 @@ TEST(Bezier, GetRange)
 TEST(Bezier, GetPoint)
 {
 	auto bezier = NonClosedBezierCurve();
-	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.0), Point(0., 0.)));
-	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.2), Point(0.704, 1.056), 1.e-4));
-	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.4), Point(1.552, 1.728), 1.e-4));
-	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.6), Point(2.448, 1.872), 1.e-4));
-	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(0.8), Point(3.296, 1.344), 1.e-4));
-	EXPECT_TRUE(IsEqualPoints(bezier->GetPoint(1.), Point(4., 0.), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetPoint(0.0), Point(0., 0.)));
+	EXPECT_TRUE(IsEqual(bezier->GetPoint(0.2), Point(0.704, 1.056), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetPoint(0.4), Point(1.552, 1.728), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetPoint(0.6), Point(2.448, 1.872), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetPoint(0.8), Point(3.296, 1.344), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetPoint(1.), Point(4., 0.), 1.e-4));
 }
 
 TEST(Bezier, GetDerivative)
 {
 	auto bezier = NonClosedBezierCurve();
 //	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.0), Vector(0., 0.)));
-	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.2), Vector(3.96, 4.44), 1.e-4));
-	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.4), Vector(4.44, 2.16), 1.e-4));
-	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.6), Vector(4.44, -0.84), 1.e-4));
-	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.8), Vector(3.96, -4.56), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.2), Vector(3.96, 4.44), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.4), Vector(4.44, 2.16), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.6), Vector(4.44, -0.84), 1.e-4));
+	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.8), Vector(3.96, -4.56), 1.e-4));
 //	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(1.), Vector(4., 0.), 1.e-4));
 }
 
