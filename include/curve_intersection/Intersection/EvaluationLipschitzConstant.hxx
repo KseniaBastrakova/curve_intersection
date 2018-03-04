@@ -1,5 +1,5 @@
 #pragma once
-#include "Base_Structures.hxx"
+
 #include <functional>
 
 namespace CurveIntersection {

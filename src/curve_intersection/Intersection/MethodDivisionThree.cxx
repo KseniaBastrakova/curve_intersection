@@ -1,5 +1,5 @@
 #include "MethodDivisionThree.hxx"
-#include "Base_Structures.hxx"
+
 #include "ConjugateGradientMethod.hxx"
 #include <algorithm>
 #include <functional>

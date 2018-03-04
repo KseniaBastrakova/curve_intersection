@@ -17,7 +17,7 @@ bool compare(std::vector<T>& v1, std::vector<T>& v2)
 	return v1 == v2;
 }
 namespace {
-static bool IsEqualPoints(const CurveIntersection::Point & p1, const CurveIntersection::Point & p2, 
+static bool IsEqual(const CurveIntersection::Point & p1, const CurveIntersection::Point & p2, 
 	double eps = CurveIntersection::NULL_TOL)
 {
 	return fabs(p1.x - p2.x) < eps && fabs(p1.y - p2.y) < eps;

@@ -1,4 +1,3 @@
-#include "Base_Structures.hxx"
 #include "Bezier.hxx"
 
 namespace CurveIntersection {

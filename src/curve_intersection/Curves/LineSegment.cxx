@@ -1,4 +1,4 @@
-#include "Curves/LineSegment.hxx"
+#include "LineSegment.hxx"
 
 namespace CurveIntersection {
 

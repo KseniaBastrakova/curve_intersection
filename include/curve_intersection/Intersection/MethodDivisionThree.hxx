@@ -5,7 +5,7 @@
 #include "Box.hxx"
 #include <functional>
 #include <vector>
-#include "Base_Structures.hxx"
+
 #include "LocalMethod.hxx"
 
 namespace CurveIntersection {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cmath>
-#include "Base_Structures.hxx"
+#include "Constants.hxx"
 
 namespace CurveIntersection {
 

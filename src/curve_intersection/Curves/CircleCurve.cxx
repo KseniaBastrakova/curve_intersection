@@ -1,5 +1,5 @@
 #include "CircleCurve.hxx"
-#include "Base_Structures.hxx"
+#include "Constants.hxx"
 #include <cmath>
 
 namespace CurveIntersection {
