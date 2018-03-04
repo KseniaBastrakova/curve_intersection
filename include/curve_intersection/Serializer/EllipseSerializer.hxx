@@ -1,5 +1,5 @@
 #pragma once
-#include "EllipseCurve.hxx"
+#include "Ellipse.hxx"
 #include "FormattedCurveSerializer.hxx"
 #include <ostream>
 

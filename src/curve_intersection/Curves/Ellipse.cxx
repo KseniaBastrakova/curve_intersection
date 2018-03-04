@@ -1,4 +1,4 @@
-#include "EllipseCurve.hxx"
+#include "Ellipse.hxx"
 #include "Vector.hxx"
 
 namespace CurveIntersection {
