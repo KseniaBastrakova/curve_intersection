@@ -3,7 +3,7 @@
 #include "Point.hxx"
 #include "Range.hxx"
 #include "Vector.hxx"
-#include "Curves/ICurve.hxx"
+#include "ICurve.hxx"
 #include <string>
 
 namespace CurveIntersection {
