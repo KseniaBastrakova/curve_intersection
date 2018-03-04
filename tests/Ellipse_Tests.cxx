@@ -47,27 +47,27 @@ TEST(Ellipse, Assigment)
 TEST(Ellipse, GetPoint)
 {
 	const Ellipse aEllipse(Point(2., 1.), 1., 4., PI / 4.);
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(0.),
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(0.),
 		Point(2.7071067811865475, 1.7071067811865475)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*2.),
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI*2.),
 		Point(2.7071067811865475, 1.7071067811865475)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI / 4.), Point(0.5, 3.5)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*5. / 4.), Point(3.5, -1.5)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI*5. / 4.), Point(3.5, -1.5)));
 }
 
 TEST(Ellipse, GetPoint2)
 {
 	const Ellipse aEllipse(Point(2., 1.), Point(2.7071067811865475, 1.7071067811865475), Point(0.5, 3.5));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(0.),
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(0.),
 		Point(2.7071067811865475, 1.7071067811865475)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*2.),
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI*2.),
 		Point(2.7071067811865475, 1.7071067811865475)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI / 4.), Point(0.5, 3.5)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)));
-	EXPECT_TRUE(IsEqualPoints(aEllipse.GetPoint(PI*5. / 4.), Point(3.5, -1.5)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI*9. / 4.), Point(0.5, 3.5)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI), Point(1.292893218813452, 0.29289321881345287)));
+	EXPECT_TRUE(IsEqual(aEllipse.GetPoint(PI*5. / 4.), Point(3.5, -1.5)));
 }
 
 TEST(Ellipse, GetRange)
@@ -102,13 +102,13 @@ TEST(Ellipse, GetAngle)
 TEST(Ellipse, GetDerivative)
 {
 	const Ellipse ellipse(Point(2., 1.), 1., 4., PI / 4.);
-	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(0.), Vector(-2.82842712474619, 2.8284271247461903)));
-	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI*2.),
+	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(0.), Vector(-2.82842712474619, 2.8284271247461903)));
+	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(PI*2.),
 		Vector(-2.82842712474619, 2.8284271247461903)));
-	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI / 4.), Vector(-2.5, 1.5)));
-	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI*9. / 4.), Vector(-2.5, 1.5)));
-	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI),
+	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(PI / 4.), Vector(-2.5, 1.5)));
+	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(PI*9. / 4.), Vector(-2.5, 1.5)));
+	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(PI),
 		Vector(2.82842712474619, -2.8284271247461903)));
-	EXPECT_TRUE(IsEqualVectors(ellipse.GetDerivative(PI*5. / 4.), Vector(2.5, -1.5)));
+	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(PI*5. / 4.), Vector(2.5, -1.5)));
 }
 
