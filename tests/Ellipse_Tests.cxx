@@ -12,8 +12,8 @@ TEST(Ellipse, Constructor)
 	double aAngle = 1.;
 	Ellipse aEllipse(aCenter, aR1, aR2, aAngle);
 	EXPECT_EQ(aCenter, aEllipse.GetCenter());
-	EXPECT_DOUBLE_EQ(aR1, aEllipse.GetR1());
-	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetR2());
+	EXPECT_DOUBLE_EQ(aR1, aEllipse.GetMajorAxis());
+	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetMinorAxis());
 	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
 }
 
@@ -25,8 +25,8 @@ TEST(Ellipse, CopyConstructor)
 	double aAngle = 0.5;
 	Ellipse aEllipse(aCenter, aR1, aR2, aAngle);
 	Ellipse aCopy = aEllipse;
-	EXPECT_DOUBLE_EQ(aR1, aCopy.GetR1());
-	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetR2());
+	EXPECT_DOUBLE_EQ(aR1, aCopy.GetMajorAxis());
+	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetMinorAxis());
 	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
 }
 
@@ -39,8 +39,8 @@ TEST(Ellipse, Assigment)
 	Ellipse aEllipse(aCenter, aR1, aR2, aAngle);
 	Ellipse aCopy(Point(0., 0.), 0., 0., 0.);
 	aCopy = aEllipse;
-	EXPECT_DOUBLE_EQ(aR1, aCopy.GetR1());
-	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetR2());
+	EXPECT_DOUBLE_EQ(aR1, aCopy.GetMajorAxis());
+	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetMinorAxis());
 	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
 }
 
@@ -78,17 +78,17 @@ TEST(Ellipse, GetRange)
 	EXPECT_DOUBLE_EQ(PI*2., aRange.End);
 }
 
-TEST(Ellipse, GetR1)
+TEST(Ellipse, GetMajorAxis)
 {
 	const Ellipse aEllipse(Point(2., 1.), 1., 4., PI / 4.);
-	const auto aR1 = aEllipse.GetR1();
+	const auto aR1 = aEllipse.GetMajorAxis();
 	EXPECT_DOUBLE_EQ(1., aR1);
 }
 
-TEST(Ellipse, GetR2)
+TEST(Ellipse, GetMinorAxis)
 {
 	const Ellipse aEllipse(Point(2., 1.), 1., 4., PI / 4.);
-	const auto aR2 = aEllipse.GetR2();
+	const auto aR2 = aEllipse.GetMinorAxis();
 	EXPECT_DOUBLE_EQ(4., aR2);
 }
 
