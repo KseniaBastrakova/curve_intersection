@@ -63,6 +63,18 @@ Vector Ellipse::GetDerivative(Parameter parameter) const {
 	return Rotate(aCanonical, myAngle);
 }
 
+Vector Ellipse::TryGetDerivative(Parameter theParameter) const {
+	if (theParameter < 0. || theParameter > 2 * PI)
+		throw std::invalid_argument("parameter must be from [0.,2*PI]");
+	return GetDerivative(theParameter);
+}
+
+Point Ellipse::TryGetPoint(Parameter theParameter) const {
+	if (theParameter < 0. || theParameter > 2 * PI)
+		throw std::invalid_argument("parameter must be from [0.,2*PI]");
+	return GetPoint(theParameter);
+}
+
 double Ellipse::GetMajorAxis() const {
 	return myMajorAxis;
 }

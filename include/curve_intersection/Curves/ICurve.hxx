@@ -13,6 +13,8 @@ public:
 	virtual Range GetRange() const = 0;
 	virtual Point GetPoint(Parameter theParameter) const = 0;
 	virtual Vector GetDerivative(Parameter theParameter) const = 0;
+	virtual Point TryGetPoint(Parameter theParameter) const = 0;
+	virtual Vector TryGetDerivative(Parameter theParameter) const = 0;
 	virtual std::string GetName() const = 0;
 	friend bool operator== (const ICurve& theFirst, const ICurve& theSecond);
 	virtual ~ICurve() = default;

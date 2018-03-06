@@ -58,6 +58,19 @@ Vector Bezier::GetDerivative(Parameter theParameter) const {
 	return Vector(x, y);
 }
 
+Point Bezier::TryGetPoint(Parameter theParameter) const {
+	if (theParameter < 0. || theParameter > 1.)
+		throw std::invalid_argument("parameter must be from [0.,1]");
+	return GetPoint(theParameter);
+}
+
+Vector Bezier::TryGetDerivative(Parameter theParameter) const
+{
+	if (theParameter < 0. || theParameter > 1.)
+		throw std::invalid_argument("parameter must be from [0.,1]");
+	return GetDerivative(theParameter);
+}
+
 std::vector<Point> Bezier::GetControlPoints() const {
 	return myControlPoints;
 }

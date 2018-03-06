@@ -19,6 +19,18 @@ Vector CircleCurve::GetDerivative(Parameter theParameter) const {
 	return myRadius * Vector(-sin(theParameter), cos(theParameter));
 }
 
+Point CircleCurve::TryGetPoint(Parameter theParameter) const {
+	if (theParameter < 0. || theParameter > 2 * PI)
+		throw std::invalid_argument("parameter must be from [0.,2*PI]");
+	return GetPoint(theParameter);
+}
+
+Vector CircleCurve::TryGetDerivative(Parameter theParameter) const {
+	if (theParameter < 0. || theParameter > 2 * PI)
+		throw std::invalid_argument("parameter must be from [0.,2*PI]");
+	return GetDerivative(theParameter);
+}
+
 Point CircleCurve::GetCenter() const {
 	return my—enter;
 }
