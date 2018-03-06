@@ -66,11 +66,9 @@ TEST(Bezier, GetPoint)
 TEST(Bezier, GetDerivative)
 {
 	auto bezier = NonClosedBezierCurve();
-//	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(0.0), Vector(0., 0.)));
 	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.2), Vector(3.96, 4.44), 1.e-4));
 	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.4), Vector(4.44, 2.16), 1.e-4));
 	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.6), Vector(4.44, -0.84), 1.e-4));
 	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.8), Vector(3.96, -4.56), 1.e-4));
-//	EXPECT_TRUE(IsEqualVectors(bezier->GetDerivative(1.), Vector(4., 0.), 1.e-4));
 }
 
