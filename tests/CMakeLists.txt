@@ -12,7 +12,8 @@ add_executable(Tests
 	Vector_Test.cxx
 	Point_Test.cxx
 	FormattedCurveSerializer_Test.cxx
-	LineSegmentSerializer_Tests.cxx)
+	LineSegmentSerializer_Tests.cxx
+	CircleSerializer_Tests.cxx)
 
 target_link_libraries(Tests
     gtest
