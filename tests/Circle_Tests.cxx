@@ -24,13 +24,12 @@ TEST(Circle, CopyConstructor)
 
 TEST(Circle, Assigment)
 {
-	Point aCenter(0, 0);
-	double aRadius = 7;
-	const CircleCurve aCircle(aCenter, aRadius);
+	const CircleCurve aCircle(Point(8.,8.), 55.);
 	CircleCurve aCopy(Point(0., 0.), 7.);
 	aCopy = aCircle;
-	EXPECT_EQ(aCenter, aCircle.GetCenter());
-	EXPECT_EQ(7., aCircle.GetRadius());
+	EXPECT_EQ(aCircle.GetCenter(), aCopy.GetCenter());
+	EXPECT_EQ(aCircle.GetRadius(), aCopy.GetRadius());
+	EXPECT_EQ(aCircle.GetRange(), aCopy.GetRange());
 }
 
 
