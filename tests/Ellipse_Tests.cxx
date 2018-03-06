@@ -19,29 +19,21 @@ TEST(Ellipse, Constructor)
 
 TEST(Ellipse, CopyConstructor)
 {
-	Point aCenter(2., 22.);
-	double aR1 = 3.;
-	double aR2 = 85.;
-	double aAngle = 0.5;
-	Ellipse aEllipse(aCenter, aR1, aR2, aAngle);
+	Ellipse aEllipse(Point(2.,22.), 85., 3., 0.5);
 	Ellipse aCopy = aEllipse;
-	EXPECT_DOUBLE_EQ(aR1, aCopy.GetMajorAxis());
-	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetMinorAxis());
-	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
+	EXPECT_DOUBLE_EQ(aEllipse.GetMajorAxis(), aCopy.GetMajorAxis());
+	EXPECT_DOUBLE_EQ(aEllipse.GetMinorAxis(), aCopy.GetMinorAxis());
+	EXPECT_DOUBLE_EQ(aEllipse.GetAngle(), aCopy.GetAngle());
 }
 
 TEST(Ellipse, Assigment)
 {
-	Point aCenter(55., 75.);
-	double aR1 = 1.;
-	double aR2 = 5.;
-	double aAngle = 0.5;
-	Ellipse aEllipse(aCenter, aR1, aR2, aAngle);
+	Ellipse aEllipse(Point(55.,75.), 5., 1., 0.5);
 	Ellipse aCopy(Point(0., 0.), 0., 0., 0.);
 	aCopy = aEllipse;
-	EXPECT_DOUBLE_EQ(aR1, aCopy.GetMajorAxis());
-	EXPECT_DOUBLE_EQ(aR2, aEllipse.GetMinorAxis());
-	EXPECT_DOUBLE_EQ(aAngle, aEllipse.GetAngle());
+	EXPECT_DOUBLE_EQ(aEllipse.GetMajorAxis(), aCopy.GetMajorAxis());
+	EXPECT_DOUBLE_EQ(aEllipse.GetMinorAxis(), aCopy.GetMinorAxis());
+	EXPECT_DOUBLE_EQ(aEllipse.GetAngle(), aCopy.GetAngle());
 }
 
 TEST(Ellipse, GetPoint)
