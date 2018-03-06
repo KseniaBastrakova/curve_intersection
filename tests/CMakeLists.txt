@@ -13,8 +13,10 @@ add_executable(Tests
 	Point_Test.cxx
 	FormattedCurveSerializer_Test.cxx
 	LineSegmentSerializer_Tests.cxx
-	CircleSerializer_Tests.cxx)
+	CircleSerializer_Tests.cxx
+	EllipseSerializer_Tests.cxx)
 
 target_link_libraries(Tests
     gtest
 	curveintersection)
+	
