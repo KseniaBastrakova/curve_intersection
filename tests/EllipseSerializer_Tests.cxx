@@ -60,7 +60,7 @@ TEST(EllipseSerializer, ReadEllipseTxt)
 	EXPECT_EQ(aMajorRadius, aCurve->GetMajorAxis());
 	EXPECT_EQ(aMinorRadius, aCurve->GetMinorAxis());
 	EXPECT_EQ(aAngle, aCurve->GetAngle());
-	remove("Test.bin");
+	remove("Test.txt");
 }
 
 TEST(EllipseSerializer, WriteReadEllipseBin)
@@ -80,4 +80,5 @@ TEST(EllipseSerializer, WriteReadEllipseBin)
 	EXPECT_EQ(aEllipse.GetMajorAxis(), aCurve->GetMajorAxis());
 	EXPECT_EQ(aEllipse.GetMinorAxis(), aCurve->GetMinorAxis());
 	EXPECT_EQ(aEllipse.GetAngle(), aCurve->GetAngle());
+	remove("Test.bin");
 }
