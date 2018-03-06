@@ -10,7 +10,7 @@ namespace CurveIntersection {
 
 class CircleCurve : public ICurve {
 public:
-	CircleCurve(const Point& the—enter, double theRadius);
+	CircleCurve(const Point& theCenter, double theRadius);
 	virtual Range GetRange() const override;
 	virtual Point GetPoint(Parameter parameter) const override;
 	virtual Vector GetDerivative(Parameter parameter) const override;
@@ -20,7 +20,7 @@ public:
 private:
 	virtual bool EqualTo(const ICurve& theOther) const override;
 	double myRadius;
-	Point my—enter;
+	Point myCenter;
 	Range myRange;
 };
 
