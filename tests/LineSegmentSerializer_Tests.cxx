@@ -1,4 +1,3 @@
-
 #include "gtest/gtest.h"
 #include "Serializer/LineSegmentSerializer.hxx"
 #include <fstream>
@@ -48,7 +47,7 @@ TEST(LineSegmentSerializer, ReadLineSegmentTxt)
 	LineSegment* aCurve = dynamic_cast<LineSegment*>(aLineSegmentRead.get());
 	EXPECT_EQ(aStart, aCurve->GetStart());
 	EXPECT_EQ(aEnd, aCurve->GetEnd());
-	remove("Test.bin");
+	remove("Test.txt");
 }
 
 TEST(LineSegmentSerializer, WriteReadLineSegmentBin)
@@ -68,4 +67,5 @@ TEST(LineSegmentSerializer, WriteReadLineSegmentBin)
 	LineSegment* aCurve = dynamic_cast<LineSegment*>(aLineSegmentRead.get());
 	EXPECT_EQ(aStart, aCurve->GetStart());
 	EXPECT_EQ(aEnd, aCurve->GetEnd());
+	remove("Test.bin");
 }
