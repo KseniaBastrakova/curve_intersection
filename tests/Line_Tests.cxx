@@ -14,23 +14,19 @@ TEST(LineSegment, Constructor)
 
 TEST(LineSegment, CopyConstructor)
 {
-	Point aStart(5., 5.);
-	Point aEnd(7., 8.);
-	LineSegment aLineSegment(aStart, aEnd);
+	LineSegment aLineSegment(Point(5.,5), Point(7.,8.));
 	LineSegment aCopy = aLineSegment;
-	EXPECT_EQ(aStart, aCopy.GetStart());
-	EXPECT_EQ(aEnd, aCopy.GetEnd());
+	EXPECT_EQ(aLineSegment.GetStart(), aCopy.GetStart());
+	EXPECT_EQ(aLineSegment.GetEnd(), aCopy.GetEnd());
 }
 
 TEST(LineSegment, Assigment)
 {
-	Point aStart(5., 5.);
-	Point aEnd(7., 8.);
-	LineSegment aLineSegment(aStart, aEnd);
+	LineSegment aLineSegment(Point(5.,5.), Point(7.,8));
 	LineSegment aCopy(Point(0., 0.), Point(0., 0.));
 	aCopy = aLineSegment;
-	EXPECT_EQ(aStart, aCopy.GetStart());
-	EXPECT_EQ(aEnd, aCopy.GetEnd());
+	EXPECT_EQ(aLineSegment.GetStart(), aCopy.GetStart());
+	EXPECT_EQ(aLineSegment.GetEnd(), aCopy.GetEnd());
 }
 
 TEST(LineSegment, GetPoint)
