@@ -5,7 +5,7 @@
 
 using namespace CurveIntersection;
 
-TEST(CircleSerializer, WriteLineSegmentTxt)
+TEST(CircleSerializer, WriteCircleTxt)
 {
 	CircleCurveSerializer aSerializer(FormattedCurveSerializer::Format::Text);
 	std::ofstream aOutput;
@@ -31,7 +31,7 @@ TEST(CircleSerializer, WriteLineSegmentTxt)
 	remove("Test.txt");
 }
 
-TEST(CircleSerializer, ReadLineSegmentTxt)
+TEST(CircleSerializer, ReadCircleTxt)
 {
 	CircleCurveSerializer aSerializer(FormattedCurveSerializer::Format::Text);
 	std::ofstream aOutput;
@@ -48,10 +48,10 @@ TEST(CircleSerializer, ReadLineSegmentTxt)
 	CircleCurve* aCurve = dynamic_cast<CircleCurve*>(aLineSegmentRead.get());
 	EXPECT_EQ(aCenter, aCurve->GetCenter());
 	EXPECT_EQ(aRadius, aCurve->GetRadius());
-	remove("Test.bin");
+	remove("Test.txt");
 }
 
-TEST(CircleSerializer, WriteReadLineSegmentBin)
+TEST(CircleSerializer, WriteReadCircleBin)
 {
 	CircleCurveSerializer aSerializer(FormattedCurveSerializer::Format::Binary);
 	std::ofstream aOutput;
@@ -68,4 +68,5 @@ TEST(CircleSerializer, WriteReadLineSegmentBin)
 	CircleCurve* aCurve = dynamic_cast<CircleCurve*>(aLineSegmentRead.get());
 	EXPECT_EQ(aCenter, aCurve->GetCenter());
 	EXPECT_EQ(aRadius, aCurve->GetRadius());
+	remove("Test.bin");
 }
