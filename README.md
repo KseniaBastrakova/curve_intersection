@@ -1,23 +1,28 @@
 # curve_intersector
 
-Open-Source library, provided next functions:
-  - save curves to bin or text format
-  - load curves from bin or text format
-  - find curves intersections
+## About
+An open source C++ library for curves in 2D. Provides:
+  - Representation of parametric curves
+  - Intersection algorithms
+  - Serialization
 
-Library supports the following types of curves:
-
+The library supports the following types of curves:
   - Line segment
   - Circle
   - Ellipse
-  - Nurbs
-  - NURBS - curve
+  - Bézier curves
+  - NURBS
 
-How to biuld:
-cd intersector_curve
-make CMake_Lists.txt
+## How to build
 
-How to use library:
-Add curve_intersection/include/curve_intersection to include path
-Add curve_intersection/Debug to lib path
-Add curve_intersection.lib to input
+The code is cross-platform and can be built using cmake with the 
+provided CMakeLists.txt file. There are no external dependencies.
+
+The compiled library to lib directory. 
+The compiled unit tests are put to bin directory and run at the end of each build. 
+
+## How to use
+
+Add include subdirectory to additional include paths. 
+Add lib to additional static library paths, link with the 
+static library curve_intersection.a or curve_intersection.lib depending on your system. 
