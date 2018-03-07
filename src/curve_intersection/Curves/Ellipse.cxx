@@ -22,31 +22,29 @@ static bool IsCorrectEllipseData(Point thePoint1, Point thePoint2, Point thePoin
 
 Ellipse::Ellipse(Point theCenter, double theMajorAxis, double theMinorAxis, double theAngle)
 {
-	if (theMajorAxis > 0. && theMinorAxis > 0.)
-	{
-		myMajorAxis = theMajorAxis;
-		myMinorAxis = theMinorAxis;
-		myCenter = theCenter;
-		myAngle = theAngle;
-	}
+	if (theMajorAxis < 0. || theMinorAxis < 0.)
+		throw std::invalid_argument("Axis should not be negative!");
+	myMajorAxis = theMajorAxis;
+	myMinorAxis = theMinorAxis;
+	myCenter = theCenter;
+	myAngle = theAngle;
+	
 }
 
 Ellipse::Ellipse(Point theCenter, Point thePoint2, Point thePoint3)
 {
-	if (IsCorrectEllipseData(theCenter, thePoint2, thePoint3))
-	{
-		myCenter = theCenter;
-		Vector aSideDirection = thePoint2 - myCenter;
-		myMajorAxis = aSideDirection.Lenght();
-		myAngle = atan2(aSideDirection.y, aSideDirection.x);
-		Vector newCoord(fabs(thePoint3.x - myCenter.x), fabs(thePoint3.y - myCenter.y));
-		newCoord = Rotate(newCoord, myAngle);
+	if (!IsCorrectEllipseData(theCenter, thePoint2, thePoint3))
+		throw std::invalid_argument("Incorrect Ellipse data!");
+	myCenter = theCenter;
+	Vector aSideDirection = thePoint2 - myCenter;
+	myMajorAxis = aSideDirection.Lenght();
+	myAngle = atan2(aSideDirection.y, aSideDirection.x);
+	Vector newCoord(fabs(thePoint3.x - myCenter.x), fabs(thePoint3.y - myCenter.y));
+	newCoord = Rotate(newCoord, myAngle);
 
-		double axisB = (sqrt(fabs((newCoord.y) * (newCoord.y) /
-			(1 - (newCoord.x) * (newCoord.x) / (myMajorAxis * myMajorAxis)))));
-		myMinorAxis = axisB;
-	}
-
+	double axisB = (sqrt(fabs((newCoord.y) * (newCoord.y) /
+		(1 - (newCoord.x) * (newCoord.x) / (myMajorAxis * myMajorAxis)))));
+	myMinorAxis = axisB;
 }
 
 Range Ellipse::GetRange() const {

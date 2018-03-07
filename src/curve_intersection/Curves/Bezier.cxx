@@ -16,13 +16,14 @@ double CalculateBinomialCoefficient(int i, int n) {
 }
 
 double CalculateBernsteinPolynom(size_t i, size_t n, double t) {
-
 	return pow(t, (int)i) * pow(1 - t, (int)(n - i)) * CalculateBinomialCoefficient((int)i, (int)n);
 }
 
 }
 
 Bezier::Bezier(const std::vector<Point>& theControlPoints) {
+	if (theControlPoints.empty())
+		throw std::invalid_argument("the number of points must be greater than zero");
 	myControlPoints = theControlPoints;
 }
 

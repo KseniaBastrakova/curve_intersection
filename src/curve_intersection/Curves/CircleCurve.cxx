@@ -5,7 +5,10 @@
 namespace CurveIntersection {
 
 CircleCurve::CircleCurve(const Point& theÑenter, double theRadius) :
-	myÑenter(theÑenter), myRadius(theRadius) {}
+	myÑenter(theÑenter), myRadius(theRadius) {
+	if (theRadius < 0.)
+		throw std::invalid_argument("radius should not be negative!");
+}
 
 Range CircleCurve::GetRange() const {
 	return Range(0.0, 2 * PI);

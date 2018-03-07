@@ -4,6 +4,8 @@
 namespace CurveIntersection {
 
 LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
+	if (IsEqual(thePoint1, thePoint2, 1e-7))
+		throw std::invalid_argument("points should not be the same!");
 	myStart = thePoint1;
 	myEnd = thePoint2;
 	myDirection = myEnd - myStart;
