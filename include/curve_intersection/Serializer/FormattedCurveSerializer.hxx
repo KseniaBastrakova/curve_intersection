@@ -2,15 +2,18 @@
 #include "ICurveSerializer.hxx"
 
 namespace CurveIntersection {
-
+	// Reading and writing a geometric primitive.
 class FormattedCurveSerializer : public ICurveSerializer {
 public:
+	// Two types of reading and writing geometric primitive.
 	enum class Format { Text, Binary };
 	FormattedCurveSerializer(Format theFormat) :
 		myFormat(theFormat) {}
-
+	// Return format
 	Format getFormat() const;
+	// Set Format
 	void setFormat(Format theFormat);
+	// Name of geometric primitive
 	virtual std::string GetHeaderName() = 0;
 
 private:
