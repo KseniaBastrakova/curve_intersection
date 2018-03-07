@@ -23,10 +23,24 @@ TEST(LineSegment, CopyConstructor)
 TEST(LineSegment, Assigment)
 {
 	LineSegment aLineSegment(Point(5.,5.), Point(7.,8));
-	LineSegment aCopy(Point(0., 0.), Point(0., 0.));
+	LineSegment aCopy(Point(0., 0.), Point(11., 0.));
 	aCopy = aLineSegment;
 	EXPECT_EQ(aLineSegment.GetStart(), aCopy.GetStart());
 	EXPECT_EQ(aLineSegment.GetEnd(), aCopy.GetEnd());
+}
+
+TEST(LineSegment, InvalidConstructor)
+{
+	try {
+		LineSegment aLineSegment(Point(5., 5.), Point(5., 5));
+		FAIL() << "Expected std::invalid_argument";
+	}
+	catch (const std::invalid_argument& err) {
+		GTEST_SUCCEED();
+	}
+	catch (...) {
+		FAIL() << "Expected std::invalid_argument";
+	}
 }
 
 TEST(LineSegment, GetPoint)

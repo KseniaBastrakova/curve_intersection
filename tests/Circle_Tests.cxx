@@ -61,3 +61,17 @@ TEST(Circle, GetDerivative)
 	EXPECT_TRUE(IsEqual(circle.GetDerivative(PI), Vector(0., -2.)));
 	EXPECT_TRUE(IsEqual(circle.GetDerivative(PI*5. / 4.), Vector(sqrt(2.), -sqrt(2.))));
 }
+
+TEST(Circle, InvalidConstructor)
+{
+	try {
+		CircleCurve aCircle(Point(5., 5.), -1.);
+		FAIL() << "Expected std::invalid_argument";
+	}
+	catch (std::invalid_argument const & err) {
+		GTEST_SUCCEED();
+	}
+	catch (...) {
+		FAIL() << "Expected std::invalid_argument";
+	}
+}

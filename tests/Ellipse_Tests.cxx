@@ -104,3 +104,16 @@ TEST(Ellipse, GetDerivative)
 	EXPECT_TRUE(IsEqual(ellipse.GetDerivative(PI*5. / 4.), Vector(2.5, -1.5)));
 }
 
+TEST(Ellipse, InvalidConstructor)
+{
+	try {
+		Ellipse aEllipse(Point(5., 5.), -1.,2, 0.);
+		FAIL() << "Expected std::invalid_argument";
+	}
+	catch (std::invalid_argument const & err) {
+		GTEST_SUCCEED();
+	}
+	catch (...) {
+		FAIL() << "Expected std::invalid_argument";
+	}
+}
