@@ -4,7 +4,8 @@
 #include <vector>
 
 namespace CurveIntersection {
-class CurveIntersection {
+	
+class Intersection {
 public:
 	std::vector<Point> Perform(const ICurve& FirstCurve, const ICurve&SecoundCurve);
 };

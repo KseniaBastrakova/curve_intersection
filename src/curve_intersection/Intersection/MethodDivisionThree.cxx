@@ -27,6 +27,21 @@ bool CheckMinimumFunction(Box & aCurrentBox, std::vector<Point>& theCurrentPoint
 	}
 	return false;
 }
+
+std::vector<Point> RemoveEqualPoints(std::vector<Point> thePoints) {
+	std::vector<Point> aResult;
+	for (size_t i = 0; i < thePoints.size(); i++) {
+		bool aIsExist = false;
+		for (size_t j = 0; j < aResult.size(); j++) {
+			if (IsEqual(thePoints[i], aResult[j]))
+				aIsExist = true;
+		}
+		if (!aIsExist)
+			aResult.push_back(thePoints[i]);
+
+	}
+	return aResult;
+}
 }
 
 std::vector<Point> MethodDivisionIntoThree::Method() {
@@ -71,9 +86,10 @@ std::vector<Point> MethodDivisionIntoThree::Method() {
 		CurrentIteration++;
 	}
 
+	aResult = RemoveEqualPoints(aResult);
+
 	return aResult;
 }
-
 
 double MethodDivisionIntoThree::LipschitzConstant() {
 	return myLipConstant;
