@@ -3,13 +3,30 @@
 #include "curve_intersection/Intersection/MethodDivisionThree.hxx"
 #include "curve_intersection/Intersection/EvaluationLipschitzConstant.hxx"
 #include <functional>
-
+#include <iostream>
 namespace CurveIntersection {
 
 namespace {
 
 double SquaredDistance(const Point& Point1, const Point& Point2) {
 	return (Point2.x - Point1.x) * (Point2.x - Point1.x) + (Point2.y - Point1.y) * (Point2.y - Point1.y);
+}
+
+std::vector<Point> RemoveEqualPoints(std::vector<Point> thePoints, const ICurve& FirstCurve, const ICurve& SecondCurve) {
+	std::vector<Point> aResult;
+	for (size_t i = 0; i < thePoints.size(); i++) {
+		bool aIsExist = false;
+		for (size_t j = 0; j < aResult.size(); j++) {
+			if (IsEqual(FirstCurve.GetPoint(thePoints[i].x), FirstCurve.GetPoint(aResult[j].x), 1e-3)
+					&& IsEqual(SecondCurve.GetPoint(thePoints[i].y), SecondCurve.GetPoint(aResult[j].y),1e-3)) {
+				aIsExist = true;
+		    }
+		}
+		if (!aIsExist)
+			aResult.push_back(thePoints[i]);
+
+	}
+	return aResult;
 }
 
 }
@@ -30,12 +47,12 @@ std::vector<Point> Intersection::Perform(const ICurve& FirstCurve, const ICurve&
 		return Vector(aResultT1, aResultT2);
 	};
 	LipschitzConstantEvaluator aLC(aDistFunction, FirstCurve.GetRange(), SecoundCurve.GetRange());
-
 	ConjugateGradientMethod aMethod(aDistDerivedFunction, aDistFunction);
-
 	MethodDivisionIntoThree Intersection(aDistFunction, FirstCurve.GetRange(), SecoundCurve.GetRange(),
 		aLC.Evaluate(50), &(aMethod));
-
-	return Intersection.Method();
+	std::vector<Point> aResult = Intersection.Method();
+	aResult = RemoveEqualPoints(aResult, FirstCurve, SecoundCurve);
+	return aResult;
 }
+
 }

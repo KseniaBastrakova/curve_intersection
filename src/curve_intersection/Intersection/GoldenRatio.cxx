@@ -23,6 +23,6 @@ double GoldenRatio::Run() {
 		}
 
 	}
-	return (aEnd + aBegin) / 2;
+	return (aEnd + aBegin) / 2.;
 }
 }

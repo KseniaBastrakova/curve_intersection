@@ -9,7 +9,7 @@ namespace CurveIntersection {
 double GridResult(std::vector<std::vector<double>> theGridValues, int i, int j, int i_, int j_,
 	double theStepX, double theStepY) {
 	if (i == i_ || j == j_) return 0;
-	return abs(theGridValues[i][j] - theGridValues[i_][j_]) /
+	return fabs(theGridValues[i][j] - theGridValues[i_][j_]) /
 		sqrt((i * theStepX - i_ * theStepX) * (i * theStepX - i_ * theStepX) +
 		(j * theStepY - j_ * theStepY) * (j * theStepY - j_ * theStepY));
 }
@@ -47,4 +47,5 @@ double LipschitzConstantEvaluator::Evaluate(int theResolution) const {
 		}
 	return aLipschitzConstant * 1.2;
 }
+
 }

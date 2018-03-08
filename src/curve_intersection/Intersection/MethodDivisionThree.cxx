@@ -13,12 +13,12 @@ namespace {
 
 bool CheckMinimumFunction(Box & aCurrentBox, std::vector<Point>& theCurrentPoints,
 	Point theCurrent, double& theCurrentFunction, double& theMinimumFunction, double theEps) {
-	if (abs(theCurrentFunction - theMinimumFunction) < theEps) {
+	if (fabs(theCurrentFunction - theMinimumFunction) < theEps) {
 		theCurrentPoints.push_back(theCurrent);
 		aCurrentBox.RCharacteristic = std::numeric_limits<double>::infinity();
 		return true;
 	}
-	else if (abs(theCurrentFunction) < (theMinimumFunction)) {
+	else if (fabs(theCurrentFunction) < (theMinimumFunction)) {
 		theCurrentPoints.resize(0);
 		theCurrentPoints.push_back(theCurrent);
 		theMinimumFunction = theCurrentFunction;
@@ -33,7 +33,7 @@ std::vector<Point> RemoveEqualPoints(std::vector<Point> thePoints) {
 	for (size_t i = 0; i < thePoints.size(); i++) {
 		bool aIsExist = false;
 		for (size_t j = 0; j < aResult.size(); j++) {
-			if (IsEqual(thePoints[i], aResult[j]))
+			if (IsEqual(thePoints[i], aResult[j], 1e-3))
 				aIsExist = true;
 		}
 		if (!aIsExist)
@@ -45,7 +45,7 @@ std::vector<Point> RemoveEqualPoints(std::vector<Point> thePoints) {
 }
 
 std::vector<Point> MethodDivisionIntoThree::Method() {
-	int NumIteration = 100000;
+	int NumIteration = 10000;
 	int CurrentIteration = 0;
 	Box aStartBox(myRangeX, myRangeY);
 	std::vector<Point> aResult;
@@ -59,15 +59,14 @@ std::vector<Point> MethodDivisionIntoThree::Method() {
 	double aMinObjFunction = myFunction(aStartBox.Center().x, aStartBox.Center().y);
 	double aMinFunction = std::numeric_limits<double>::infinity();
 	double aMaxSizeBox = 1e-4;
-	while (CurrentIteration < NumIteration) {
-
+	while (CurrentIteration < NumIteration && !aBoxRQ.empty()) {
 		Box aCurrentBox = aBoxRQ.top();
 		aBoxRQ.pop();
-
 		if (BreakCriterion(aCurrentBox.RCharacteristic, aMinObjFunction)) {
 			double aCurrentFunction = myFunction(aCurrentBox.Center().x, aCurrentBox.Center().y);
 			if (CheckMinimumFunction(aCurrentBox, aResult, aCurrentBox.Center(), aCurrentFunction, aMinFunction, myEps))
 				continue;
+
 		}
 		if (aCurrentBox.myRangeX.Lenght() * aCurrentBox.myRangeY.Lenght() < aMaxSizeBox) {
 			Point aPoint = myLocalMethod->FindMinimum(aCurrentBox, aCurrentBox.Center());
@@ -84,6 +83,21 @@ std::vector<Point> MethodDivisionIntoThree::Method() {
 			aMinObjFunction = MinObjective(myFunction, CurrentBoxes[i], aMinObjFunction);
 		}
 		CurrentIteration++;
+	}
+	if (aResult.empty()) {
+		Point aCenter = aBoxRQ.top().Center();
+		double aBestInterval = myFunction(aCenter.x, aCenter.y);
+		aResult.push_back(aCenter);
+		aBoxRQ.pop();
+		while (!aBoxRQ.empty()) {
+			Point aCurrentCenter = aBoxRQ.top().Center();
+			double aInterval = myFunction(aCurrentCenter.x, aCurrentCenter.y);
+			if (aBestInterval > aInterval - myEps)
+				aResult.push_back(aCurrentCenter);
+			else
+				break;
+			aBoxRQ.pop();
+		}
 	}
 
 	aResult = RemoveEqualPoints(aResult);
@@ -112,15 +126,15 @@ double MethodDivisionIntoThree::MinRCrit(std::function<double(double, double)> F
 
 void MethodDivisionIntoThree::DividedThree(Box aDivedBox, std::vector<Box>& CurrentBoxex) {
 	if (aDivedBox.IsMaxX()) {
-		double Path = abs(aDivedBox.myRangeX.End - aDivedBox.myRangeX.Begin) / 3.0;
+		double Path = fabs(aDivedBox.myRangeX.End - aDivedBox.myRangeX.Begin) / 3.0;
 		CurrentBoxex.push_back(Box(Range(aDivedBox.myRangeX.Begin, aDivedBox.myRangeX.Begin + Path), aDivedBox.myRangeY));
 		CurrentBoxex.push_back(Box(Range(aDivedBox.myRangeX.Begin + Path, aDivedBox.myRangeX.Begin + 2 * Path), aDivedBox.myRangeY));
 		CurrentBoxex.push_back(Box(Range(aDivedBox.myRangeX.Begin + 2 * Path, aDivedBox.myRangeX.Begin + 3 * Path), aDivedBox.myRangeY));
 	}
 	else {
-		double Path = abs(aDivedBox.myRangeY.End - aDivedBox.myRangeY.Begin) / 3.0;
+		double Path = fabs(aDivedBox.myRangeY.End - aDivedBox.myRangeY.Begin) / 3.0;
 		CurrentBoxex.push_back(Box(aDivedBox.myRangeX, Range(aDivedBox.myRangeY.Begin, aDivedBox.myRangeY.Begin + Path)));
-		CurrentBoxex.push_back(Box(aDivedBox.myRangeX, Range(aDivedBox.myRangeY.Begin + Path, aDivedBox.myRangeY.Begin + 2 * Path)));
+		CurrentBoxex.push_back(Box(aDivedBox.myRangeX, Range(aDivedBox.myRangeY.Begin + Path, aDivedBox.myRangeY.Begin + 2. * Path)));
 		CurrentBoxex.push_back(Box(aDivedBox.myRangeX, Range(aDivedBox.myRangeY.Begin + 2 * Path, aDivedBox.myRangeY.Begin + 3 * Path)));
 
 	}

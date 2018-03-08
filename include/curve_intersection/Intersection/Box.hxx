@@ -10,7 +10,7 @@ struct Box {
 	Range myRangeY;
 	Box(Range theRangeX, Range theRangeY) :
 		myRangeX(theRangeX), myRangeY(theRangeY) {}
-	Point Center() {
+	Point Center() const {
 		return Point(myRangeX.Begin + (myRangeX.Lenght()) / 2.0, myRangeY.Begin + myRangeY.Lenght() / 2.0);
 	}
 	bool IsMaxX() {
