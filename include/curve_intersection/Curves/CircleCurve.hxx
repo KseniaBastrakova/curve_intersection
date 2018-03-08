@@ -11,7 +11,7 @@ namespace CurveIntersection {
 class CircleCurve : public ICurve {
 public:
 	// Create a circle in the center and radius
-	CircleCurve(const Point& the—enter, double theRadius);
+	CircleCurve(const Point& theCenter, double theRadius);
 	// Return the parameter bounds for the circle : [0, 2 * pi].
 	virtual Range GetRange() const override;
 	// Return the point by the parameter

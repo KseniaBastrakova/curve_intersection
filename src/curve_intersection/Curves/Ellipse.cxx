@@ -1,4 +1,5 @@
 #include "curve_intersection/Curves/Ellipse.hxx"
+#include <stdexcept>
 
 namespace CurveIntersection {
 

@@ -1,4 +1,7 @@
 project(curveintersection CXX)
+set (CMAKE_CXX_STANDARD 14)
+
+
 cmake_minimum_required(VERSION 2.6)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR})
 

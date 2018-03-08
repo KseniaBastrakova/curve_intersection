@@ -1,5 +1,6 @@
 #include "curve_intersection/Curves/LineSegment.hxx"
 #include <stdexcept>
+#include <stdexcept>
 
 namespace CurveIntersection {
 

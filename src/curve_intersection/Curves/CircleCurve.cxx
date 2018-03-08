@@ -1,11 +1,12 @@
 #include "curve_intersection/Curves/CircleCurve.hxx"
 #include "curve_intersection/Core/Constants.hxx"
 #include <cmath>
+#include <stdexcept>
 
 namespace CurveIntersection {
 
-CircleCurve::CircleCurve(const Point& theÑenter, double theRadius) :
-	myÑenter(theÑenter), myRadius(theRadius) {
+CircleCurve::CircleCurve(const Point& theCenter, double theRadius) :
+	myCenter(theCenter), myRadius(theRadius) {
 	if (theRadius < 0.)
 		throw std::invalid_argument("radius should not be negative!");
 }
@@ -15,7 +16,7 @@ Range CircleCurve::GetRange() const {
 }
 
 Point CircleCurve::GetPoint(Parameter theParameter) const {
-	return myÑenter + myRadius * Vector(cos(theParameter), sin(theParameter));
+	return myCenter + myRadius * Vector(cos(theParameter), sin(theParameter));
 }
 
 Vector CircleCurve::GetDerivative(Parameter theParameter) const {
@@ -35,7 +36,7 @@ Vector CircleCurve::TryGetDerivative(Parameter theParameter) const {
 }
 
 Point CircleCurve::GetCenter() const {
-	return myÑenter;
+	return myCenter;
 }
 
 double CircleCurve::GetRadius() const {

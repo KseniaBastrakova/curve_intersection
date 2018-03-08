@@ -1,5 +1,5 @@
 #include "curve_intersection/Curves/Bezier.hxx"
-
+#include <stdexcept>
 namespace CurveIntersection {
 
 namespace {
