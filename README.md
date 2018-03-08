@@ -11,7 +11,6 @@ The library supports the following types of curves:
   - Circle
   - Ellipse
   - Bézier curves
-  - NURBS
 
 ## How to build
 
