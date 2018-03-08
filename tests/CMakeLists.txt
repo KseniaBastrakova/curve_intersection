@@ -11,7 +11,6 @@ add_executable(Tests
 	intersector_test.cxx
 	Vector_Test.cxx
 	Point_Test.cxx
-	FormattedCurveSerializer_Test.cxx
 	LineSegmentSerializer_Tests.cxx
 	CircleSerializer_Tests.cxx
 	EllipseSerializer_Tests.cxx

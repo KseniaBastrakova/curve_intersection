@@ -33,7 +33,7 @@ public:
 private:
 	virtual bool EqualTo(const ICurve& theOther) const override;
 	double myRadius;
-	Point my—enter;
+	Point myCenter;
 	Range myRange;
 };
 
