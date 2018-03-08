@@ -1,5 +1,4 @@
-#include "Ellipse.hxx"
-#include "Vector.hxx"
+#include "curve_intersection/Curves/Ellipse.hxx"
 
 namespace CurveIntersection {
 
@@ -28,7 +27,6 @@ Ellipse::Ellipse(Point theCenter, double theMajorAxis, double theMinorAxis, doub
 	myMinorAxis = theMinorAxis;
 	myCenter = theCenter;
 	myAngle = theAngle;
-	
 }
 
 Ellipse::Ellipse(Point theCenter, Point thePoint2, Point thePoint3)

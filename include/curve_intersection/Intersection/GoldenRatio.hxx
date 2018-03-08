@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Range.hxx"
+#include "curve_intersection/Core/Range.hxx"
 #include <functional>
 
 namespace CurveIntersection {

@@ -1,4 +1,4 @@
-#include "ICurve.hxx"
+#include "curve_intersection/Curves/ICurve.hxx"
 
 namespace CurveIntersection {
 

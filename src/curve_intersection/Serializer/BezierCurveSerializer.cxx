@@ -1,4 +1,4 @@
-#include "BezierCurveSerializer.hxx"
+#include "curve_intersection/Serializer/BezierCurveSerializer.hxx"
 
 namespace CurveIntersection {
 

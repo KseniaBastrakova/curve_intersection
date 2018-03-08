@@ -1,4 +1,4 @@
-#include "FormattedCurveSerializer.hxx"
+#include "curve_intersection/Serializer/FormattedCurveSerializer.hxx"
 
 namespace CurveIntersection {
 

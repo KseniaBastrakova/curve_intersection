@@ -1,5 +1,5 @@
-#include "Range.hxx"
-#include "EvaluationLipschitzConstant.hxx"
+#include "curve_intersection/Core/Range.hxx"
+#include "curve_intersection/Intersection/EvaluationLipschitzConstant.hxx"
 #include <algorithm>
 #include <iostream>
 #include <vector>

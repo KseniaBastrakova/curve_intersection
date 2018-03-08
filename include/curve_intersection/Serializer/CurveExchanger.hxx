@@ -1,6 +1,7 @@
 #pragma once
-#include "FormattedCurveSerializer.hxx"
-#include "ICurve.hxx"
+
+#include "curve_intersection/Serializer/FormattedCurveSerializer.hxx"
+#include "curve_intersection/Curves/ICurve.hxx"
 #include <memory>
 #include <string>
 #include <vector>

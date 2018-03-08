@@ -1,4 +1,4 @@
-#include "GoldenRatio.hxx"
+#include "curve_intersection/Intersection/GoldenRatio.hxx"
 
 namespace CurveIntersection {
 

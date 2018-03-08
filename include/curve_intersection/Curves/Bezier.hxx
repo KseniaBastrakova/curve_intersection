@@ -1,6 +1,7 @@
 #pragma once
-#include "ICurve.hxx"
-#include "Range.hxx"
+
+#include "curve_intersection/Core/Range.hxx"
+#include "curve_intersection/Curves/ICurve.hxx"
 #include <vector>
 
 namespace CurveIntersection {

@@ -1,13 +1,13 @@
-#include "LineSegment.hxx"
+#include "curve_intersection/Curves/LineSegment.hxx"
 #include <stdexcept>
 
 namespace CurveIntersection {
 
-LineSegment::LineSegment(const Point& thePoint1, const Point& thePoint2) {
-	if (IsEqual(thePoint1, thePoint2, 1e-7))
-		throw std::invalid_argument("points should not be the same!");
-	myStart = thePoint1;
-	myEnd = thePoint2;
+LineSegment::LineSegment(const Point& theStart, const Point& theEnd) {
+	if (IsEqual(theStart, theEnd, 1e-7))
+		throw std::invalid_argument("Points must be different!");
+	myStart = theStart;
+	myEnd = theEnd;
 	myDirection = myEnd - myStart;
 	myRange = Range(0., 1.);
 }
@@ -16,19 +16,18 @@ Point LineSegment::GetPoint(Parameter theParameter) const {
 	return myStart + myDirection * theParameter;
 }
 
-
-Point LineSegment::TryGetPoint(Parameter theParameter) const {
-	if (theParameter < 0. || theParameter > 1.)
-		throw std::invalid_argument("parameter must be from [0.,1]");
-	return GetPoint(theParameter);
-}
-
 Vector LineSegment::GetDerivative(Parameter theParameter) const {
 	return myDirection;
 }
 
 Range LineSegment::GetRange() const {
 	return myRange;
+}
+
+Point LineSegment::TryGetPoint(Parameter theParameter) const {
+	if (theParameter < 0. || theParameter > 1.)
+		throw std::invalid_argument("parameter must be from [0.,1]");
+	return GetPoint(theParameter);
 }
 
 Vector LineSegment::TryGetDerivative(Parameter theParameter) const {

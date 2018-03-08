@@ -1,6 +1,6 @@
 #pragma once
-#include "CircleCurve.hxx"
-#include "FormattedCurveSerializer.hxx"
+#include "curve_intersection/Curves/CircleCurve.hxx"
+#include "curve_intersection/Serializer/FormattedCurveSerializer.hxx"
 #include <ostream>
 
 namespace CurveIntersection {

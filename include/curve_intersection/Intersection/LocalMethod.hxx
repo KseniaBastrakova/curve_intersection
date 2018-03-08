@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Point.hxx"
+#include "curve_intersection/Core/Point.hxx"
 
 namespace CurveIntersection {
 

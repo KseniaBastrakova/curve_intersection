@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
-#include "Ellipse.hxx"
-#include "Vector.hxx"
+#include "curve_intersection/Curves/Ellipse.hxx"
+#include "curve_intersection/Core/Vector.hxx"
 
 using namespace CurveIntersection;
 
@@ -110,7 +110,7 @@ TEST(Ellipse, InvalidConstructor)
 		Ellipse aEllipse(Point(5., 5.), -1.,2, 0.);
 		FAIL() << "Expected std::invalid_argument";
 	}
-	catch (std::invalid_argument const & err) {
+	catch (const std::invalid_argument&) {
 		GTEST_SUCCEED();
 	}
 	catch (...) {

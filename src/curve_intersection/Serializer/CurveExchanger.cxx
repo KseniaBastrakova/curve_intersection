@@ -1,8 +1,8 @@
-#include "CurveExchanger.hxx"
-#include "BezierCurveSerializer.hxx"
-#include "CircleCurveSerializer.hxx"
-#include "EllipseSerializer.hxx"
-#include "LineSegmentSerializer.hxx"
+#include "curve_intersection/Serializer/CurveExchanger.hxx"
+#include "curve_intersection/Serializer/BezierCurveSerializer.hxx"
+#include "curve_intersection/Serializer/CircleCurveSerializer.hxx"
+#include "curve_intersection/Serializer/EllipseSerializer.hxx"
+#include "curve_intersection/Serializer/LineSegmentSerializer.hxx"
 #include <algorithm>
 #include <istream>
 #include <ostream>

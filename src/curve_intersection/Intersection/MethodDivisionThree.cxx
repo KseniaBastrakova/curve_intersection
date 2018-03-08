@@ -1,6 +1,6 @@
-#include "MethodDivisionThree.hxx"
+#include "curve_intersection/Intersection/MethodDivisionThree.hxx"
 
-#include "ConjugateGradientMethod.hxx"
+#include "curve_intersection/Intersection/ConjugateGradientMethod.hxx"
 #include <algorithm>
 #include <functional>
 #include <iostream>

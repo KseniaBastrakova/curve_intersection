@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Range.hxx"
-#include "Point.hxx"
+#include "curve_intersection/Core/Range.hxx"
+#include "curve_intersection/Core/Point.hxx"
 #include "Box.hxx"
 #include <functional>
 #include <vector>

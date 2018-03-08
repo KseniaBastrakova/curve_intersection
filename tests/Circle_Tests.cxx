@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
-#include "Curves/CircleCurve.hxx"
-#include "Vector.hxx"
+#include "curve_intersection/Curves/CircleCurve.hxx"
+#include "curve_intersection/Core/Vector.hxx"
 
 using namespace CurveIntersection;
 
@@ -68,7 +68,7 @@ TEST(Circle, InvalidConstructor)
 		CircleCurve aCircle(Point(5., 5.), -1.);
 		FAIL() << "Expected std::invalid_argument";
 	}
-	catch (std::invalid_argument const & err) {
+	catch (const std::invalid_argument&)  {
 		GTEST_SUCCEED();
 	}
 	catch (...) {

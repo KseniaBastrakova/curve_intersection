@@ -1,4 +1,4 @@
-#include "Bezier.hxx"
+#include "curve_intersection/Curves/Bezier.hxx"
 
 namespace CurveIntersection {
 

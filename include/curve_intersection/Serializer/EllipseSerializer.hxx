@@ -1,6 +1,7 @@
 #pragma once
-#include "Ellipse.hxx"
-#include "FormattedCurveSerializer.hxx"
+
+#include "curve_intersection/Curves/Ellipse.hxx"
+#include "curve_intersection/Serializer/FormattedCurveSerializer.hxx"
 #include <ostream>
 
 namespace CurveIntersection {

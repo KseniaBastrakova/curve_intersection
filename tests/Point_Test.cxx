@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "Point.hxx"
+#include "curve_intersection/Core/Point.hxx"
 
 using namespace CurveIntersection;
 

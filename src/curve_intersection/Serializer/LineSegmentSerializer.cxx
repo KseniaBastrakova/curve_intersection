@@ -1,5 +1,5 @@
-#include "LineSegmentSerializer.hxx"
-#include "LineSegment.hxx"
+#include "curve_intersection/Serializer/LineSegmentSerializer.hxx"
+#include "curve_intersection/Curves/LineSegment.hxx"
 
 namespace CurveIntersection {
 

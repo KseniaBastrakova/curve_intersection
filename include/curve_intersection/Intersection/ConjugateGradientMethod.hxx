@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Box.hxx"
-#include "LocalMethod.hxx"
-#include "Vector.hxx"
+#include "curve_intersection/Intersection/Box.hxx"
+#include "curve_intersection/Intersection/LocalMethod.hxx"
+#include "curve_intersection/Core/Vector.hxx"
 #include <functional>
 
 namespace CurveIntersection {

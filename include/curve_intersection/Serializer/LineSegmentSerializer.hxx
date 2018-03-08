@@ -1,6 +1,7 @@
 #pragma once
-#include "FormattedCurveSerializer.hxx"
-#include "LineSegment.hxx"
+
+#include "curve_intersection/Serializer/FormattedCurveSerializer.hxx"
+#include "curve_intersection/Curves/LineSegment.hxx"
 
 namespace CurveIntersection {
 

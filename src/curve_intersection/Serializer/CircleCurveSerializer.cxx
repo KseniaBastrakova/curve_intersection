@@ -1,4 +1,4 @@
-#include "CircleCurveSerializer.hxx"
+#include "curve_intersection/Serializer/CircleCurveSerializer.hxx"
 
 namespace CurveIntersection {
 

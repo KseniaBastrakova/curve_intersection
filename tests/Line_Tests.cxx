@@ -35,7 +35,7 @@ TEST(LineSegment, InvalidConstructor)
 		LineSegment aLineSegment(Point(5., 5.), Point(5., 5));
 		FAIL() << "Expected std::invalid_argument";
 	}
-	catch (const std::invalid_argument& err) {
+	catch (const std::invalid_argument&) {
 		GTEST_SUCCEED();
 	}
 	catch (...) {
@@ -79,5 +79,6 @@ TEST(LineSegment, GetRange)
   EXPECT_NEAR( range.Begin, 0., 1.e-7 );
   EXPECT_NEAR( range.End, 1., 1.e-7 );
 }
+
 
 

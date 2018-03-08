@@ -1,7 +1,7 @@
-#include "ConjugateGradientMethod.hxx"
-#include "GoldenRatio.hxx"
-#include "Vector.hxx"
-#include "Range.hxx"
+#include "curve_intersection/Intersection/ConjugateGradientMethod.hxx"
+#include "curve_intersection/Intersection/GoldenRatio.hxx"
+#include "curve_intersection/Core/Vector.hxx"
+#include "curve_intersection/Core/Range.hxx"
 #include <algorithm>
 #include <limits>
 

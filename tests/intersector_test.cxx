@@ -8,7 +8,6 @@
 #include <ctime>
 
 
-
 template<typename T>
 bool compare(std::vector<T>& v1, std::vector<T>& v2)
 {
@@ -30,8 +29,8 @@ TEST(Line, Intersect1Point)
 	CurveIntersection::LineSegment line1(CurveIntersection::Point(1., 1.), CurveIntersection::Point(3., 3.));
 	CurveIntersection::LineSegment line2(CurveIntersection::Point(3., 1.), CurveIntersection::Point(1., 3.));
 	CurveIntersection::CurveIntersection intersection;
-	//std::vector<Point> points = intersection.Perform(line1, line2);
-	//EXPECT_FALSE(points.empty());
+	//::vector<Point> points = intersection.Perform(line1, line2);
+	EXPECT_FALSE(points.empty());
 //	EXPECT_TRUE(IsEqualPoints(Point(2., 2.), points[0]));
 //	// начало одной прямой - конец другой прямой
 //	Math::Line line3(Math::Point(3., 1.), Math::Point(5., 1.));

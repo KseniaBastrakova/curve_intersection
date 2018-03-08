@@ -71,6 +71,7 @@ TEST(Bezier, GetDerivative)
 	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.6), Vector(4.44, -0.84), 1.e-4));
 	EXPECT_TRUE(IsEqual(bezier->GetDerivative(0.8), Vector(3.96, -4.56), 1.e-4));
 }
+
 TEST(Bezier, InvalidConstructor)
 {
 	try {
@@ -78,7 +79,7 @@ TEST(Bezier, InvalidConstructor)
 		Bezier aBezier(aEmptyVector);
 		FAIL() << "Expected std::invalid_argument";
 	}
-	catch (const std::invalid_argument& err) {
+	catch (const std::invalid_argument&) {
 		GTEST_SUCCEED();
 	}
 	catch (...) {

@@ -1,7 +1,7 @@
-#include "CurveIntersection.hxx"
-#include "ConjugateGradientMethod.hxx"
-#include "MethodDivisionThree.hxx"
-#include "EvaluationLipschitzConstant.hxx"
+#include "curve_intersection/Intersection/CurveIntersection.hxx"
+#include "curve_intersection/Intersection/ConjugateGradientMethod.hxx"
+#include "curve_intersection/Intersection/MethodDivisionThree.hxx"
+#include "curve_intersection/Intersection/EvaluationLipschitzConstant.hxx"
 #include <functional>
 
 namespace CurveIntersection {
